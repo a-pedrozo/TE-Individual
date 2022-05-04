@@ -10,7 +10,7 @@
 # The script uses this value to set it as an upstream for the student.
 # The URL should look something like: "https://git.techelevator.com/campuses/nlr/jan-2022/java-green/instructor-code"
 
-upstream_repo="UPSTREAM_REPO_URL_HERE"
+upstream_repo="https://git.techelevator.com/campuses/cbus/may-2022/c-sharp/instructor-code.git"
 
 echo
 read -r -p "Enter your name (First Last): " name
@@ -21,6 +21,7 @@ echo "Setting Up Global Configuration Settings"
 
 git config --global user.name "${name}"
 git config --global user.email "${email}"
+git config --global init.defaultBranch main
 
 echo "Setting up Git Editors and Tools..."
 
