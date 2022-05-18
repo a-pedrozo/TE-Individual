@@ -207,9 +207,9 @@
             27. Mrs. Hilt has 50 cents. A pencil costs 7 cents. How many pencils can
             she buy with the money she has?
             */
-            decimal totalChange = 0.50m;
-            decimal pencilCost = 0.07m;
-            decimal totalPencils = totalChange / pencilCost;
+            int totalChange = 50;
+            int pencilCost = 7;
+            int totalPencils = totalChange / pencilCost;
             /*
             28. Mrs. Hilt saw 33 butterflies. Some of the butterflies were red and others
             were orange. If 20 of the butterflies were orange, how many of them
@@ -295,7 +295,7 @@
             */
             int cupcakes = 100;
             int children = 8;
-            int sharingCupcakes = cupcakes / children;
+            decimal sharingCupcakes = cupcakes / children;
             /*
             40. She made 47 gingerbread cookies which she will distribute equally in
             tiny glass jars. If each jar is to contain six cookies, how many
