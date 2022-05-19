@@ -11,6 +11,18 @@
          */
         public string ReturnFizzOrBuzzOrNothing(int number)
         {
+            if (number == 3)
+            {
+                return "Fizz";
+            }
+            else if (number == 5)
+            {
+                return "Buzz";
+            }
+            else
+            {
+                return "";
+            }
             return null;
         }
     }

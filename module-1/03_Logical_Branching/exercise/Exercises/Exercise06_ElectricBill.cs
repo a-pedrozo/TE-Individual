@@ -28,8 +28,18 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public double CalculateElectricBill(double unitsUsed)
         {
-            return 0;
-        }
+            if (unitsUsed <= ExcessUnitsLimit)
+            {
+                return BaseRate * unitsUsed;
+            }
+            if (unitsUsed > ExcessUnitsLimit)
+            {
+                return (ExcessUnitsLimit * BaseRate) + ((unitsUsed -ExcessUnitsLimit) * ExcessRate);
+            }
+            else
+                return BaseRate * unitsUsed;
+        }  
+        
 
         /*
          * Tech Electric realized some of their customers have renewable energy like solar panels.
@@ -43,7 +53,26 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public double CalculateElectricBill(double unitsUsed, bool hasRenewableEnergy)
         {
-            return 0;
+            if (unitsUsed <= ExcessUnitsLimit)
+            {
+                if (hasRenewableEnergy == true)
+                {
+                    return DiscountFactor * unitsUsed;
+                }
+                else 
+                return BaseRate * unitsUsed;
+            }
+            if (unitsUsed > ExcessUnitsLimit)
+            {
+                if (hasRenewableEnergy == true)
+                {
+                    return (ExcessUnitsLimit * DiscountFactor) + ((unitsUsed - ExcessUnitsLimit) * ExcessRate);
+                }
+                else
+                    return (ExcessUnitsLimit * BaseRate) + ((unitsUsed - ExcessUnitsLimit) * ExcessRate);
+            }
+            else
+                return BaseRate * unitsUsed;
         }
 
         /*

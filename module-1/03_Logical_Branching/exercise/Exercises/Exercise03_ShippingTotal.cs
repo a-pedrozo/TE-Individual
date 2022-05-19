@@ -14,6 +14,7 @@ namespace TechElevator.Exercises.LogicalBranching
         private const int MaxWeightPounds = 40;
         private const double UpTo40PoundRate = 0.50;
         private const double Over40PoundRate = 0.75;
+        private const double discountRate = 0.10;
 
         /*
          * Scamper Shipping Company charges $0.50 per pound up to 40 pounds. After that, it's $0.75 for each additional pound.
@@ -24,7 +25,10 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public double CalculateShippingTotal(int weightInPounds)
         {
-            return 0;
+            if (weightInPounds > MaxWeightPounds)
+            { return (MaxWeightPounds * UpTo40PoundRate) + ((weightInPounds - MaxWeightPounds) * Over40PoundRate); }
+            else
+                return weightInPounds * UpTo40PoundRate;
         }
 
         /*
@@ -41,7 +45,14 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public double CalculateShippingTotal(int weightInPounds, bool hasDiscount)
         {
-            return 0;
+            if (weightInPounds > MaxWeightPounds)
+            { return (MaxWeightPounds * UpTo40PoundRate) + ((weightInPounds - MaxWeightPounds) * Over40PoundRate); }
+            if ( hasDiscount == true)
+            {
+                return weightInPounds + (weightInPounds * discountRate);
+            }
+            else
+                return weightInPounds * UpTo40PoundRate;
         }
 
         /*
@@ -56,7 +67,11 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public double CalculateShippingTotal(int weightInPounds, double discountPercentage)
         {
-            return 0;
+            if(weightInPounds > MaxWeightPounds)
+            { return (MaxWeightPounds * UpTo40PoundRate) + ((weightInPounds - MaxWeightPounds) * Over40PoundRate); }
+           
+            else
+                return weightInPounds * UpTo40PoundRate;
         }
     }
 }

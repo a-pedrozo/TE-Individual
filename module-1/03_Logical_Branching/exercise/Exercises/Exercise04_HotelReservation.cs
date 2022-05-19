@@ -28,8 +28,16 @@ namespace TechElevator.Exercises.LogicalBranching
          * calculateStayTotal(3) ➔ 269.97
          */
         public double CalculateStayTotal(int numberOfNights)
-        {
-            return 0;
+        { if (numberOfNights < MinimumNightsForDiscountRate)
+            {
+                return DailyRate * numberOfNights;
+            }
+        else if (numberOfNights >= MinimumNightsForDiscountRate)
+            {
+                return DiscountRate * numberOfNights;
+            }
+        else
+            return DailyRate * numberOfNights;
         }
 
         /*
@@ -48,7 +56,22 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public double CalculateStayTotal(int numberOfNights, int numOfWeekendNights)
         {
+            if (numberOfNights + numOfWeekendNights >= MinimumNightsForDiscountRate)
+            {
+                return DiscountRate * numberOfNights;
+            }
+                else if (numberOfNights < MinimumNightsForDiscountRate)
+                {
+                 if (numOfWeekendNights < 2)
+                { return DailyRate * (numberOfNights + numOfWeekendNights); }
+            }
+            else
+                
+            return DailyRate;
             return 0;
+
+            
+               
         }
 
         /*

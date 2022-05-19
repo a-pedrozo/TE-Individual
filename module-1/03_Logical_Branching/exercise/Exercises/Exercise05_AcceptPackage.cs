@@ -26,8 +26,12 @@ namespace TechElevator.Exercises.LogicalBranching
          * acceptPackage(50) ➔ false
          */
         public bool AcceptPackage(int weightInPounds)
-        {
-            return false;
+        { if (weightInPounds <= MaxWeightPounds)
+            {
+                return true;
+            }
+            else
+                return false;
         }
         
         /*
@@ -40,8 +44,19 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public bool AcceptPackage(int weightInPounds, int lengthInInches, int widthInInches, int heightInInches)
         {
-            return false;
-        }
+            if (weightInPounds <= MaxWeightPounds)
+            {
+                if (lengthInInches * widthInInches * heightInInches <= MaxCubicInches)
+                {
+                    return true;
+                }
+            }
+            else
+                return false;
+            
+           return false;
+            
+        } 
 
         /* 
          * All was well until a customer showed up with a 16-foot garden hose laid out straight in a 2x2x194 inch shipping box.
@@ -63,6 +78,19 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public bool AcceptPackage(int weightInPounds, int lengthInInches, int widthInInches, int heightInInches, bool isSurchargePaid)
         {
+            if (weightInPounds <= MaxWeightPounds)
+            {
+                if (lengthInInches * widthInInches * heightInInches <= MaxCubicInches)
+                {
+                    if ((lengthInInches <= MaxCubicInches) || (widthInInches <= MaxCubicInches) || (heightInInches <= MaxCubicInches))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else
+                return false;
+
             return false;
         }
     }

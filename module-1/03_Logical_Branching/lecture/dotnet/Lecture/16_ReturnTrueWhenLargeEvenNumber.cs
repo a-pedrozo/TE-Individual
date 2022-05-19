@@ -10,7 +10,24 @@
         */
         public string ReturnBigEvenNumber(int number)
         {
-            return null;
+            bool isMultipleOfFive = false;
+            if (number % 5 == 0)// if it divides evenly by 5
+            {
+                isMultipleOfFive = true;
+            }
+            if (number > 100)
+            {
+                if (number % 2 == 0) // divides evenly by 2
+
+                {
+                    if (isMultipleOfFive)
+                    {
+                        return "Big Even Number";
+                    }
+                }
+                return "Big number";
+            }
+            return "";
         }
     }
 }

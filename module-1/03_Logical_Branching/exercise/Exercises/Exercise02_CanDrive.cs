@@ -25,6 +25,15 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public bool CanDrive(bool hasPermit, bool withLicensedPassenger)
         {
+          if (hasPermit && withLicensedPassenger)
+            {
+                return true;
+            }
+          else if (hasPermit || withLicensedPassenger)
+            {
+                return false;
+            }
+          
             return false;
         }
 
@@ -37,10 +46,25 @@ namespace TechElevator.Exercises.LogicalBranching
          * canDrive(false, true, 23) ➔ false
          */
         public bool CanDrive(bool hasPermit, bool withLicensedPassenger, int passengerAge)
+        
         {
+            if (hasPermit == true)
+            {
+                if (withLicensedPassenger == true)
+                {
+                    if (passengerAge >= 21)
+                    {
+                        return true;
+                    }
+                    else return false;
+                }
+                else return false;
+            }
+            else
+                    return false;
             return false;
         }
-
+        
         /*
          * If the licensed passenger is the driver's legal guardian, they only have to be 18 instead of 21.
          * Implement the logic to return true if the person has a permit and is with a licensed passenger.
@@ -52,6 +76,22 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public bool CanDrive(bool hasPermit, bool withLicensedPassenger, int passengerAge, bool isPassengerOurGuardian)
         {
+           if (hasPermit && withLicensedPassenger)
+            {
+                if (passengerAge >= 18)
+                {
+                    if (isPassengerOurGuardian == true)
+                    {
+                        return true;
+                    }
+                    else if (passengerAge >= 21)
+                    {
+                        return true;
+                    }
+
+                    
+                }
+            }
             return false;
         }
     }

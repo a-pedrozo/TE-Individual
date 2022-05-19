@@ -9,7 +9,7 @@ namespace TechElevator.Exercises.LogicalBranching
      * The problems below ask you to implement the logic for returning a grade based on a student's test score.
      */
     public class TestGrading
-    {
+    { 
         /*
          * Grade-o-matic v1.0 scores tests as pass-fail.
          * A score of 70 or higher is a passing score. Anything lower is a failing score.
@@ -21,6 +21,14 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public bool GradeTestPassFail(int score)
         {
+            if (score >= 70)
+            {
+                return true;
+            }
+            else if (score <= 45)
+            {
+                return false;
+            }
             return false;
         }
 
@@ -39,8 +47,34 @@ namespace TechElevator.Exercises.LogicalBranching
          * gradeTestNumeric(45) ➔ 1
          * gradeTestNumeric(10) ➔ 0
          */
+        
         public int GradeTestNumeric(int score)
-        {
+            
+            
+        { if (score >= 90)
+            {
+                return 3;
+            }
+        if (score <= 89)
+            {
+                if (score >= 50)
+                {
+                    return 2;
+                }
+            }
+        if (score <= 49)
+            {
+                if (score >= 25)
+                {
+                    return 1;
+                }
+        
+            }
+        else
+            {
+                return 0;
+            }
+         
             return 0;
         }
 
@@ -60,7 +94,36 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public char GradeTestLetter(int score)
         {
-            return ' ';
+            if (score >= 90)
+            {
+                return 'A';
+            }
+            if (score <= 89)
+            {
+                if (score >= 80)
+                {
+                    return 'B';
+                }
+            }
+            if (score <= 79)
+            {
+                if (score >= 70)
+                {
+                    return 'C';
+                }
+            }
+            if (score <= 69)
+            {
+                if (score >= 60)
+                {
+                    return 'D';
+                }
+            }
+            else
+            {
+                return 'F';
+            }
+            return 'F';
         }
     }
 }
