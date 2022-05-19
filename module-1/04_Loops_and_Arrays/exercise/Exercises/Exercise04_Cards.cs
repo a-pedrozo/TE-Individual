@@ -46,7 +46,7 @@ namespace Exercises
         DiscardFirstCard(["1-C", "1-D", "1-H", "1-S", "2-C"]) → ["1-D", "1-H", "1-S", "2-C"]
         DiscardFirstCard(["K-C", "Q-D", "J-H", "10-S", "Q-C"]) → ["Q-D", "J-H", "10-S", "Q-C"]
         */
-        public string[] DiscardFirstCard(String[] hand)
+        public string[] DiscardFirstCard(string[] hand)
         {
             return new string[] { };
         }
@@ -66,7 +66,7 @@ namespace Exercises
         DiscardTopCard(["9-H"]) → []
         DiscardTopCard([]) → []
         */
-        public string[] DiscardTopCard(String[] remainingDeck)
+        public string[] DiscardTopCard(string[] remainingDeck)
         {
             return new string[] { };
         }
