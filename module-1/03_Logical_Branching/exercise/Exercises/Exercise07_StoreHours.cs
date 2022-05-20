@@ -34,6 +34,10 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public bool IsStoreOpen(int currentHour)
         {
+            if (currentHour >= 8 && currentHour < 17)
+            {
+                return true;
+            }
             return false;
         }
 
@@ -56,7 +60,16 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public bool IsStoreOpen(int currentHour, char currentDay)
         {
-            return false;
+            if (currentHour >= 8 && currentHour < 17)
+            {
+                if (currentDay == 'M' || currentDay == 'W' || currentDay == 'F')
+                {
+                    return true;
+                }
+                
+            }
+            
+                return false;
         }
 
         /*
@@ -75,6 +88,31 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public bool IsStoreOpen(int currentHour, char currentDay, bool isSummer)
         {
+            if (currentHour >= 8 && currentHour < 17)
+            {
+                if (currentDay == 'M' || currentDay == 'W' || currentDay == 'F')
+                {
+                    return true;
+                }
+
+            }
+            if (isSummer == true)
+            {
+                if (currentHour >= 8 && currentHour < 20)
+                {
+                    if (currentDay == 'W')
+                    {
+                        return true;
+                    }
+                    else if (currentDay == 'S')
+                    {
+                        if (currentHour >=9 && currentHour < 15)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
             return false;
         }
     }

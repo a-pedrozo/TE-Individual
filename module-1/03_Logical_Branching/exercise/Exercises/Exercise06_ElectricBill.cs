@@ -57,16 +57,16 @@ namespace TechElevator.Exercises.LogicalBranching
             {
                 if (hasRenewableEnergy == true)
                 {
-                    return DiscountFactor * unitsUsed;
+                    return BaseRate * unitsUsed * DiscountFactor;
                 }
                 else 
-                return BaseRate * unitsUsed;
+                    return BaseRate * unitsUsed;
             }
             if (unitsUsed > ExcessUnitsLimit)
             {
                 if (hasRenewableEnergy == true)
                 {
-                    return (ExcessUnitsLimit * DiscountFactor) + ((unitsUsed - ExcessUnitsLimit) * ExcessRate);
+                    return ((ExcessUnitsLimit * BaseRate) + ((unitsUsed - ExcessUnitsLimit) * ExcessRate)) * DiscountFactor;
                 }
                 else
                     return (ExcessUnitsLimit * BaseRate) + ((unitsUsed - ExcessUnitsLimit) * ExcessRate);
@@ -98,8 +98,22 @@ namespace TechElevator.Exercises.LogicalBranching
          * calculateElectricBill(110, 120) ➔ -2.0
          */
         public double CalculateElectricBill(double unitsUsed, double unitsReturned)
-        {
-            return 0;
+        {   double costUnder100Units = BaseRate * unitsUsed;
+            double costOver100Units = (unitsUsed - ExcessUnitsLimit) * ExcessRate + (ExcessUnitsLimit * BaseRate);
+
+            if (unitsReturned > unitsUsed) //applied credit 
+            {
+                return BaseRate * unitsReturned;
+            }
+            else if (unitsUsed > ExcessUnitsLimit)
+            {
+                return costOver100Units * DiscountFactor;
+            }
+            else
+                return costUnder100Units * DiscountFactor;
+
+
+            
         }
     }
 }

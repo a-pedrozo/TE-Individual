@@ -15,7 +15,7 @@ namespace TechElevator.Exercises.LogicalBranching
         private const double UpTo40PoundRate = 0.50;
         private const double Over40PoundRate = 0.75;
         private const double discountRate = 0.10;
-
+        private const double appliedDiscount = 0.90;
         /*
          * Scamper Shipping Company charges $0.50 per pound up to 40 pounds. After that, it's $0.75 for each additional pound.
          * Implement the logic needed to calculate the shipping rate when provided a weight in pounds.
@@ -45,15 +45,28 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public double CalculateShippingTotal(int weightInPounds, bool hasDiscount)
         {
-            if (weightInPounds > MaxWeightPounds)
-            { return (MaxWeightPounds * UpTo40PoundRate) + ((weightInPounds - MaxWeightPounds) * Over40PoundRate); }
-            if ( hasDiscount == true)
+            double costUnder40Pounds = weightInPounds * UpTo40PoundRate;
+            double costOver40Pounds = (MaxWeightPounds * UpTo40PoundRate) + ((weightInPounds - MaxWeightPounds) * Over40PoundRate);
+            double discountAmountUnder40Pounds = discountRate * weightInPounds * UpTo40PoundRate;
+            double discountAmountOver40Pounds = ((MaxWeightPounds * UpTo40PoundRate) + ((weightInPounds - MaxWeightPounds) * Over40PoundRate)) * discountRate;
+            
+            if (hasDiscount == true)
             {
-                return weightInPounds + (weightInPounds * discountRate);
+                if (weightInPounds > MaxWeightPounds)
+                { return costOver40Pounds - discountAmountOver40Pounds; }
+
+                else
+                    return costUnder40Pounds - discountAmountUnder40Pounds;
+                    
+            } else
+            {
+                if (weightInPounds > MaxWeightPounds)
+                { return costOver40Pounds; }
+                else
+                    return costUnder40Pounds;
             }
-            else
-                return weightInPounds * UpTo40PoundRate;
         }
+        
 
         /*
          * As the business grows for Scamper Shipping Company, they now offer discounts in various amounts.
@@ -67,11 +80,24 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public double CalculateShippingTotal(int weightInPounds, double discountPercentage)
         {
-            if(weightInPounds > MaxWeightPounds)
-            { return (MaxWeightPounds * UpTo40PoundRate) + ((weightInPounds - MaxWeightPounds) * Over40PoundRate); }
-           
-            else
-                return weightInPounds * UpTo40PoundRate;
+            double costUnder40Pounds = weightInPounds * UpTo40PoundRate;
+            double costOver40Pounds = (MaxWeightPounds * UpTo40PoundRate) + ((weightInPounds - MaxWeightPounds) * Over40PoundRate);
+            double discountAmountUnder40Pounds = discountPercentage * weightInPounds * UpTo40PoundRate;
+            double discountAmountOver40Pounds = ((MaxWeightPounds * UpTo40PoundRate) + ((weightInPounds - MaxWeightPounds) * Over40PoundRate)) * discountPercentage;
+            
+            if ( discountPercentage == 0)
+            {
+                if (weightInPounds > MaxWeightPounds)
+                { return costOver40Pounds; }
+                else
+                    return costUnder40Pounds;
+            }
+            else if (weightInPounds > MaxWeightPounds)
+                    { return costOver40Pounds - discountAmountOver40Pounds; }
+
+                 else
+                    return costUnder40Pounds - discountAmountUnder40Pounds;
+
         }
     }
 }

@@ -56,22 +56,20 @@ namespace TechElevator.Exercises.LogicalBranching
          */
         public double CalculateStayTotal(int numberOfNights, int numOfWeekendNights)
         {
-            if (numberOfNights + numOfWeekendNights >= MinimumNightsForDiscountRate)
+            if(numberOfNights < MinimumNightsForDiscountRate)
             {
-                return DiscountRate * numberOfNights;
+                return DailyRate * numberOfNights;
             }
-                else if (numberOfNights < MinimumNightsForDiscountRate)
-                {
-                 if (numOfWeekendNights < 2)
-                { return DailyRate * (numberOfNights + numOfWeekendNights); }
+        else if (numOfWeekendNights >= 1)
+            {
+                return DailyRate * numOfWeekendNights + ((numberOfNights - numOfWeekendNights) * DiscountRate);
             }
             else
-                
-            return DailyRate;
-            return 0;
+                return DiscountRate * numberOfNights;
 
-            
-               
+
+
+
         }
 
         /*
@@ -93,7 +91,21 @@ namespace TechElevator.Exercises.LogicalBranching
         */
         public double CalculateStayTotal(int numberOfNights, int numOfWeekendNights, bool isRewardsMember)
         {
-            return 0;
+            if(isRewardsMember == true)
+            {
+                return DiscountRate * numberOfNights;
+            } else
+
+                 if (numberOfNights < MinimumNightsForDiscountRate)
+                {
+                    return DailyRate * numberOfNights;
+                }
+             else if (numOfWeekendNights >= 1)
+                {
+                 return DailyRate * numOfWeekendNights + ((numberOfNights - numOfWeekendNights) * DiscountRate);
+                }
+             else
+                return DiscountRate * numberOfNights;
         }
     }
 }

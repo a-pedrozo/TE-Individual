@@ -12,9 +12,14 @@
             if (true)
             {
                 return true;
+<<<<<<< HEAD:module-1/03_Logical_Branching/lecture/dotnet/Lecture/06_ReturnTrueFromIf.cs
+=======
             }
-
-            return false;
+            else
+            {
+                return false;
+>>>>>>> 290a01e69221ee029c4826e8cdaac8c702fb69ed:module-1/03_Logical_Branching/lecture-final/dotnet/Lecture/06_ReturnTrueFromIf.cs
+            }
         }
     }
 }
