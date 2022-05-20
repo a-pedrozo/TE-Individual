@@ -8,7 +8,9 @@ namespace DiscountCalculator
     {
         public string GenerateGreetings()
         {
+
             string name = "Augustine Pedrozo";
+
 
             return "Hello " + name;
         }
