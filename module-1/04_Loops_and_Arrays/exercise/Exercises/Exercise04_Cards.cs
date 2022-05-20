@@ -48,7 +48,13 @@ namespace Exercises
         */
         public string[] DiscardFirstCard(string[] hand)
         {
-            return new string[] { };
+            string[] newHand = new string[4]; // new array with one less card, cannot remove from array
+            newHand[0] = hand[1];
+            newHand[1] = hand[2];
+            newHand[2] = hand[3];
+            newHand[3] = hand[4];
+
+            return newHand;
         }
 
         /*

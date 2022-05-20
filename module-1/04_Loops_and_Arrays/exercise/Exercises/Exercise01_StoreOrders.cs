@@ -66,7 +66,10 @@ namespace Exercises
         GetCalzoneSales([]) → 0
         */
         public int GetCalzoneSales(int[] orders)
-        {    
+        {    for (int i = 0; i < orders.Length; i ++)
+            {
+
+            }
             return 0;
         }
 

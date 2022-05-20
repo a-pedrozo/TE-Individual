@@ -60,12 +60,30 @@ namespace Exercises
 
         Examples:
         GetNumberOfFullRows([false, false, false, true, true, true]) → 1   every 3 seats is a row use for loop increase index by 3 each time
-        GetNumberOfFullRows([true, true, true, true, true, true]) → 2
+        GetNumberOfFullRows([true, true, true, true, true, true]) → 0
         GetNumberOfFullRows([false, true, true, false, true, true]) → 0
         */
         public int GetNumberOfFullRows(bool[] seatingChart)
-        {
-            return 0;
+        {// start counter off at 0
+
+            int fullCount = 0;
+           
+             // loop over all seats, 3 at a time. If all seats are taken, increase the counter
+             for (int i = 0; i < seatingChart.Length; i += 3 )
+            {
+                bool seat1Avialable = seatingChart[i]; // will look at available seating for each seat 
+                bool seat2Available = seatingChart[i + 1];
+                bool seat3Available = seatingChart[i + 2];
+
+                if (seat1Avialable == false && seat2Available == false && seat3Available == false) // if statement if each seat is occuppied 
+                {
+                    fullCount++;
+                }
+
+            }
+                
+                // return our total counter 
+                return fullCount;
         }
     }
 }
