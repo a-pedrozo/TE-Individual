@@ -8,7 +8,7 @@ namespace DiscountCalculator
     {
         public string GenerateGreetings()
         {
-            string name = "Matt Eland";
+            string name = "The Merge Conflict Creator!";
 
             return "Hello " + name;
         }
