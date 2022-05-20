@@ -22,7 +22,7 @@ namespace Exercises
         */
         public char[] BuildOrder()
         {
-            return new char[] { };
+            return new char[6] {SmallShirt, SmallShirt, SmallShirt, MediumShirt, MediumShirt, LargeShirt};
         }
 
         /*
@@ -43,6 +43,10 @@ namespace Exercises
         */
         public char[] BuildBulkOrder(int numberOfShirts)
         {
+            for(int i = 0; i < numberOfShirts; i++)
+            {
+                
+            }
             return new char[] { };
         }
 

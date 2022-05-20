@@ -29,8 +29,16 @@ namespace Exercises
         BelowFreezing([]) → 0
         */
         public int BelowFreezing(int[] dailyHighs)
-        {
-            return 0;
+        { int freezingTemp = 32;
+          int numOfFreezingDays = 0;
+            for( int i = 0; i < dailyHighs.Length; i++)
+            {
+                if(dailyHighs[i] <= freezingTemp)
+                {
+                    numOfFreezingDays++;
+                }
+            }
+            return numOfFreezingDays;
         }
 
         /*
@@ -49,7 +57,18 @@ namespace Exercises
         */
         public int HottestDay(int[] dailyHighs)
         {
-            return 0;
+            int hottestDay = dailyHighs[0];
+
+            for (int i = 0; i < dailyHighs.Length; i++)
+            {
+                int hotday = dailyHighs[i];
+                if(hotday > hottestDay)
+                {
+                    hottestDay = hotday;
+                }
+            }
+
+            return hottestDay;
         }
 
         /*

@@ -30,7 +30,7 @@ namespace Exercises
         */
         public string GetFirstCard(string[] hand)
         {
-            return "";
+            return hand[0];
         }
 
         /*
@@ -74,6 +74,8 @@ namespace Exercises
         */
         public string[] DiscardTopCard(string[] remainingDeck)
         {
+
+
             return new string[] { };
         }
     }
