@@ -65,6 +65,14 @@ namespace Exercises
         */
         public bool PlaceRequest(char[] order)
         {
+            char needShirt = 'S';
+            for(int i =0; i < order.Length; i++)
+            {
+                if(order[i] == needShirt)
+                {
+                    return true;
+                }
+            }
             return false;
         }
     }

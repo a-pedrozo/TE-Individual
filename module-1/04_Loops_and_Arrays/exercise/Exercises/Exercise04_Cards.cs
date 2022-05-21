@@ -74,9 +74,13 @@ namespace Exercises
         */
         public string[] DiscardTopCard(string[] remainingDeck)
         {
+            string[] newHand = new string[4];
+            newHand[0] = remainingDeck[1];
+            newHand[1] = remainingDeck[2];
+            newHand[2] = remainingDeck[3];
+            newHand[3] = remainingDeck[4];
 
-
-            return new string[] { };
+            return newHand;
         }
     }
 }

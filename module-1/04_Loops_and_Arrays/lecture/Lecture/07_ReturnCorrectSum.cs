@@ -12,9 +12,10 @@
             int sum = 0;
 
             //     Start;       Keep going while         Increment by one;
+            
             for (int i = 0; i < arrayToLoopThrough.Length; i++)
             {
-                sum += arrayToLoopThrough[i];
+                ;
             }
 
             return sum;

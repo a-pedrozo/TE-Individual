@@ -85,8 +85,9 @@ namespace Exercises
         FixTemperatures([-1] → [1]
         FixTemperatures([]) → []
         */
-        public int[] FixTemperatures(int[] temperatures)
+        public int[] FixTemperatures(int[] temperatures)     
         {
+           
             return new int[] { };
         }
     }
