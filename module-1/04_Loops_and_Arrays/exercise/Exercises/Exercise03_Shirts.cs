@@ -42,12 +42,24 @@ namespace Exercises
         BuildBulkOrder(0) → []
         */
         public char[] BuildBulkOrder(int numberOfShirts)
-        {
-            for(int i = 0; i < numberOfShirts; i++)
+        {   
+            char[] shirtOrders = new char[numberOfShirts];
+            for (int i = 0; i < numberOfShirts; i++)
             {
-                
+                int remainder = (i + 1) % 3;
+                if (numberOfShirts > 0)
+                {
+                    if (remainder == 1)
+                       shirtOrders[i] = SmallShirt;
+                                            
+                    else if (remainder == 2)
+                       shirtOrders[i] = MediumShirt;
+                    
+                    else shirtOrders[i] = LargeShirt;
+                }
+               
             }
-            return new char[] { };
+            return shirtOrders;
         }
 
         /*

@@ -29,20 +29,23 @@ namespace Exercises
         GenerateSeatingChart(2) → [true, true]
         */
         public bool[] GenerateSeatingChart(int numberOfSeats)
+
         {
-            bool seatAvailabe = true;
-           
-            for (int i = 0; i < numberOfSeats; i++)
+
+            
+            bool[] seatChart = new bool[numberOfSeats];
+
+            for (int i = 0; i < seatChart.Length; i++)
             {
 
-                if (seatAvailabe)
+                if (numberOfSeats > 0)
                 {
-                    numberOfSeats++;
+                    
                 }
             } 
 
 
-            return new bool[] {};
+            return seatChart;
         }
 
         /*

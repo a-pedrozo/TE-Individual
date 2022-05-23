@@ -85,10 +85,29 @@ namespace Exercises
         FixTemperatures([-1] → [1]
         FixTemperatures([]) → []
         */
-        public int[] FixTemperatures(int[] temperatures)     
-        {
-           
-            return new int[] { };
+        public int[] FixTemperatures(int[] temperatures)
+        { int remainder = 0;
+            if (temperatures.Length == 0)
+            {
+                // Array is empty do nothing 
+            }
+            else
+            {
+                for (int i = 0; i < temperatures.Length; i++)
+                {
+                    remainder = (i + 1) % 2;
+                    if (remainder == 1)
+                    {
+                        temperatures[i] = temperatures[i] + 2;
+                    }
+                    else
+                    {
+                        // skip index
+                    }
+                    
+                }
+            }
+            return temperatures;
         }
     }
 }
