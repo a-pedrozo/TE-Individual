@@ -11,7 +11,7 @@ namespace Exercises
         No4LetterWords( {"Red", "White", "Blue"} )  ->  ["Red", "White"]
         No4LetterWords( {"Jack", "Jill", "Jane", "John", "Jim"} )  ->  ["Jim"]
         */
-        public List<string> No4LetterWords(string[] stringArray)
+        public List<string> No4LetterWords(string[] stringArray)   // like lecture example with fortnite 
         {
             return null;
         }

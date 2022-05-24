@@ -9,8 +9,10 @@
         FirstHalf("abcdef") → "abc"
         */
         public string FirstHalf(string str)
-        {
-            return null;
+        { // calculate midpoint of my string 
+            int midpoint = str.Length / 2;
+            // chop it in half and give me first half 
+            return str.Substring(0,midpoint);
         }
     }
 }

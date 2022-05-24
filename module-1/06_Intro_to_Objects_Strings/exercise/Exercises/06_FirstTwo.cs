@@ -12,7 +12,10 @@
         */
         public string FirstTwo(string str)
         {
-            return null;
+            
+            string firstTwo = str.Substring(str.Length); 
+
+            return firstTwo;
         }
     }
 }

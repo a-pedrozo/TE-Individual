@@ -11,7 +11,18 @@
         */
         public string TheEnd(string str, bool front)
         {
-            return null;
+            
+            
+            if (front == true)
+            {
+                
+            }
+            else
+            {
+               ;
+            }
+
+            return str;
         }
     }
 }

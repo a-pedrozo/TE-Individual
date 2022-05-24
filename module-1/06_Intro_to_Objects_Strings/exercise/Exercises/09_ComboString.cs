@@ -12,7 +12,12 @@
         */
         public string ComboString(string a, string b)
         {
-            return null;
+            string longMessage = a;
+            string shortMessage = b;
+
+
+            string newMessage = shortMessage + longMessage + shortMessage;
+            return newMessage;
         }
     }
 }

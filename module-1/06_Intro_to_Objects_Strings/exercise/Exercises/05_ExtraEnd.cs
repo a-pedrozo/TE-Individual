@@ -11,6 +11,10 @@
         */
         public string ExtraEnd(string str)
         {
+            char repeat1 = str[str.Length - 1];
+            char repeat2 = str[str.Length - 2];
+
+            
             return null;
         }
     }

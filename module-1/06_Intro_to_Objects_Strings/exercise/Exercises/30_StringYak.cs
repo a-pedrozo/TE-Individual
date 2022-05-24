@@ -11,7 +11,15 @@
         */
         public string StringYak(string str)
         {
-            return null;
+            string wordRemoved = str.Replace("yak", "");
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str.Contains("yak"))
+                {
+                    str = wordRemoved;
+                }
+            }
+            return wordRemoved ;
         }
     }
 }

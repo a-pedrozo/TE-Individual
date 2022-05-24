@@ -77,6 +77,7 @@ namespace StringsDemo
             // Demonstrate immutability
             string message = "HELLO THERE! Nice to see you in this QUIET LIBRARY!";
 
+            message = message.ToLower(); // statement, calling method.  makes string message all lower case, creates new string message
 
             Console.WriteLine(message);
 
@@ -90,6 +91,8 @@ namespace StringsDemo
             string name = "Ada Lovelace";
 
             // Strings are actually arrays of characters (char).
+            char firstLetter = name[0];
+            char lastLetter = name[name.Length - 1]; // strings are arrays of chars, getting last letter of last name
 
             // 0. Those characters can be accessed using [] notation. (but PLEASE use substring instead)
 
@@ -99,54 +102,86 @@ namespace StringsDemo
             // Output: e
 
             //Console.WriteLine("First and Last Character: ");
-
+            Console.WriteLine("First and Last Character " + firstLetter + ", " + lastLetter);
 
             // 2. How do we write code that prints out the first three characters
             // Output: Ada
+            string firstThreee = name.Substring(0, 3); // start at index 0, take the first 3 letters
 
 
-            //Console.WriteLine("First 3 characters: ");
+            Console.WriteLine("First 3 characters: " + firstThreee.ToUpper());
 
             // 3. Now print out the last three characters
             // Output: ace
+            string lastThree = name.Substring(name.Length - 3);  // goes to last 3 of array of string
 
-            //Console.WriteLine("Last 3 characters: ");
+
+            Console.WriteLine("Last 3 characters: " + lastThree);
 
 
             // 4. What about the last word?
             // Output: Lovelace
+            string lastWord = name.Substring(4);
 
+            string[] words = name.Split(" "); // takes space in between Ada and Lovelace and creates two new strings in array
+            lastWord = words[1];
 
-            //Console.WriteLine("Last Word: ");
+            Console.WriteLine("Last Word: " + lastWord);
 
 
             // 5. Does the string contain inside of it "Love"?
             // Output: true
+            bool hasLove = name.Contains("Love"); // checks to see if Love is in string, case sensitive
 
-
-            //Console.WriteLine("Contains \"Love\"");
+            Console.WriteLine("Contains \"Love\" " + hasLove);
 
 
             // 6. Where does the string "lace" show up in name?
             // Output: 8
+            int loveIndex = name.IndexOf("lace");
 
+            Console.WriteLine("Index of \"lace\": " + loveIndex);
 
-            //Console.WriteLine("Index of \"lace\": ");
-
+            int aIndex = name.IndexOf("a");
+            Console.WriteLine("A Index " + aIndex);
 
             // 7. How many 'a's OR 'A's are in name?
             // Output: 3
+            name = name.ToLower();
+            int count = 0;
 
+            for (int i = 0; i < name.Length; i++)
+            {
+                string letter = name.Substring(i, 1); // paramiters of using substring
+                
+                if (letter =="a")
+                {
+                    count++;
+                }
+            }
 
-            //Console.WriteLine("Number of \"a's\": ");
+            Console.WriteLine("Number of \"a's\": " + count);
 
             // 8. Replace "Ada" with "Ada, Countess of Lovelace"
             //Console.WriteLine(name);
 
+            name = name.Replace("ada", "Ada, Countess of Lovelace");
+
+            Console.WriteLine(name);
+            
+
             // 9. Set name equal to null.
-
+            name = null;
+            Console.WriteLine(name);
             // 10. If name is equal to null or "", print out "All Done".
-
+            if(name == null)
+            {
+                Console.WriteLine("All Done");
+            }
+            else
+            {
+                name = name.ToUpper();
+            }
             // Optional Bonus: Show interpolation
             // Optional Bonus: Show escaping strings
 

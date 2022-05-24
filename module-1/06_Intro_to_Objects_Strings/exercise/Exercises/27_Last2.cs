@@ -11,6 +11,9 @@
         */
         public int Last2(string str)
         {
+            string first2 = str.Substring(0, 1);
+            string last2 = str.Substring(-1, -2);
+            
             return 0;
         }
     }

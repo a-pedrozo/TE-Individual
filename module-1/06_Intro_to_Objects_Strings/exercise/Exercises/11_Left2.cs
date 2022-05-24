@@ -11,6 +11,7 @@
         */
         public string Left2(string str)
         {
+
             return null;
         }
     }

@@ -11,7 +11,12 @@
         */
         public string StringX(string str)
         {
-            return null;
+            string minusX = str.Replace("x", "");
+            if (str.Contains("x"))
+            {
+                str.Replace("x", "");
+            }
+            return minusX;
         }
     }
 }

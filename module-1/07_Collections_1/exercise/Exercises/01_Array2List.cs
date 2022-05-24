@@ -10,8 +10,9 @@ namespace Exercises
         Array2List( {"Red", "Orange", "Yellow"} )  ->  ["Red", "Orange", "Yellow"]
         Array2List( {"Left", "Right", "Forward", "Back"} )  ->  ["Left", "Right", "Forward", "Back"]
         */
-        public List<string> Array2List(string[] stringArray)
+        public List<string> Array2List(string[] stringArray)    // can be done one line of code?
         {
+
             return null;
         }
     }
