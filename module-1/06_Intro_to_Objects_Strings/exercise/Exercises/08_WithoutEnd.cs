@@ -11,8 +11,8 @@
         */
         public string WithoutEnd(string str)
         {
-            string noEnds = str.Substring(1, 2);
-            return noEnds;
+           return str.Substring(1, str.Length - 2);
+            
         }
     }
 }

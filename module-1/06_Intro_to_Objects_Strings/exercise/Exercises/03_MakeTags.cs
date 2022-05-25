@@ -12,9 +12,13 @@
         */
         public string MakeTags(string tag, string word)
         {
-            string quotes = "<" + tag + ">" + word + "<" + tag + "/>";
-            string newMessage = quotes;
-            return newMessage;
+            string leftQuotes = "<" + tag + ">";
+            string rightQuotes = "</" + tag + ">";
+
+            string fullTag = leftQuotes + word + rightQuotes;
+
+
+            return fullTag;
         }
     }
 }

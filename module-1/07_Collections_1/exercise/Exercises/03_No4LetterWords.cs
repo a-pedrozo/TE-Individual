@@ -13,7 +13,13 @@ namespace Exercises
         */
         public List<string> No4LetterWords(string[] stringArray)   // like lecture example with fortnite 
         {
-            return null;
+            List<string> minus4Letters = new List<string>(stringArray);
+
+           
+
+
+
+            return minus4Letters;
         }
     }
 }

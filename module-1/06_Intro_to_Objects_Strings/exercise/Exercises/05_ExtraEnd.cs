@@ -11,10 +11,12 @@
         */
         public string ExtraEnd(string str)
         {
-            char repeat1 = str[str.Length - 1];
-            char repeat2 = str[str.Length - 2];
-
             
+            
+            //string newWord = word.Substring(0, 3);
+
+
+
             return null;
         }
     }

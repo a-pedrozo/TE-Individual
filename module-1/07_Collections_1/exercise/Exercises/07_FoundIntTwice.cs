@@ -13,6 +13,9 @@ namespace Exercises
         */
         public bool FoundIntTwice(List<int> integerList, int intToFind) 
         {
+            bool listTwice = true;
+            int value = 0;
+
             return false;
         }
     }

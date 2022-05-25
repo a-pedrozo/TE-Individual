@@ -12,6 +12,9 @@ namespace Exercises
         */
         public List<double> ArrayInt2ListDouble(int[] intArray)
         {
+            List<double> doubleList = new List<double>();
+            
+
             return null;
         }
     }

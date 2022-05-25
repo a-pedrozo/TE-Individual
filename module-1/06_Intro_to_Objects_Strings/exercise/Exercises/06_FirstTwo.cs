@@ -12,10 +12,17 @@
         */
         public string FirstTwo(string str)
         {
-            
-            string firstTwo = str.Substring(str.Length); 
+            if (str.Length < 2)
+            {
+                return str;
+            }
+            else
+            {
+                return str.Substring(0, 2); 
 
-            return firstTwo;
+            }
+
+            
         }
     }
 }

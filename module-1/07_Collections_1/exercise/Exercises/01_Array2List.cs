@@ -12,8 +12,11 @@ namespace Exercises
         */
         public List<string> Array2List(string[] stringArray)    // can be done one line of code?
         {
+            List<string> returnList = new List<string>(stringArray);
+           
 
-            return null;
+
+            return returnList;
         }
     }
 }
