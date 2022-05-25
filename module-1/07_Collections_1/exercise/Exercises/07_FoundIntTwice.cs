@@ -11,10 +11,27 @@ namespace Exercises
         FoundIntTwice( [6, 8, 10, 11, 13], 8 -> false
         FoundIntTwice( [9, 23, 44, 2, 88, 44], 44) -> true
         */
-        public bool FoundIntTwice(List<int> integerList, int intToFind) 
+        public bool FoundIntTwice(List<int> integerList, int intToFind)
         {
-            bool listTwice = true;
-            int value = 0;
+            int doubleCount = 0;
+            for (int i = 0; i < integerList.Count; i++)
+            {
+                if (integerList[i] == intToFind)
+                {
+                    doubleCount++;
+
+                }
+
+                if (doubleCount > 1)
+                {
+                    return true;
+                }
+
+
+
+
+
+            }
 
             return false;
         }

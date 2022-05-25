@@ -13,13 +13,14 @@ namespace Exercises
         public List<int> OddOnly(int[] integerArray)
         {
             
-            List<int> oddNumbers = new List<int>(integerArray);
-            int oddNumber = 0; // trying to get odd numbers from array
-            
+            List<int> oddNumbers = new List<int>();
+            for (int i = 0; i < integerArray.Length; i++)
             {
-                oddNumbers.Add(0);
+                if(!(integerArray[i] % 2 == 0))
+                {
+                    oddNumbers.Add(integerArray[i]);               
+                }
             }
-            
             return oddNumbers;
         }
     }
