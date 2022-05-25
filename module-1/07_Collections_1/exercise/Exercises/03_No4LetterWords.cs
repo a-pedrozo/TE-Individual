@@ -13,12 +13,15 @@ namespace Exercises
         */
         public List<string> No4LetterWords(string[] stringArray)   // like lecture example with fortnite 
         {
-            List<string> minus4Letters = new List<string>(stringArray);
-
+            List<string> minus4Letters = new List<string>();
+            for (int i = 0; i < stringArray.Length; i++)
+            {
+                if (!(stringArray[i].Length == 4))
+                {
+                    minus4Letters.Add(stringArray[i]);
+                }
+            }   
            
-
-
-
             return minus4Letters;
         }
     }

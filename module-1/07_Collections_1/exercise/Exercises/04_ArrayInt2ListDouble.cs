@@ -14,8 +14,13 @@ namespace Exercises
         {
             List<double> doubleList = new List<double>();
             
+            for(int i = 0; i < intArray.Length; i++)
+            {
+                doubleList.Add(intArray[i] / 2.0);
+            }
+            
 
-            return null;
+            return doubleList;
         }
     }
 }
