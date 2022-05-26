@@ -6,14 +6,29 @@ namespace EncapsulationLecture
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("First we drive a car");
-            Console.WriteLine();
+            // Create a Car with a default constructor
 
-            Console.WriteLine("Then we do other things");
-            Console.WriteLine();
+            // Show Fields (briefly)
 
-            Console.WriteLine("Hey Matt, don't forget to talk about static and overloading");
-            Console.WriteLine();
+            // Add properties (data) to the car
+
+            // Add a method
+
+            // Add a constructor parameter and talk about "this"
+
+            // Talk about encapsulation and private properties
+
+            // Make a derived (calculated) property
+
+            // Things for Friday:
+            // - Fields / Class Variables
+            // - Overloading
+            // - Static
+            // - Documentation
+
+            // Maybe:
+            // - Get-only properties
+            // - Readonly
         }
     }
 }
