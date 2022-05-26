@@ -23,12 +23,39 @@ namespace Exercises
          * IsItOnSale("kitchen4001") → 0.20
          * IsItOnSale("") → 0.00
          * IsItOnSale("GARAGE1070") → 0.15
-         * IsItOnSale("dungeon9999") → 0.00
+         * IsItOnSale("dungeon9999") → 0.00   
          *
          */
         public double IsItOnSale(string itemNumber)
         {
-            return -1.0;
+            Dictionary<string, double> discountItem = new Dictionary<string, double>();
+            discountItem["KITCHEN4001"] = 0.20;
+            discountItem["GARAGE1070"] = 0.15;
+            discountItem["LIVINGROOM"] = 0.10;
+            discountItem["KITCHEN6073"] = 0.40;
+            discountItem["BEDROOM3434"] = 0.60;
+            discountItem["BATH0073"] = 0.15;
+
+            if (itemNumber == "" || itemNumber == null)
+            {
+                return 0.00;
+            }
+
+            else
+            {
+                if (discountItem.ContainsKey(itemNumber.ToUpper()))
+                {
+                    return discountItem[itemNumber.ToUpper()];
+
+                }
+                else
+                {
+                     return 0.00;
+                }
+
+            }
+                  
+
         }
     }
 }

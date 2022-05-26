@@ -17,7 +17,7 @@ namespace Exercises
          *
          */
         public Dictionary<string, int> WordCount(string[] words)
-        {
+        { // refer to coin flipping example except of true/fase
             return null;
         }
     }

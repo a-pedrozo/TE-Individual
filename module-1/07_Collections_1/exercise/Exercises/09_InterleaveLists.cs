@@ -15,15 +15,17 @@ namespace Exercises
         */
         public List<int> InterleaveLists(List<int> listOne, List<int> listTwo) // need two lists 
         {
-            
-            
-            foreach(int list in listOne)
+
+            foreach( int firstElements in listOne)
             {
                 
             }
+            
+                
+            
 
 
-            return null;
+            return listOne;
         }
     }
 }

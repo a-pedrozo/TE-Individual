@@ -16,7 +16,7 @@ namespace Exercises
          */
         public Dictionary<string, int> ConsolidateInventory(Dictionary<string, int> mainWarehouse,
                                                             Dictionary<string, int> remoteWarehouse)
-        {
+        {// will need foreach statement over dictionaries multiple  can modify existing dictionaries or create new one 
             return null;
         }
     }

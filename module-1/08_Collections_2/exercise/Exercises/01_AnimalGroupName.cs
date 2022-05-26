@@ -30,11 +30,39 @@ namespace Exercises
          * AnimalGroupName("Rhino") -> "Crash"
          * AnimalGroupName("rhino") -> "Crash"
          * AnimalGroupName("elephants") -> "unknown"
-         *
+         * will encounter many errors
          */
         public string AnimalGroupName(string animalName)
         {
-            return null;
+            Dictionary<string, string> animalGroups = new Dictionary<string, string>();
+            animalGroups["rhino"] = "Crash";
+            animalGroups["giraffe"] = "Tower";
+            animalGroups["elephant"] = "Herd";
+            animalGroups["lion"] = "Pride";
+            animalGroups["crow"] = "Murder";
+            animalGroups["pigeon"] = "Kit";
+            animalGroups["flamingo"] = "Pat";
+            animalGroups["deer"] = "Herd";
+            animalGroups["dog"] = "Pack";
+            animalGroups["crocodile"] = "Float";
+
+
+
+            if (animalName == null || animalName == "")
+            {
+                return "unknown";
+            }
+            else
+            {
+                if (animalGroups.ContainsKey(animalName.ToLower()))
+                    return animalGroups[animalName.ToLower()];
+                else
+                {
+                    return "unknown";
+                }
+            }
+
+
         }
     }
 }

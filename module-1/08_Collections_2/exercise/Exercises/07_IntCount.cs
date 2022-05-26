@@ -16,7 +16,7 @@ namespace Exercises
          *
          */
         public Dictionary<int, int> IntCount(int[] ints)
-        {
+        { // same as coin flip but dealiing with int not true/false
             return null;
         }
     }

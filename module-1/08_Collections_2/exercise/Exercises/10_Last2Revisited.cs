@@ -20,7 +20,7 @@ namespace Exercises
          *
          */
         public Dictionary<string, int> Last2Revisited(string[] words)
-        {
+        { // last 2 from strings exercise is similar  
             return null;
         }
     }

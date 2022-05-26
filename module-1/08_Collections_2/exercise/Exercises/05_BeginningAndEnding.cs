@@ -13,8 +13,25 @@ namespace Exercises
          * BeginningAndEnding(["muddy", "good", "moat", "good", "night"]) → {"g": "d", "m": "t", "n": "t"}
          */
         public Dictionary<string, string> BeginningAndEnding(string[] words)
-        {
-            return null;
+        {// will create dictionary and use substring 
+            Dictionary<string, string> wordDictionary = new Dictionary<string, string>();
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                string startOfWord = words[i].Substring(0, 1);
+
+                string endofWord = words[i].Substring(words[i].Length - 1, 1);
+
+                wordDictionary[startOfWord] = endofWord;
+
+            }
+
+            
+            
+
+
+
+            return wordDictionary;
         }
     }
 }
