@@ -15,14 +15,26 @@ namespace Exercises
         */
         public List<int> InterleaveLists(List<int> listOne, List<int> listTwo) // need two lists 
         {
+            List<int> newListOne = new List<int>();
+            List<int> newListTwo = new List<int>();
+            
 
-            foreach( int firstElements in listOne)
+            for(int i = 0; i < listOne.Count; i++)
             {
-                
+                if (listOne[i] > listTwo[i])
+                {
+                    int firstNum = listOne[i];
+                    int lastNum = listTwo[i];
+                    listOne.AddRange(listTwo);
+
+                }
+                else
+                {
+
+                }
+
             }
-            
-                
-            
+
 
 
             return listOne;

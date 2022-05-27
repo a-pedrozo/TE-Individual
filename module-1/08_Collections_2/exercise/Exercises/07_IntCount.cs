@@ -17,6 +17,12 @@ namespace Exercises
          */
         public Dictionary<int, int> IntCount(int[] ints)
         { // same as coin flip but dealiing with int not true/false
+            Dictionary<int, int> timesOfNum = new Dictionary<int, int>();
+            for (int i =0; i < ints.Length; i++)
+            {
+                
+            }
+
             return null;
         }
     }

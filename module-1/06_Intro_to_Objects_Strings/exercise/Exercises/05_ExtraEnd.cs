@@ -11,13 +11,13 @@
         */
         public string ExtraEnd(string str)
         {
-            
-            
-            //string newWord = word.Substring(0, 3);
+
+
+            string newWord = str.Substring(str.Length - 1, -1);
 
 
 
-            return null;
+            return str;
         }
     }
 }

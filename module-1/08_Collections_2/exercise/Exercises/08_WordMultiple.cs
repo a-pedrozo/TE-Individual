@@ -15,7 +15,18 @@ namespace Exercises
          */
         public Dictionary<string, bool> WordMultiple(string[] words)
         {
-            return null;
+            Dictionary<string, bool> wordsOfBool = new Dictionary<string, bool>();
+            
+            bool wordAppears = true;
+            
+            for (int i = 0; i < words.Length; i++)
+            {
+                wordsOfBool[words[i]] = wordAppears;
+                
+
+               
+            }
+            return wordsOfBool;
         }
     }
 }

@@ -18,7 +18,16 @@ namespace Exercises
          */
         public Dictionary<string, int> WordCount(string[] words)
         { // refer to coin flipping example except of true/fase
-            return null;
+            Dictionary<string, int> wordNumDictionary = new Dictionary<string, int>();
+            for (int i = 0; i < words.Length; i++)
+            {
+                int wordValue = words[i].Length;
+                
+
+                
+            }
+
+            return wordNumDictionary;
         }
     }
 }
