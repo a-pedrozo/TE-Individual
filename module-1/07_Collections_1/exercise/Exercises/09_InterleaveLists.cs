@@ -32,22 +32,17 @@ namespace Exercises
                 }
                 else
                 {
-                    if (index2 <= listTwo.Count - 1) // determines 
+                    if (index2 <= listTwo.Count - 1) // staying within boundary of list 2 length 
                     {
                         combinedList.Add(listTwo[index2]);
                         index2 += 1;
                     }
                     else
                     {
-                        combinedList.Add(listOne[index1]);
+                        combinedList.Add(listOne[index1]); // if list2 lenght is shorter than list 1, pull from list 1
                         index1 += 1;
                     }
-                }
-                
-              
-                    
-
-                
+                }               
 
             }
 
