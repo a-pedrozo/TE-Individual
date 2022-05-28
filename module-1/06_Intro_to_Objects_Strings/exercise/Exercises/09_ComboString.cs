@@ -15,9 +15,18 @@
             string longMessage = a;
             string shortMessage = b;
 
+            if (longMessage.Length >= shortMessage.Length)
+            {
+                return shortMessage + longMessage + shortMessage;
+            }
+            else
+            {
+                return longMessage + shortMessage + longMessage;
+            }
 
-            string newMessage = shortMessage + longMessage + shortMessage;
-            return newMessage;
+
+            
+            
         }
     }
 }

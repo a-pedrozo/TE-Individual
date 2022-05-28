@@ -12,11 +12,16 @@
         public string StringX(string str)
         {
             string minusX = str.Replace("x", "");
-            if (str.Contains("x"))
+            string firstX = str.Substring(0, 1);
+            string lastX = str.Substring(str.Length - 1, 1);
+            
+            if (!(firstX.Contains("x")))
             {
-                str.Replace("x", "");
+                firstX.Replace(str.Substring(0,1), "");
             }
-            return minusX;
+            
+            return firstX + minusX + lastX;
+
         }
     }
 }

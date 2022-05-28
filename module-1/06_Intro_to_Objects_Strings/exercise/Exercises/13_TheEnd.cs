@@ -11,18 +11,20 @@
         */
         public string TheEnd(string str, bool front)
         {
+           string theEnd = str.Substring(str.Length - 1, 1);
+            string theBeginning = str.Substring(0, 1);
             
             
             if (front == true)
             {
-                
+                return theBeginning;
             }
-            else
+            else 
             {
-               ;
+                return theEnd;
             }
 
-            return str;
+            
         }
     }
 }

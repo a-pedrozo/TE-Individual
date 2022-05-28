@@ -13,31 +13,47 @@ namespace Exercises
         DIFFICULTY: HARD
         InterleaveLists( [1, 2, 3], [4, 5, 6] )  ->  [1, 4, 2, 5, 3, 6]
         */
-        public List<int> InterleaveLists(List<int> listOne, List<int> listTwo) // need two lists 
+        public List<int> InterleaveLists(List<int> listOne, List<int> listTwo) 
         {
-            List<int> newListOne = new List<int>();
-            List<int> newListTwo = new List<int>();
+            List<int> combinedList = new List<int>(); // new master list
+            int maxCount = listOne.Count + listTwo.Count; // combining length of list 1 and 2 for master list
+            int index1 = 0; // list 1 starts index0 
+            int index2 = 0; // list 2 starts index0
+            int oddOrEven = 0; 
             
-
-            for(int i = 0; i < listOne.Count; i++)
+            
+            for(int i = 1; i <= maxCount; i++) // forloop offset from 0 , not odd or even
             {
-                if (listOne[i] > listTwo[i])
+                oddOrEven = i % 2;  // decides whether to pull from list 1 or 2
+                if (oddOrEven == 1 && index1 <= listOne.Count - 1) // staying within list 1 bounary length 
                 {
-                    int firstNum = listOne[i];
-                    int lastNum = listTwo[i];
-                    listOne.AddRange(listTwo);
-
+                    combinedList.Add(listOne[index1]);
+                    index1 += 1;
                 }
                 else
                 {
-
+                    if (index2 <= listTwo.Count - 1) // determines 
+                    {
+                        combinedList.Add(listTwo[index2]);
+                        index2 += 1;
+                    }
+                    else
+                    {
+                        combinedList.Add(listOne[index1]);
+                        index1 += 1;
+                    }
                 }
+                
+              
+                    
+
+                
 
             }
 
 
 
-            return listOne;
+            return combinedList;
         }
     }
 }

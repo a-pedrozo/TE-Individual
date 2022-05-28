@@ -6,6 +6,7 @@
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public double AnnualSalary { get; private set; }
+        public string Department { get; set; }
 
         public string FullName
         {
@@ -16,9 +17,9 @@
 
             }
         }
-        public Employee(int employeeID, string firstName, string lastName, double salary)
+        public Employee(int employeeId, string firstName, string lastName, double salary)
         {
-            this.Employeeld = employeeID;
+            this.Employeeld = employeeId;
             this.FirstName = firstName;
             this.LastName = lastName;
             this.AnnualSalary = salary;
@@ -26,7 +27,7 @@
 
         public void RaiseSalery(double percent)
         {
-
+            
         }
 
     }

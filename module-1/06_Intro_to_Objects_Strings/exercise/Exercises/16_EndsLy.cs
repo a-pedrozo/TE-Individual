@@ -10,7 +10,23 @@
         */
         public bool EndsLy(string str)
         {
+            string endsWith = str;
+            if (endsWith == str.Substring(str.Length - 2, 2))
+            {
+                if (endsWith.Contains("ly"))
+                {
+                    return true;
+                }
+
+               else if (!(endsWith == str.Substring(str.Length - 2, 2)))
+                {
+                    return false;
+                }
+            }
+
             return false;
+            
+
         }
     }
 }

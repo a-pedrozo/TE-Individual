@@ -9,7 +9,7 @@
         StringTimes("Hi", 1) → "Hi"
         */
         public string StringTimes(string str, int n)
-        {
+        { 
             return null;
         }
     }

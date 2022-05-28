@@ -12,6 +12,7 @@
         */
         public string TwoChar(string str, int index)
         {
+            string newChar = str.Substring(0, 2);
             return null;
         }
     }

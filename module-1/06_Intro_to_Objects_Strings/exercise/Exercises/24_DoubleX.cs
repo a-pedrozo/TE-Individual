@@ -10,7 +10,8 @@
         */
         public bool DoubleX(string str)
         {
-            return false;
+           
+                return false;
         }
     }
 }

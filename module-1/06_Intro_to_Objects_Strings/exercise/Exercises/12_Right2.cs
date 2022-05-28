@@ -11,7 +11,10 @@
         */
         public string Right2(string str)
         {
-            return null;
+            string last2 = str.Substring(str.Length - 2, 2);
+            string restOfWord = str.Substring(0, str.Length - 2);
+            string fullWord = last2 + restOfWord;
+            return fullWord;
         }
     }
 }

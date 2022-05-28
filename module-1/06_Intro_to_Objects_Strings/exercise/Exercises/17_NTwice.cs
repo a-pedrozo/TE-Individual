@@ -11,6 +11,8 @@
         */
         public string NTwice(string str, int n)
         {
+
+
             return null;
         }
     }

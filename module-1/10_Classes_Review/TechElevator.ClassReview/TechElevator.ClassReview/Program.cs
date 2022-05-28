@@ -6,6 +6,10 @@ namespace TechElevator.ClassReview
     {
         public static void Main(string[] args)
         {
+            UserInterface ui = new UserInterface();
+
+            ui.ShowMainMenu();
+
             // New stuff for today:
             // - Field Initializers
             // - Property Initializers

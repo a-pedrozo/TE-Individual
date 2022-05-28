@@ -11,8 +11,11 @@
         */
         public string Left2(string str)
         {
+            string firstTwo = str.Substring(0, 2);
+            string restOfWord = str.Substring(2, str.Length - 2);
+            string newWord = restOfWord + firstTwo;
 
-            return null;
+            return newWord;
         }
     }
 }

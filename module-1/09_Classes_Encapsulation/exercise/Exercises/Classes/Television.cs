@@ -6,11 +6,11 @@
         public int CurrentChannel { get; private set; }
         public int CurrentVolume { get; private set; }
 
-        public Television(bool IsOn, int CurrentChannel, int CurrentVolume)
+        public Television(bool isOn, int currentChannel, int currentVolume)
         {
-            this.CurrentChannel = 3;
-            this.CurrentVolume = 2;
-            this.IsOn = false;
+            this.CurrentChannel = currentChannel;
+            this.CurrentVolume = currentVolume;
+            this.IsOn = isOn;
 
         }
         public void TurnOff()
@@ -23,6 +23,11 @@
         }
         public void ChangeChannel(int newChannel)
         {
+            if(CurrentChannel >= 3 || CurrentChannel <= 18)
+            {
+               
+
+            }
 
         }
         public void ChannelUp()
