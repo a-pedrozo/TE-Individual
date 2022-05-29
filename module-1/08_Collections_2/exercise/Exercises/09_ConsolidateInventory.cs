@@ -17,7 +17,34 @@ namespace Exercises
         public Dictionary<string, int> ConsolidateInventory(Dictionary<string, int> mainWarehouse,
                                                             Dictionary<string, int> remoteWarehouse)
         {// will need foreach statement over dictionaries multiple  can modify existing dictionaries or create new one 
-            return null;
+            Dictionary<string, int> combinedInventory = new Dictionary<string, int>();
+            
+            foreach (KeyValuePair<string, int> skuNum in mainWarehouse) // looping through mainwarehouse 
+            {
+                if (combinedInventory.ContainsKey(skuNum.Key))
+                {
+                    combinedInventory[skuNum.Key] = combinedInventory[skuNum.Key] + skuNum.Value; // updating value to combinedInventory if key exists
+                }
+                else
+                {
+                    combinedInventory[skuNum.Key] = skuNum.Value; // adding if key does not exist
+
+                }
+            }
+            foreach (KeyValuePair<string, int> skuNum in remoteWarehouse) // looping through remote warehouse  
+            {
+                if (combinedInventory.ContainsKey(skuNum.Key))
+                {
+                    combinedInventory[skuNum.Key] = combinedInventory[skuNum.Key] + skuNum.Value; // same as first if statement 
+                }
+                else
+                {
+                    combinedInventory[skuNum.Key] = skuNum.Value;
+
+                }
+            }
+
+            return combinedInventory;
         }
     }
 }

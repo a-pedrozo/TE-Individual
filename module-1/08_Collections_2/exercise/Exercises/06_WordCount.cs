@@ -21,10 +21,13 @@ namespace Exercises
             Dictionary<string, int> wordNumDictionary = new Dictionary<string, int>();
             for (int i = 0; i < words.Length; i++)
             {
-                int wordValue = words[i].Length;
-                
+                if (wordNumDictionary.ContainsKey(words[i]))
 
-                
+                    wordNumDictionary[words[i]] += 1;      // increment value in Dictionary
+                else
+
+                    wordNumDictionary[words[i]] = 1;      // Add to Dictoinary 
+
             }
 
             return wordNumDictionary;

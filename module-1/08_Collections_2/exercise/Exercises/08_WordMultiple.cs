@@ -21,11 +21,15 @@ namespace Exercises
             
             for (int i = 0; i < words.Length; i++)
             {
-                wordsOfBool[words[i]] = wordAppears;
-                
+                if (wordsOfBool.ContainsKey(words[i]))
 
-               
+                    wordsOfBool[words[i]] = true;      
+                else
+
+                    wordsOfBool[words[i]] = false;      
+
             }
+
             return wordsOfBool;
         }
     }

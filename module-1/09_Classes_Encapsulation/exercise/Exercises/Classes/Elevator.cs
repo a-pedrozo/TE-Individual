@@ -15,22 +15,28 @@
 
         public void OpenDoor()
         {
-            if(DoorIsOpen == true)
-            {
-
-            }
+            DoorIsOpen = true;
+            
         }
         public void CloseDoor()
         {
-            
+            DoorIsOpen = false;
         }
         public void GoUp(int desiredFloor)
         {
+            if (DoorIsOpen == false && desiredFloor <= NumberOfLevels && desiredFloor > CurrentLevel)
+            {
+                CurrentLevel = desiredFloor;
+            }
+            
 
         }
         public void GoDown(int desiredFloor)
         {
-
+            if (DoorIsOpen == false && desiredFloor <= NumberOfLevels && desiredFloor < CurrentLevel && desiredFloor > 0)
+            {
+                CurrentLevel = desiredFloor;
+            }
         }
 
     }

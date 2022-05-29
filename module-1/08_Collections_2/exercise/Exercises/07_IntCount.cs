@@ -16,14 +16,22 @@ namespace Exercises
          *
          */
         public Dictionary<int, int> IntCount(int[] ints)
-        { // same as coin flip but dealiing with int not true/false
+        { 
             Dictionary<int, int> timesOfNum = new Dictionary<int, int>();
             for (int i =0; i < ints.Length; i++)
             {
-                
+                if (timesOfNum.ContainsKey(ints[i]))
+
+                   timesOfNum[ints[i]] += 1;      
+                else
+
+                   timesOfNum[ints[i]] = 1;   
+
             }
 
-            return null;
+            return timesOfNum;
+
+            
         }
     }
 }

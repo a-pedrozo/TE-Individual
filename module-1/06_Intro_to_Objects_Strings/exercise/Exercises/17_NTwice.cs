@@ -11,9 +11,10 @@
         */
         public string NTwice(string str, int n)
         {
+            string firstPart = str.Substring(0, n);
+            string secondPart = str.Substring(str.Length - n, n);
 
-
-            return null;
+            return firstPart + secondPart;
         }
     }
 }

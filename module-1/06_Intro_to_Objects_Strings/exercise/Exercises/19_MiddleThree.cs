@@ -11,9 +11,10 @@
         */
         public string MiddleThree(string str)
         {
-           string noSpaces = str.Replace(" ", "");
+            string noSpaces = str.Replace(" ", "");
+            int startingPoint = noSpaces.Length / 2;
 
-            return noSpaces.Substring((str.Length) / 3, 3);
+            return noSpaces.Substring(startingPoint-1, 3);
         }
     }
 }
