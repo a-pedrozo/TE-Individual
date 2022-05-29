@@ -11,10 +11,28 @@
         */
         public int Last2(string str)
         {
-            string first2 = str.Substring(0, 1);
-            string last2 = str.Substring(-1, -2);
+            if(str.Length < 3)
+            {
+                return 0;
+            }
             
-            return 0;
+            string last2 = str.Substring(str.Length -2, 2);
+            string strMinus2 = str.Substring(0, str.Length - 2);
+            int counter = 0;
+            
+            if (strMinus2.Contains(last2) == true)
+            {
+                for (int i = 0; i <= strMinus2.Length - 2; i++)
+                {
+                    if(strMinus2.Substring(i, 2) == last2)
+                    {
+                        counter += 1;
+                    }
+                }
+            } 
+
+            
+            return counter;
         }
     }
 }

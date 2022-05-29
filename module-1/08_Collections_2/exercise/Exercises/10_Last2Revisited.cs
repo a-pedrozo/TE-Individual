@@ -20,8 +20,39 @@ namespace Exercises
          *
          */
         public Dictionary<string, int> Last2Revisited(string[] words)
-        { // last 2 from strings exercise is similar  
-            return null;
-        }
+        {
+            Dictionary<string, int> lastTwoDict = new Dictionary<string, int>();
+
+            if (words.Length > 0)
+            {
+                for (int i = 0; i <= words.Length - 1; i++)
+                {
+                    if (words[i].Length > 1)
+                    {
+                        string last2 = words[i].Substring(words[i].Length - 2, 2);
+                        string strMinus2 = words[i].Substring(0, words[i].Length - 2);
+                        int counter = 0;
+                        if (strMinus2.Contains(last2) == true)
+                        {
+                            for (int l = 0; l <= strMinus2.Length - 2; l++)
+                            {
+                                if (strMinus2.Substring(l, 2) == last2)
+                                {
+                                    counter += 1;
+                                }
+                            }
+                            lastTwoDict[words[i]] = counter;
+                        }
+                        else
+                        {
+                            lastTwoDict[words[i]] = counter;
+                        }
+                    }
+                }
+
+                return lastTwoDict;
+            }
+            return lastTwoDict;
+        }      
     }
 }
