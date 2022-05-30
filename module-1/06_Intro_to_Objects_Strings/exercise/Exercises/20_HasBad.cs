@@ -12,25 +12,33 @@
         */
         public bool HasBad(string str)
         {
-            string wordLength = str.Substring(0, 2);
 
-            if (str.Length <= 2)
+            if (str.Length > 3)
             {
-                return false;
-            }
-            else if (str.Contains("bad"))
-            {
-                return true;
-            }
-            else if (str.Equals(wordLength))
-            {
-                if (wordLength.Contains("bad"))
+
+
+                if (str.Substring(0, 3).Equals("bad"))
                 {
                     return true;
                 }
-            }
+                else if (str.Substring(1, 3).Equals("bad"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
 
-            return true;
+            }
+            else if (str.Length == 3 && str.Equals("bad"))
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
         }
     }
 }

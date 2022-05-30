@@ -10,7 +10,15 @@
         */
         public string StringSplosion(string str)
         {
-            return null;
+            string stringMess = "";
+            if (str.Length > 0)
+            {
+                for (int i = 0; i <= str.Length - 1; i++)
+                {
+                    stringMess = stringMess + str.Substring(0, i + 1);
+                }
+            } 
+            return stringMess;
         }
     }
 }
