@@ -9,7 +9,7 @@
         Last2("xaxxaxaxx") → 1
         Last2("axxxaaxx") → 2
         */
-        public int Last2(string str)
+        public int Last2(string str) // this test is not working 
         {
             if(str.Length < 3)
             {
