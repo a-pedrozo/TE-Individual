@@ -10,8 +10,21 @@
         */
         public string StringBits(string str)
         {
-            
-            return null;
+            string newBit = "";
+            if (str.Length.Equals(""))
+            {
+                return newBit;
+            }
+
+            for (int i = 1; i <= str.Length; i++)
+            {
+                if (i % 2 == 1) // keep odds skip evens
+                {
+                    newBit += str.Substring(i - 1, 1);
+                }
+            } 
+ 
+            return newBit;
         }
     }
 }
