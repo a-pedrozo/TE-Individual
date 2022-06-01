@@ -8,17 +8,23 @@
         DoubleX("axaxax") → false
         DoubleX("xxxxx") → true
         */
-        public bool DoubleX(string str) // test is incorrect 
+        public bool DoubleX(string str)
         {
-            for ( int i = 0; i <= str.Length - 2; i++)
+            for (int i = 0; i <= str.Length - 2; i++)
             {
-                if (str.Substring(i,1).Equals("x") && (str.Substring(i +1, 1).Equals("x")))
+                if (str.Substring(i, 1).Equals("x"))
                 {
-                    return true;
+                    if (str.Substring(i + 1, 1).Equals("x"))
+                    {
+                        return true;
+
+                    }
+                    else return false;
                 }
+
             }
-           
             return false;
+
         }
     }
 }
