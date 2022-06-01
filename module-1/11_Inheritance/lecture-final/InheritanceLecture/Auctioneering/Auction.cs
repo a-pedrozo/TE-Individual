@@ -28,11 +28,14 @@ namespace InheritanceLecture.Auctioneering
         /// <param name="itemName">The name of the item being auctioned off</param>
         public Auction(string itemName)
         {
-            this.AuctionedItem = itemName;
+            this.AuctionedItem = itemName; /*Storing itemName to AuctionedItem*/
             this.CurrentHighBid = new Bid("Nobody", 0);
         }
 
-        public string AuctionedItem { get; }
+        //AuctionedItem is a "get-only" property. This can only be set in this class's constructor
+        //This differs from a private set because private set can be set anywhere
+        //in the class
+        public string AuctionedItem { get; } 
 
         /// <summary>
         /// Represents the current high bid.
@@ -51,7 +54,7 @@ namespace InheritanceLecture.Auctioneering
         {
             get 
             { 
-                return allBids.ToArray(); 
+                return allBids.ToArray(); // Users could add or remove elements from lists. Exposing an array prevents modifying the source data
             }
         }
 
@@ -60,8 +63,13 @@ namespace InheritanceLecture.Auctioneering
         /// </summary>
         public void EndAuction()
         {
-            Console.WriteLine($"The auction is over on the {AuctionedItem}, the winner is {CurrentHighBid.Bidder}");
-            HasEnded = true;
+            if (!HasEnded)
+            {
+                Console.WriteLine($"The auction is over on the {AuctionedItem}, the winner is {CurrentHighBid.Bidder}");
+                // Above is same as Console.WriteLine("The auction is over on the " + AuctionedItem + ", the winner is " + CurrentHighBid.Bidder);
+
+                HasEnded = true;
+            }
         }
 
         /// <summary>
@@ -69,7 +77,7 @@ namespace InheritanceLecture.Auctioneering
         /// </summary>
         /// <param name="offeredBid">The bid to place.</param>
         /// <returns>True if the new bid is the current winning bid</returns>
-        public bool PlaceBid(Bid offeredBid)
+        public virtual bool PlaceBid(Bid offeredBid) // virtual means it CAN be overridden
         {
             // Make sure we don't allow bids after auctions are over
             if (HasEnded)
@@ -80,13 +88,17 @@ namespace InheritanceLecture.Auctioneering
             }
 
             // Show the bid details to the user.
+            offeredBid.DisplayDetails(); // Call to the DisplayDetails method in Bid.cs
 
             // Record it as a bid by adding it to allBids
+            allBids.Add(offeredBid);
 
             // Check to see IF the offered bid is higher than the current bid amount
             // -- if yes, set offered bid as the current high bid
-
-            // Display the current high bid using ToString
+            if (offeredBid.BidAmount > CurrentHighBid.BidAmount)
+            {
+                CurrentHighBid = offeredBid;
+            }
 
             // Return true if this is the new highest bid, otherwise false
             return offeredBid == CurrentHighBid;

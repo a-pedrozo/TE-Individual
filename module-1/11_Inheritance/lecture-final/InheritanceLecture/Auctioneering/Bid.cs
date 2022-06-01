@@ -5,7 +5,7 @@ namespace InheritanceLecture.Auctioneering
     /// <summary>
     /// This class represents a specific bid on an item by a particular bidder.
     /// </summary>
-    public class Bid
+    public class Bid : Object /*Everything in .NET inherits from object*/
     {
         /// <summary>
         /// Get the bidder name.
