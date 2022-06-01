@@ -20,6 +20,8 @@ namespace Lecture
             // What about multiple animals?
 
             // What about tractors?
+
+            // If we have time, talk about static
         }
 
         private void SingAbout(FarmAnimal animal)
