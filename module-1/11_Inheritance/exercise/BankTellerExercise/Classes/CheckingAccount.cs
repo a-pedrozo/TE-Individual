@@ -14,8 +14,8 @@
             
             if ((Balance - amountToWithdraw < 0.00m) && (Balance - amountToWithdraw > -100.00m))
             {
-
-                base.Withdraw(Balance - 10.00m);
+                base.Withdraw(amountToWithdraw + 10.00m);
+                
                 return Balance;
             }
             else if (Balance - amountToWithdraw > 0.00m)

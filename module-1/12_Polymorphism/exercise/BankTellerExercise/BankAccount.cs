@@ -1,6 +1,6 @@
 ﻿namespace BankTellerExercise
 {
-    public class BankAccount
+    public class BankAccount : IAccountable
     {
         public string AccountHolderName { get; private set; }
         public string AccountNumber { get; }
@@ -31,5 +31,17 @@
             Balance -= amountToWithdraw;
             return Balance;
         }
+
+        public decimal TransferTo(BankAccount destinationAccount, decimal transferAmount)
+        {
+            
+            return Balance;
+        }
     }
 }
+
+
+// bankcustomr does not impliment IACountable
+// IsVip a derived property
+// IsVip is case sensitive 
+// will need some sort of array or list to pass test 

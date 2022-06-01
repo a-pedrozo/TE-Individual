@@ -10,17 +10,22 @@
 
         public override decimal Withdraw(decimal amountToWithdraw)
         {
-            if (Balance - amountToWithdraw < 150.00m)
+            if (Balance - amountToWithdraw < 150.00m && Balance - amountToWithdraw > 0.0m)
             {
-                base.Withdraw(amountToWithdraw - 2.00m);
+                base.Withdraw(amountToWithdraw + 2.00m);
                 return Balance;
 
             }
-            if (Balance > amountToWithdraw)
+            else if (Balance - amountToWithdraw > 150.00m)
+            {
+                base.Withdraw(amountToWithdraw);
+                return Balance;
+            }
+            else
             {
                 return Balance;
             }
-            return Balance;
+           
         }
 
 
