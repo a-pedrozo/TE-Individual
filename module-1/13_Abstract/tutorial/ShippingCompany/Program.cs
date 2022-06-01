@@ -1,6 +1,8 @@
-﻿namespace BankTellerExercise
+﻿using System;
+
+namespace ShippingCompany
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
