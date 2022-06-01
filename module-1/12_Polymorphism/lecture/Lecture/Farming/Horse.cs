@@ -16,7 +16,7 @@ namespace Lecture.Farming
 
         public void Gallup()
         {
-            // TODO: Implement galloping.
+            // Note: Galluping will be implemented in a future release
         }
     }
 }

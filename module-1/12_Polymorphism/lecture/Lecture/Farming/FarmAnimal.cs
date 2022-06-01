@@ -8,7 +8,7 @@ namespace Lecture.Farming
     /// </summary>
     public class FarmAnimal
     {       
-        public FarmAnimal(string name)
+        public FarmAnimal(string name) : base()
         {
             this.Name = name;
         }
@@ -22,7 +22,10 @@ namespace Lecture.Farming
 
         public string MakeSoundTwice()
         {
-            return this.MakeSoundOnce() + " " + this.MakeSoundOnce();
+            string sound = MakeSoundOnce();
+            return sound + " " + sound;
         }
+
+        // TODO: Override ToString
     }
 }

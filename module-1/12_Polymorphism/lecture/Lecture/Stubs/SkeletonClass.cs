@@ -142,12 +142,12 @@ namespace ProjectNamespace
         ////////////////////        
         public void SkeletonMethod()
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public bool SkeletonMethod2(int parameter)
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }
