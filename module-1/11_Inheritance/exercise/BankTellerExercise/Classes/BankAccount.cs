@@ -9,11 +9,11 @@
 
           
                 
-        public BankAccount()
+        public BankAccount( string accountHolderName, string accountNumber)
         {
-            this.AccountHolderName = "";
-            this.AccountNumber = "";
-            this.Balance = 0.0m;
+            this.AccountHolderName = accountHolderName;
+            this.AccountNumber = accountNumber;
+            
 
         }
 

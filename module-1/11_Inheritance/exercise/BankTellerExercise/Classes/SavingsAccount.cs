@@ -2,27 +2,25 @@
 {
     public class SavingsAccount : BankAccount
     {
-        public SavingsAccount()
+        public SavingsAccount(string accountHolderName, string accountNumber, decimal balance) : base(accountHolderName, accountNumber, balance)
         {
-            //??
+
 
         }
 
         public override decimal Withdraw(decimal amountToWithdraw)
         {
-            if (amountToWithdraw < 150.00m)
+            if (Balance - amountToWithdraw < 150.00m)
             {
-            return base.Withdraw(amountToWithdraw + 2.00m);
+                base.Withdraw(amountToWithdraw - 2.00m);
+                return Balance;
 
             }
-            else if (amountToWithdraw > base.Withdraw(amountToWithdraw))
+            if (Balance > amountToWithdraw)
             {
-                return base.Withdraw(Balance);
+                return Balance;
             }
-            else
-            {
-                return base.Withdraw(Balance);
-            }
+            return Balance;
         }
 
 

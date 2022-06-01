@@ -2,20 +2,38 @@
 {
     public class CheckingAccount : BankAccount
     {
-        public CheckingAccount(string accountHolderName, string accountNumber)
+        public CheckingAccount(string accountHolderName, string accountNumber, decimal balance) : base(accountHolderName, accountNumber, balance) // this is how to call parent constructors 
         {
-            this.AccountHolderName = accountHolderName;
-            this.AccountNumber = accountNumber;
-            
+
+
         }
+                
+
         public override decimal Withdraw(decimal amountToWithdraw)
         {
-            decimal newBalance = base.Withdraw(amountToWithdraw);
-            if (newBalance < 0.0m && newBalance > -100.00m)
+            
+            if ((Balance - amountToWithdraw < 0.00m) && (Balance - amountToWithdraw > -100.00m))
             {
-                newBalance -= 10.00m;
+
+                base.Withdraw(Balance - 10.00m);
+                return Balance;
             }
-            return newBalance;
+            else if (Balance - amountToWithdraw > 0.00m)
+            {
+                base.Withdraw(amountToWithdraw);
+                return Balance;
+
+            }
+            else
+            {
+                return Balance;
+            }
+            
+            
+
+            
+
+            
 
 
         }

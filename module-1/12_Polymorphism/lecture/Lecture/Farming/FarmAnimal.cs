@@ -6,7 +6,7 @@ namespace Lecture.Farming
     /// <summary>
     /// A base farm animal class.
     /// </summary>
-    public class FarmAnimal
+    public class FarmAnimal : Object , ISingable // implimenting ISingable to Interface, must be explicit to Interface in order to work
     {       
         public FarmAnimal(string name) : base()
         {
@@ -27,5 +27,9 @@ namespace Lecture.Farming
         }
 
         // TODO: Override ToString
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
