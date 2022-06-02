@@ -26,9 +26,9 @@ namespace BankTellerExercise
             }
             return Balance;
         }
-        public  new decimal TransferTo(BankAccount destinationAccount, decimal transferAmount)
-        {
-            return base.TransferTo(destinationAccount, transferAmount);
-        }
+        //public  decimal TransferTo(BankAccount destinationAccount, decimal transferAmount)
+        //{
+        //    return base.TransferTo(destinationAccount, transferAmount);
+        //}
     }
 }
