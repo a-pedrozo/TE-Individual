@@ -34,7 +34,6 @@
 
         public decimal TransferTo(BankAccount destinationAccount, decimal transferAmount)
         {
-            
 
 
             return Balance;

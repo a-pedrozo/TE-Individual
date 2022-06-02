@@ -29,13 +29,14 @@ namespace BankTellerExercise
 
         public decimal Pay(decimal amountToPay)
         {
-            
-            return 0.00m; // placeholder
+            Debt -= amountToPay;
+            return Debt;
         }
 
         public decimal Charge(decimal amountToCharge)
         {
-            return 0.00m; //placeholder
+            Debt += amountToCharge;
+            return Debt;
         }
 
 
