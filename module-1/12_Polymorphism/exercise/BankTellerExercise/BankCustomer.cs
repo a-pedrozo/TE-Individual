@@ -11,19 +11,26 @@ namespace BankTellerExercise
         public string PhoneNumber { get; set; }
         public bool IsVip { get; }
 
+        private List<IAccountable> accountables = new List<IAccountable>();
+
 
 
         public void AddAccount(IAccountable newAccount)
         {
+            foreach (List<IAccountable> accounts in accountables)
+            {
+                accountables.Add(newAccount);
+            }
             
-
+            
         }
 
-        public IAccountable GetAccounts()
+        public IAccountable[] GetAccounts()
         {
-            return null;
+            return GetAccounts();
         }
 
     }
 }   // required arrray or like an array possibly list 
     // bank customer is not IAccoutable
+    // IsVip is derived property

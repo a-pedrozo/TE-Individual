@@ -19,6 +19,10 @@ namespace Lecture
 
             Tractor tractor = new Tractor();
 
+            //FarmAnimal cat = new FarmAnimal("CAT");  abstract cannot do this 
+            FarmAnimal cat = new Cat();
+
+
             // Put everything in our farm in a list
             List<ISingable> farm = new List<ISingable>();
             farm.Add(mrEd);
@@ -26,6 +30,7 @@ namespace Lecture
             farm.Add(chicken);
             farm.Add(bob);
             farm.Add(tractor);
+            farm.Add(cat);
 
             // Sing about our farm
             Console.WriteLine("Old MacDonald had a farm ee ay ee ay oh");

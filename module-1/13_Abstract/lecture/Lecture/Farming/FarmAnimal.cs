@@ -6,7 +6,8 @@ namespace Lecture.Farming
     /// <summary>
     /// A base farm animal class.
     /// </summary>
-    public class FarmAnimal : object, ISingable
+    public abstract class FarmAnimal : object, ISingable
+        // abstract means i cant say new FarmAnimal(..)
     {       
         public FarmAnimal(string name) : base()
         {
@@ -14,11 +15,9 @@ namespace Lecture.Farming
         }
 
         public string Name { get; }
-
-        public virtual string MakeSoundOnce()
-        {
-            return "";
-        }
+        // abstract means that inhertiing classes MUST override it 
+        public abstract string MakeSoundOnce();
+      
 
         public string MakeSoundTwice()
         {
