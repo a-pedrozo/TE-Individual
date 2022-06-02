@@ -1,120 +1,112 @@
-# Polymorphism exercise
+# Managing Inheritance exercise
 
-The purpose of this exercise is to practice writing code that uses the Object-Oriented Programming principle of polymorphism.
+The purpose of this exercise is to practice building class structures using abstract classes and methods and using encapsulation, inheritance, and polymorphism.
 
 ## Learning objectives
 
-After completing this exercise, you'll be able to:
+After completing the exercise, you'll be able to:
 
-- Explain the concept of polymorphism and how it's useful
-- Understand where inheritance can assist in writing polymorphic code
-- State the purpose of interfaces and how they're used
-- Use polymorphism through inheritance using IS-A relationships
-- Use polymorphism through interfaces using CAN-DO relationships
-
-## Getting started
-
-- Open the `BankTellerExercise.sln` solution in Visual Studio.
-- Complete the appropriate classes to satisfy the requirements.
+- Define and use abstract classes and methods
+- Reinforce the concepts of Encapsulation, Inheritance, and Polymorphism
 
 ## Evaluation criteria and functional requirements
 
-- The project must not have any build errors.
-- Code is presented in a clean, organized format.
-- Code is appropriately encapsulated.
-- Polymorphism is used appropriately to avoid code duplication.
-- The code meets the specifications defined in the remainder of this document.
+* The project must not have any build errors.
+* Code is clean and presented in an organized format.
+* Code is appropriately encapsulated.
+* Inheritance is appropriately used to avoid code duplication.
+* Abstraction is appropriately used to prevent object creation and enforce needed method creation on inheritance.
+* The code meets the defined specifications.
 
-### Bank customer application
+**Notes for all classes**
+- Readonly properties don't require a `set` accessor.
 
-**Notes for all Classes and interfaces**
-- X in the set column indicates it *must have a setter*.
-- Private in the set column indicates it *must have a private setter*.
-- Nothing in the set column indicates the attribute is readonly or derived. See the comments for that property for details.
-- Readonly attributes don't require a setter. They're set from the class's constructor.
+### Paint calculator
 
-### Instructions
+Your goal is to create classes for a paint calculator. The calculator works by having a customer input dimensions of walls. Then, the calculator lets them know how many gallons of paint they need to purchase. Much of the UI is already complete. You need to implement the underlying `Wall` classes that make the calculations possible.
 
-This code extends from the previous day's exercise. The bank account classes work well, but now the bank needs to calculate a customer's total assets to assign them VIP status if they have $25,000 or more in assets at the bank.
+Each wall has a name, a color, and dimensions. The dimensions needed depend upon the shape of the wall. The application supports rectangular walls, square walls, and triangular walls.
 
-The bank is also introducing credit cards. Since credit cards aren't strictly bank accounts that store money, they don't inherit from the `BankAccount` class. However, you must still account for them in the VIP calculation.
+To allow polymorphism and reuse common code, all the other walls inherit from the base `Wall` class. However, the `Wall` class doesn't include any dimensions of its own, so you can't use it in the application as a wall.
 
-For this exercise, you'll add new features to the code to create a `BankCustomer` class that has multiple accounts. You'll also create a new type of account: a credit card account. A credit card account isn't a `BankAccount`, but you must store it with the customer as one of their accounts. To do this, you need to create a new interface that specifies that an object is "accountable" and has a `Balance` property.
+If you open `Program`, you'll see there are several blocks of commented out code. After you complete a step, you'll need to uncomment the code. After that, the code compiles.
 
-![Account Class Diagram](./bank-account-csharp.png)
+#### Step One: Implement the `Wall` class
 
-For this exercise, you will:
+The `Wall` class can't be directly instantiated. It has two properties, `Name` and `Color`, that are readonly. Add a constructor that looks like this:
 
-1. Add a new method to allow customers to transfer money between `BankAccount`s.
-2. Create a new interface called `IAccountable` and make `BankAccount` implement `IAccountable`.
-3. Create a new class called `CreditCardAccount` that's also `IAccountable`.
-4. Create a `BankCustomer` class that has many `IAccountable` objects and a calculated property, `IsVip`.
+``` csharp
+public Wall(string name, string color)
+```
 
-#### Step One: Add a new `TransferTo()` method to transfer money between `BankAccount`s
+It also has one public method that subclasses have to implement. `GetArea()` takes no parameters and returns an integer representing the total area of the wall.
 
-Add the following method to allow `BankAccount`s to transfer money to another `BankAccount`. Where would you add this method to make sure it works for all `BankAccount`s, including `SavingsAccount` and `CheckingAccount`?
+If you implemented the class correctly, the `WallTests` pass.
 
-| Method Name                                                  | Return Type | Description                                                  |
-| ------------------------------------------------------------ | ----------- | ------------------------------------------------------------ |
-| `TransferTo(BankAccount destinationAccount, decimal transferAmount)` | `decimal`   | Withdraws `transferAmount` from this account and deposits it into `destinationAccount`. Returns the balance of the "from" account (`this`). |
+There are two places to uncomment code in `Program.cs`—look for `//uncomment after step 1:` and uncomment the line that follows it.
 
-New unit tests have been added for this section. This section is complete when the `CheckingAccountTests`, `SavingsAccountTests`, and `BankAccountTests` unit tests pass.
+#### Step Two: Implement the `RectangleWall` class
 
-#### Step Two: Create the `IAccountable` interface and make `BankAccount` implement it
+`RectangleWall` extends `Wall` and adds two new properties, `Length` and `Height`, that are readonly. Add a constructor that looks like this:
 
-The `IAccountable` interface means that an object can be used in the accounting process for the customer.
+``` csharp
+public RectangleWall(string name, string color, int length, int height)
+```
 
-| Attribute Name | Data Type | Get  | Set  | Description                               |
-| -------------- | --------- | ---- | ---- | ----------------------------------------- |
-| `Balance`      | `decimal` | X    |      | Returns the balance value of the account. |
+Implement `GetArea()` to return the `Length` multiplied by the `Height`.
 
-Add the `IAccountable` interface to `BankAccount`. This makes `BankAccount`, and all the classes that inherit from `BankAccount`, "accountable" classes.
+Add a `ToString()` method that returns a `string` in the following format:
 
-Once the `IAccountableTests` unit tests pass, this section is complete.
+```
+Name (LengthxHeight) rectangle
+```
 
-#### Step Three: Implement a new `CreditCardAccount` class
+If you implemented the class correctly, the `RectangleWallTests` pass.
 
-A `CreditCardAccount` isn't a `BankAccount` but "can-do" `Accountable`.
+There are three places to uncomment code in `Program.cs`—look for `//uncomment after step 2:` and uncomment the line that follows it. If you run the program now, you can calculate the paint needed for rectangle walls.
 
-| Constructor                                                         | Description                                                                                                            |
-| ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `CreditCardAccount(string accountHolderName, string accountNumber)` | A new credit card account requires an account holder name and account number. The debt defaults to a 0 dollar balance. |
+#### Step Three: Implement the `TriangleWall` class
 
+`TriangleWall` extends `Wall` and adds two new properties, `Base` and `Height`, that are readonly. Add a constructor that looks like this:
 
+``` csharp
+public TriangleWall(string name, string color, int @base, int height)
+```
 
-| Attribute Name      | Data Type | Get  | Set     | Description                                                  |
-| ------------------- | --------- | ---- | ------- | ------------------------------------------------------------ |
-| `AccountHolderName` | `string`  | X    | private | Returns the account holder name that the account belongs to. |
-| `AccountNumber`     | `string`  | X    |         | Readonly property returns the account number that the account belongs to. |
-| `Debt`              | `decimal` | X    | private | Returns the amount the customer owes.                        |
+Implement `GetArea()` to return the `Base` multiplied by the `Height` and then divided by two.
 
-| Method Name                      | Return Type | Description                                                  |
-| -------------------------------- | ----------- | ------------------------------------------------------------ |
-| `Pay(decimal amountToPay)`       | `decimal`   | Removes `amountToPay` from the amount owed and returns the new total amount owed. |
-| `Charge(decimal amountToCharge)` | `decimal`   | Adds `amountToCharge` to the amount owed and returns the new total amount owed. |
+>Note: Dividing an `int` by another `int` rounds down the answer to the nearest whole number.
 
-Note: Be sure to implement the interface. The balance for the accounting must be the debt as a negative number.
+Add a `ToString()` method that returns a `string` in the following format:
 
-Once the `CreditCardAccountTests` unit tests pass, this section is complete.
+```
+Name (BasexHeight) triangle
+```
 
-#### Step Four: Implement the `BankCustomer` class
+If you implemented the class correctly, the `TriangleWallTests` pass.
 
-Implement the `BankCustomer` class. A bank customer has a list of `Accountable`s.
+There's one place to uncomment code in `Program.cs`—look for `//uncomment after step 3:` and uncomment the line that follows it. If you run the program now, you can calculate the paint needed for triangle and rectangle walls.
 
-| Attribute Name | Data Type | Get  | Set  | Description                                                  |
-| -------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
-| `Name`         | `string`  | X    | X    | Returns the name of the bank customer.                       |
-| `Address`      | `string`  | X    | X    | Returns the address of the bank customer.                    |
-| `PhoneNumber`  | `string`  | X    | X    | Returns the phone number of the bank customer.               |
-| `IsVip`        | `bool`    | X    |      | Calculates the balance of all accounts, returns `true` if at least $25,000; otherwise is false. |
+#### Step Four: Implement the `SquareWall` class
 
-Note that you'll likely want to have a private variable or field to store the accounts inside of the class, but the name and data type for this is up to you to decide.
+`SquareWall` extends `RectangleWall`. Add a constructor that looks like this:
 
-| Method Name                           | Return Type      | Description                                              |
-| ------------------------------------- | ---------------- | -------------------------------------------------------- |
-| `AddAccount(IAccountable newAccount)` | `void`           | Adds `newAccount` to the customer's list of accounts.    |
-| `GetAccounts()`                       | `IAccountable[]`\* | Returns array of the accounts belonging to the customer. |
+``` csharp
+public SquareWall(string name, string color, int sideLength)
+```
 
-\* Note: Even though `GetAccounts()` returns an array, you don't have to store the accounts in the `BankCustomer` as an array. In fact, since you need to add accounts whenever the `AddAccount()` method is called, you'll need to use a different data structure in the class to store the accounts that's like an array, but can be added to at any time.
+Add a `ToString()` method that returns a `string` in the following format:
 
-Once the `BankCustomerTests` unit test passes, this section is complete.
+```
+Name (SideLengthxSideLength) square
+```
+
+If you implemented the class correctly, the `SquareWallTests` pass.
+
+There's one place to uncomment code in `Program.cs`—look for `//uncomment after step 4:` and uncomment the line that follows it. If you run the program now, you can calculate the paint needed for all walls.
+
+## Tips and tricks
+
+- There are less explicit details for this exercise, but you have everything you need to complete it. Do your best, and let the unit tests guide your work.
+- If a class can't be directly instantiated, that means that it's an abstract class.
+- If a method must be explicitly implemented by a non-abstract class, that means that the method must be abstract.

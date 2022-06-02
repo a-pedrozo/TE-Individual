@@ -1,227 +1,218 @@
-# Tutorial for polymorphism
+# Tutorial for managing inheritance
 
-In this tutorial, you'll continue to build a bookstore application, using polymorphism to expand the store into an unrelated business.
+In this tutorial, you'll be working on classes for a shipping company. You'll create new classes for several delivery options, and use the `abstract` and `protected` keywords to require and restrict inheritance. You'll also seal a method.
 
-Your bookstore application has allowed the store to expand its product line and achieve great success. The bookstore is now selling books and movies, and has plans to sell more media in the future.
-
-With great success comes more great ideas. The owners have informed you that the stores will open cafes to sell coffee, tea, and other food and drink items. You need to modify your application to handle the purchase of food and drinks in addition to books and movies.
-
-To get started, open the `PolymorphismTutorial.sln` solution in Visual Studio.
+To get started, open the `ShippingCompany.sln` in Visual Studio. It includes a basic `Shipment` class to represent a package for delivery, and a `Program` class that you'll use later in the tutorial.
 
 ## Design
 
-You could add food and drink items as child classes of `MediaItem`. However coffee, tea, and pastries don't pass the _is a_ test as media items. A scone _is NOT a_ media item. So class inheritance isn't a good choice here.
+The company wants to offer the following delivery options:
 
-Instead, you define what it takes to make something *purchasable*. For this store, to be purchasable an item must have a price.
+- Truck Delivery
+- Drone Delivery
+- Air Delivery
 
-You're going to define an **interface** called `IPurchasable`. An interface defines a "contract" of properties and methods that any class implementing the interface *must* define.
+Each delivery option has the following properties:
 
-The `IPurchasable` interface you write has one property: `Price`. You store can sell any item that implements the "contract" established by the `IPurchasable` interface.
+- Origin : `string` _(the origin of the shipment)_
+- Destination : `string` _(the destination of the shipment)_
+- Distance : `int` _(the distance between the origin and destination in miles)_
+- Shipment: `Shipment`_(the object representing the package for delivery)_
 
-This means that the `MediaItem` that you previously defined must *implement* the `IPurchasable` interface, and any new cafe items must also implement `IPurchasable`.
+Each delivery option has the following method:
 
-Your shopping cart must now contain "purchasables"; that is, any class that implements the `IPurchasable` interface.
+- `GetDuration()`
 
-The new class hierarchy looks like:
+What makes each of these types of deliveries unique is the time that it takes to make the delivery. A truck driving across the country takes a lot longer than the Air Delivery. Since each delivery type is unique, each class has a different implementation of the `GetDuration()` method.
 
-![Class hierarchy](./img/class-hierarchy1.excalidraw.png "Bookstore class hierarchy")
+If you were to jump right in and start writing code without any planning, you might end up with the following three classes:
 
-In the diagram, `Coffee` is the only cafe item defined, but you can add many others, as long as those classes implement the `IPurchasable` interface.
+![3 Delivery Classes](./img/3-delivery-classes-csharp.png)
 
-## Step One: Support the `IPurchasable` interface
+Notice how similar all those classes are. Duplicate code is a red flag - there's probably a better way to design your application. In this case, each of the classes share state - also known as properties - but have one method, `GetDuration()` that's unique. This is a great opportunity to use an abstract class. A better approach might look like this:
 
-The first thing to do is *refactor* your existing code to support your new design. Recall that refactoring re-structures your code without changing its function.
+![3 Delivery Classes](./img/delivery-abstract-class-csharp.png)
 
-### Create the `IPurchasable` interface
+## Step One: Create the `Delivery` class
 
-Add a new interface by right-clicking on the `Bookstore` project in Solution Explorer and selecting **Add > New Item...**. In the dialog, select `Interface` and type "IPurchasable" and press **Enter**. Visual Studio creates a new file called `IPurchasable.cs`, and declares the interface inside it.
-
-In `IPurchasable.cs`, add the _public_ access modifier and add the following to `IPurchasable`:
+Now that you have a good idea of what your application looks like, you can write some code. Start by creating a new class `Delivery.cs`. Then, create four properties and all of the getters and setters for each:
 
 ```csharp
-// IPurchasable.cs
-public interface IPurchasable
+public class Delivery
 {
-    decimal Price { get; }
+    public string Origin { get; set; }
+    public string Destination { get; set; }
+    public int Distance { get; set; }
+    public Shipment Shipment { get; set; }
 }
 ```
 
-Notice that there's no access modifier and only a `get` associated with `Price`. This says that all classes that implement `IPurchasable` must have a "getter" for `Price`. 
-
-Remember that C# auto-properties have "getters" and "setters" automatically defined by the `get;` and `set;` that return the value or set the value of the property. These are technically methods under the hood and are a shortcut to writing something more verbose. Methods defined in an interface *have no body*. Interfaces define the method *signatures*, but don't include the *implementation* (body) of the method. That's the job of the class which implements the interface.
-
-### Implement `IPurchasable` in `MediaItem`
-
-A media item (a book or a movie) is purchasable, so implement the new interface in the `MediaItem` class. In `MediaItem.cs`, change the class declaration:
+Next, you need to declare a  `GetDuration()` method without providing any implementation, but require any class that extends `Delivery` to implement it. To do this, make it an abstract method:
 
 ```csharp
-// MediaItem.cs
-public class MediaItem : IPurchasable
-{
-    ...
+public abstract int GetDuration();
 ```
 
-Since `MediaItem` already has a `Price` getter, there's nothing else you need to do. `MediaItem` now completely implements the `IPurchasable` interface.
-
-### Change `ShoppingCart` to hold "purchasables"
-
-Currently the shopping cart contains a list of media items to purchase. Change that to a list of `IPurchasable`. This means the shopping cart holds a *list of items that are purchasable*.
-
-Change the declaration of `itemsToBuy`, as well as the places in the code that refer to the list:
+Only abstract classes can contain abstract methods, so after adding the `abstract` keyword to a method, the IDE marks it as an error until you also add the `abstract` keyword to the class. Making the class abstract means you can't create instances of this class--using it requires inheriting from it. After that, your `Delivery` class looks like this:
 
 ```csharp
-// ShoppingCart.cs
-
-// *** Change from MediaItem to IPurchasable
-private List<IPurchasable> itemsToBuy = new List<IPurchasable>();
-
-public decimal TotalPrice
+public abstract class Delivery
 {
-    get
+    public string Origin { get; set; }
+    public string Destination { get; set; }
+    public int Distance { get; set; }
+    public Shipment Shipment { get; set; }
+
+    public abstract int GetDuration();
+}
+```
+
+## Step Two: Create the `TruckDelivery` class
+
+Now that you have the base `Delivery` class, you can create the class for the truck delivery option. Create a new class named `TruckDelivery` that extends the `Delivery` class.
+
+```csharp
+public class TruckDelivery : Delivery
+{
+
+}
+```
+
+You'll see an error at this point, because this class doesn't yet provide an implementation for `GetDuration()`. By making that method abstract, you've ensured that every child class implements the method--they won't compile until they do.
+
+For the sake of simplicity, assume trucks always drive at their top speed of 60 mph. If the truck goes at that speed across the whole distance, you can determine how long it would take to complete the delivery with this implementation of `GetDuration()`:
+
+```csharp
+public class TruckDelivery : Delivery
+{
+    public const double TruckTopSpeed = 60.0;
+
+    public override int GetDuration()
     {
-        decimal total = 0.0M;
-        // *** Change from MediaItem to IPurchasable
-        foreach (IPurchasable item in this.itemsToBuy)
-        {
-            total += item.Price;
-        }
-        return total;
+        double decimalHours = base.Distance / TruckTopSpeed;
+        int hours = (int) decimalHours;
+        int minutes = (int) Math.Round((decimalHours - hours) * 60);
+        return (hours * 60) + minutes; //duration in minutes
     }
 }
+```
 
-// *** Change from MediaItem to IPurchasable
-public void Add(IPurchasable itemToAdd)
-{
-    itemsToBuy.Add(itemToAdd);
-}
+## Step Three: Create the `DroneDelivery` and `AirDelivery` classes
 
-public string GetReceipt()
+Next, create the `DroneDelivery` and `AirDelivery` classes in the same way you created the `TruckDelivery` class.
+
+Drone delivery works like the truck delivery option with a little wrinkle. The smallest delivery drones have a top speed of 100 mph, but can only carry 1 pound packages. As the total weight of the shipment increases, larger, slower drones are necessary, which this method represents by dividing the top speed by the weight:
+
+```csharp
+public class DroneDelivery : Delivery
 {
-    string receipt = "Receipt\n";
-    // *** Change from MediaItem to IPurchasable
-    foreach (IPurchasable item in this.itemsToBuy)
+    public const double DroneTopSpeed = 100.0;
+
+    public override int GetDuration()
     {
-        receipt += item;
-        receipt += "\n";
+        double topSpeedWithWeight = DroneTopSpeed / Shipment.Weight;
+        double decimalHours = base.Distance / topSpeedWithWeight;
+        int hours = (int) decimalHours;
+        int minutes = (int) Math.Round((decimalHours - hours) * 60);
+        return (hours * 60) + minutes;              
     }
-    receipt += "\nTotal: $" + this.TotalPrice;
-    return receipt;
 }
 ```
 
-When you run the program now, you get the same output as you had before making these changes. You've refactored the code so that the shopping cart can hold any kind of purchasable item:
-
-```
-Welcome to the Tech Elevator Bookstore
-
-Receipt
-Title: A Tale of Two Cities, Author: Charles Dickens, Price: $14.99
-Title: The Three Musketeers, Author: Alexandre Dumas, Price: $12.95
-Title: Childhood's End, Author: Arthur C. Clark, Price: $5.99
-Title: Toy Story, Rating: G, Time: 81 minutes, Price: $19.99
-Title: Airplane!, Rating: PG, Time: 88 minutes, Price: $14.99
-
-Total: $68.91
-```
-
-## Step Two: Define a purchasable cafe item
-
-Now create your first cafe item to sell. You can create many types of cafe items for purchase, but start with `Coffee`.
-
-In the Solution Explorer window, right-click the `Bookstore` project and select **Add > Class...**. In the dialog, type "Coffee" and press **Enter**. Visual Studio creates a new file called `Coffee.cs` which contains the new class.
-
-Change the class declaration to indicate that `Coffee` is `public` and implements `IPurchasable`:
+All air deliveries take one day. Remember that `GetDuration()` method returns minutes, so you need to convert one day to minutes:
 
 ```csharp
-// Coffee.cs
-public class Coffee : IPurchasable
-```
-
-In the class, define the properties for `Coffee`: `Size`, `Blend`, `Additions`, and `Price`, as well as the `Add()` method to add additions to the `Additions` list:
-
-```csharp
-// Coffee.cs
-public string Size { get; set; }
-public string Blend { get; set; }
-public List<string> Additions { get; private set; } = new List<string>();
-public decimal Price { get; set; }
-
-public void Add(string addition)
+public class AirDelivery : Delivery
 {
-    Additions.Add(addition);
+    private const int OneDayInMinutes = 24 * 60;
+
+    public override int GetDuration()
+    {
+        return OneDayInMinutes;
+    }
 }
 ```
 
-> Note: Visual Studio may add `using` statements for the namespaces you use automatically as you add the properties. If it doesn't, make sure you include this before your `Coffee` class declaration:
+At this point, you've created an abstract class and three classes that inherit from it. By making `GetDuration()` an abstract method, you required each of those child classes to provide their own implementation for it.
+
+## Step Four: Add an `ConvertHoursToMinutes()` method
+
+Notice that both the `TruckDelivery` and `DroneDelivery` classes convert hours into minutes in their `GetDuration()` methods. That's an opportunity to refactor that code and move it into the `Delivery` class. Add the following method to the `Delivery` class:
 
 ```csharp
-using System.Collections.Generic;
-```
-
-Notice that `public decimal Price { get; set; }` satisfies the "contract" for the `IPurchasable` interface that said there must be a "getter" for `Price`.
-
-For coffee to display well on a receipt, implement the `ToString()` override:
-
-```csharp
-// Coffee.cs
-public override string ToString()
+public int ConvertHoursToMinutes(double decimalHours)
 {
-    return $"{Size} coffee, {Blend} ({string.Join(", ", Additions)}). Price: ${Price}";
+    int hours = (int)decimalHours;
+    int minutes = (int)Math.Round((decimalHours - hours) * 60);
+    return (hours * 60) + minutes; //duration in minutes;
 }
 ```
 
-Finally, for convenience, add a constructor to `Coffee`:
+Then, refactor the `GetDuration()` method of `TruckDelivery` like this:
 
 ```csharp
-// Coffee.cs
-public Coffee(string size, string blend, string[] additions, decimal price)
+public override int GetDuration()
 {
-    Size = size;
-    Blend = blend;
-    Additions.AddRange(additions);
-    Price = price;
+    double decimalHours = (double)base.Distance / TruckTopSpeed;
+    return ConvertHoursToMinutes(decimalHours);
 }
 ```
 
-## Step Three: Purchase coffee and books
-
-Now that you've added coffee as a purchasable item, you can add some to your cart to make a purchase. Do this in `Program.cs`, after you have added media items to the cart:
+And then refactor the `GetDuration()` method of `DroneDelivery` like this:
 
 ```csharp
-// Program.cs
-// Have a cuppa jo!
-Coffee myCoffee = new Coffee("Extra-large", "Dark Roast", new string[] { "Creme" }, (decimal)3.99);
-Coffee myFriendsCoffee = new Coffee("Medium", "House Blend", new string[] { "Soy milk", "Sugar" }, (decimal)2.79);
-shoppingCart.Add(myCoffee);
-shoppingCart.Add(myFriendsCoffee);
-
-Console.WriteLine(shoppingCart.GetReceipt());
+public override int GetDuration()
+{
+    double topSpeedWithWeight = DroneTopSpeed / Shipment.Weight;
+    double decimalHours = base.Distance / topSpeedWithWeight;
+    return ConvertHoursToMinutes(decimalHours);
 }
 ```
 
-When your receipt prints, you see that your program handled these seemingly different types of items in a consistent way, and printed a consolidated receipt.
+Go to the `Main()` method in the `Program` class, and create an instance of `TruckDelivery`:
 
-```
-Welcome to the Tech Elevator Bookstore
-
-Receipt
-Title: A Tale of Two Cities, Author: Charles Dickens, Price: $14.99
-Title: The Three Musketeers, Author: Alexandre Dumas, Price: $12.95
-Title: Childhood's End, Author: Arthur C. Clark, Price: $5.99
-Title: Toy Story, Rating: G, Time: 81 minutes, Price: $19.99
-Title: Airplane!, Rating: PG, Time: 88 minutes, Price: $14.99
-Extra-large coffee, Dark Roast (Creme). Price: $3.99
-Medium coffee, House Blend (Soy milk,Sugar). Price: $2.79
-
-Total: $75.69
+```csharp
+static void Main(string[] args)
+{
+    TruckDelivery myDelivery = new TruckDelivery();
+}
 ```
 
-> Polymorphism is the principle behind this. The word literally means "many forms", and what you've shown is that there are many forms of purchasable items. Drinks are significantly different than books, but your program was able to treat these items similarly when it came to making a purchase.
+Add another line to the `Main()` method, type `myDelivery.` and look at the list of methods IntelliSense suggests. First in the list is `ConvertHoursToMinutes()`. As the class designer, you added that method for use within the family of classes that inherit from `Delivery`, but didn't intend for it to be generally available. It clutters the list of methods and might cause confusion about why `TruckDelivery` offers a `ConvertHoursToMinutes()` method that has no clear relationship to delivery by truck.
 
-## Summary
+The `ConvertHoursToMinutes()` method is available to the `Program` class because it's `public`. If you change it to `private`, Visual Studio no longer suggests it in the popup list of methods, because then you can only call it from within the `Delivery` class. The problem with making it `private`, though, is that it breaks the `TruckDelivery` and `DroneDelivery` classes, because now they can't access `ConvertHoursToMinutes()`.
 
-In this tutorial, you learned how to:
+The solution is to change the access modifier on `ConvertHoursToMinutes()` to `protected`:
 
-* Define an interface that describes some common features that otherwise different objects may have.
-* Implement an interface inside a class by implementing the methods defined on that interface.
-* Polymorphically use disparate types of objects in a similar way by calling methods of an interface.
+```csharp
+protected int ConvertHoursToMinutes(double decimalHours)
+{
+    int hours = (int)decimalHours;
+    int minutes = (int)Math.Round((decimalHours - hours) * 60);
+    return (hours * 60) + minutes; //duration in minutes;
+}
+```
+
+Now you can call the method from classes that inherit from `Delivery`, but not in unrelated classes like `Program`. This is better encapsulation.
+
+## Step Five: Add a sealed method to the `Delivery` class
+
+Finally, add a new method to the `Delivery` class named `GetExpectedArrival()`. When provided with the departure date and time this method returns the expected arrival date and time:
+
+```csharp
+public DateTime GetExpectedArrival(DateTime departure)
+{
+    return departure.AddMinutes(GetDuration());
+}
+```
+
+Notice the absence of the keywords `sealed` and `virtual`. By default, methods are automatically sealed unless they're explicitly declared `virtual`, in which case, it's the overriding method in the subclass that controls whether the method is `sealed`.
+
+Try overriding `GetExpectedArrival` in one of the child classes like `AirDelivery`, and you'll get a compiler error.
+
+By restricting inheritance in this way, you make it clear that you expect child classes to rely on the `GetDuration()` method for calculations related to delivery speed, and prevent a misunderstanding like going the other direction and basing `GetDuration()` on a date calculated in `GetExpectedArrival()`. While either approach could possibly work, doing things consistently across a codebase facilitates understanding and reduces maintenance.
+
+## Next Steps
+
+* Try adding another class to represent a different type of delivery, and notice how the requirements and restrictions you've put in place on `Delivery` help you build the new class correctly.
+* Review classes you've created in past exercises and see if you notice opportunities to better encapsulate methods with the `protected` access modifier.
