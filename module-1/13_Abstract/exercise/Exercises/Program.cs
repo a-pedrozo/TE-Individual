@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Exercises
 {
-    class Program
-    {
+    class Program // create wall class, needs to be abstract, don't add set only get, look over cases and spacing, will override methods, @base is not keyword base
+    {               // square constructor needs to talk to rectangle constructor, will use length twice for square contrusctor 
         static void Main(string[] args)
         {
             //uncomment after step 1:
