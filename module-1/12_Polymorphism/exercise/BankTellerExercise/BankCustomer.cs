@@ -27,7 +27,7 @@ namespace BankTellerExercise
 
         public IAccountable[] GetAccounts()
         {
-            return GetAccounts();
+            return null;
         }
 
     }
