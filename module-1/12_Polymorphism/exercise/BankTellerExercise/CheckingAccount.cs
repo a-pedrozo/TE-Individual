@@ -16,19 +16,23 @@ namespace BankTellerExercise
         public override decimal Withdraw(decimal amountToWithdraw)
         {
             // Only allow the withdraw if the balance isn't going to -$100 or below
-            if (Balance - amountToWithdraw > -100)
+             if (Balance - amountToWithdraw > -100)
             {
                 // Withdraw the $$
                 base.Withdraw(amountToWithdraw);
                 // If the balance dips below 0, assess $10 charge
                 if (Balance < 0)
                 {
-                    base.Withdraw(10);
+                        base.Withdraw(10);
                 }
             }
             return Balance;
         }
 
-   
+        public override decimal TransferTo(BankAccount destinationAccount, decimal transferAmount)
+        {
+            return 0;
+        }
+
     }
 }

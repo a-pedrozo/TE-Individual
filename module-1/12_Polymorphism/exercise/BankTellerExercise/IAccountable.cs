@@ -4,10 +4,11 @@ using System.Text;
 
 namespace BankTellerExercise
 {
-    interface IAccountable
+   public interface IAccountable
     {
+        public decimal Balance { get; }
 
-           decimal Balance { get; }
+
         
     }
 }

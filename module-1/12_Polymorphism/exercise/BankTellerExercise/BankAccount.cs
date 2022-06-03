@@ -32,11 +32,12 @@
             return Balance;
         }
 
-        public decimal TransferTo(BankAccount destinationAccount, decimal transferAmount)
+        public virtual decimal TransferTo(BankAccount destinationAccount, decimal transferAmount)
         {
-
-
-            return Balance;
+            this.Withdraw(transferAmount);
+            destinationAccount.Deposit(transferAmount);
+            return this.Balance;
+            
         }
     }
 }
@@ -46,7 +47,4 @@
 // IsVip a derived property
 // IsVip is case sensitive 
 // will need some sort of array or list to pass test 
-// bank account matt == new checking account( string variable, "" "", 100, example
-// bank account john = new Savings account ( "" "") example 
-// matt.trasferTo(john, 50m) example
-// thisAccount.Transfer(account,amount)? 
+
