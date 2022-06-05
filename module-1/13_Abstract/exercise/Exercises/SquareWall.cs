@@ -4,20 +4,24 @@ using System.Text;
 
 namespace Exercises
 {
-    public class SquareWall// : RectangleWall
+    public class SquareWall : RectangleWall
     {
 
-     
-       
 
-       // public SquareWall(string name, string color, int sideLength) : base(name, color, length, height)
-      
 
-       
+
+        public SquareWall(string name, string color, int sideLength) : base(name, color, sideLength, sideLength)
+        {
+
+
+
+        }
+
+
 
         public override string ToString()
         {
-            return null;// return $"{Name} ({sideLength}x{sideLength}) square";
+             return $"{Name} ({Length}x{Height}) square";
         }
     }
 }

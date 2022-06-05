@@ -32,14 +32,7 @@ namespace BankTellerExercise
 
         public IAccountable[] GetAccounts() // if statemnts for vip 
         {
-            if (accountables.Contains(25000)
-            {
-                IsVip == true;
-            }
-            else
-            {
-                IsVip == false;
-            }
+
             return accountables.ToArray();
         }
 
