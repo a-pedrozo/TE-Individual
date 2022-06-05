@@ -4,21 +4,28 @@ using System.IO;
 
 namespace FileInputLecture
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             // EXCEPTION HANDLING LECTURE
-            ExceptionLecture exLecture = new ExceptionLecture();
-            exLecture.Part1Cities();
-            //exLecture.Part2OvertimeHours();
-            //exLecture.Part3CallStack();
-            //exLecture.Part4ThrowingExceptions();
-            //exLecture.Part5Finally();
+            Part1_Exceptions lecture1 = new Part1_Exceptions();
+
+            lecture1.CauseIndexOutOfRangeException();
+            // lecture1.CauseDivisionByZeroException();
+            // lecture1.CauseNullReferenceException();
+            // lecture1.CauseFormatException();
+            // lecture1.CallAnotherMethodThatThrowsAnException();
+
+
 
             // FILE READING LECTURE
-            FileReadLecture fileLecture = new FileReadLecture();
-            //fileLecture.CensorAliceAndWonderland();
+            Part2_FileReading lecture2 = new Part2_FileReading();
+
+            // lecture2.CensorAliceAndWonderland();
+            // lecture2.ExploreDirectories();
+
+
 
             // Allow the user to press a key before the program ends
             Console.ReadLine();
