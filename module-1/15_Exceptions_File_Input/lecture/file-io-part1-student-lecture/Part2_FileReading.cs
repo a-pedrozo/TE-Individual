@@ -5,31 +5,22 @@ using System.Text;
 
 namespace FileInputLecture.FileReading
 {
-    public class FileReadLecture
+    public class Part2_FileReading
     {
         public void CensorAliceAndWonderland()
         {
-            // Let's take a look at DirectoryInfo and Environment
+            string filePath = @"C:\users\student\alice.txt"; // Note: @ is a verbatim string and converts \ into actual \ characters
 
-            // Let's take a look at Path
-
-            // Let's take a look at FileInfo
-
-            // Next we're going to demonstrate working with reading files
-        }
-
-        private void DisplayCensoredFileContents(string filePath)
-        {
             Console.WriteLine();
             Console.WriteLine($"Displaying the censored contents of {filePath}");
 
             // Feel free to tweak these to your enjoyment
-            string wordToCensor = "Cat";
-            string replacementWord = "Doggo";
+            const string wordToCensor = "Cat";
+            const string replacementWord = "Doggo";
 
             /* USING STATEMENTS
              * 
-             * A using statement opens a resource and makes sure it is closed when
+             * A using statement opens a resource that implements IDisposable and makes sure it is closed when
              * the scope completes - even if an Exception was encountered
              */
 
@@ -55,6 +46,15 @@ namespace FileInputLecture.FileReading
             // TODO: What happens if the file doesn't exist or we don't have permissions?
 
             // TODO: Can we handle generic exceptions and more specific exceptions in the same try / catch?
+        }
+
+        public void ExploreDirectories()
+        {
+            // Let's take a look at DirectoryInfo and Environment
+
+            // Let's take a look at Path
+
+            // Let's take a look at FileInfo
         }
     }
 }
