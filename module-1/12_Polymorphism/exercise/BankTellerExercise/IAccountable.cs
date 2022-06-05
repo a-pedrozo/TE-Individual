@@ -8,7 +8,7 @@ namespace BankTellerExercise
     {
         public decimal Balance { get; }
 
-
+       
         
     }
 }

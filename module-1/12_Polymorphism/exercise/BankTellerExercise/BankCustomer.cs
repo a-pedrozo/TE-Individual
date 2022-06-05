@@ -10,6 +10,7 @@ namespace BankTellerExercise
         public string Address { get; set; }
         public string PhoneNumber { get; set; }
         public bool IsVip { get; }
+       
 
         public decimal Balance
         {
@@ -20,14 +21,26 @@ namespace BankTellerExercise
             }
         }
 
+        List<IAccountable> accountables = new List<IAccountable>();
+
         public void AddAccount(IAccountable newAccount)
         {
+         
+            accountables.Add(newAccount);
             
         }
 
-        public IAccountable[] GetAccounts()
+        public IAccountable[] GetAccounts() // if statemnts for vip 
         {
-            return null;
+            if (accountables.Contains(25000)
+            {
+                IsVip == true;
+            }
+            else
+            {
+                IsVip == false;
+            }
+            return accountables.ToArray();
         }
 
 

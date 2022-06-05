@@ -20,6 +20,10 @@ namespace TestableClasses
         /// <returns>The formatted string.</returns>
         public string MakeStandardCapitalizationString(string input)
         {
+            if (input == null)
+            {
+                return "";
+            }
             string firstLetter = input.Substring(0, 1);
             string remainingLetters = input.Substring(1);
 

@@ -31,7 +31,10 @@ namespace BankTellerExercise
 
         public override decimal TransferTo(BankAccount destinationAccount, decimal transferAmount)
         {
-            return 0;
+            this.Withdraw(transferAmount);
+            destinationAccount.Deposit(transferAmount);
+            return this.Balance;
+           
         }
 
     }
