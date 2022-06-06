@@ -12,20 +12,50 @@ namespace Exercises.Tests
     {
         [TestMethod]
 
-        public void ReturnFalseIfMutipleOf40()
+        public void ReturnFalseIfMutipleOf20()
         {
             //Arrange
             Less20 ops = new Less20();
 
             //Act
-            bool result = ops.IsLessThanMultipleOf20(20);
+            bool result = ops.IsLessThanMultipleOf20(400);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.IsTrue(result, "cannot be mutiple of 20");
 
         }
-        
+        [TestMethod]
 
-        
+        public void ShouldReturnFalseifGiven0()
+        {
+            //Arrange
+            Less20 ops = new Less20();
+            
+            //Act
+            bool result = ops.IsLessThanMultipleOf20(0);
+
+            //Assert
+            Assert.IsTrue(result, "0 is not a multiple of 20");
+
+        }
+
+        [TestMethod]
+
+        public void ReturnTrueIf1LessThanMultipleOf20()
+        {
+            //Arrange
+            Less20 ops = new Less20();
+
+            //Act
+            bool result = ops.IsLessThanMultipleOf20(599);
+
+            //Assert
+            Assert.IsTrue(result, "number is mutiple of 20");
+
+        }
+
+
+
+
     }
 }

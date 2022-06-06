@@ -39,6 +39,12 @@
             return this.Balance;
             
         }
+        //public bool GetVip(BankCustomer customer)
+        //{
+        //    decimal totalBalance = 0;
+        //    Foreach(BankCustomer account in customer.GetAccounts());
+        //    return true;
+        //}
     }
 }
 
