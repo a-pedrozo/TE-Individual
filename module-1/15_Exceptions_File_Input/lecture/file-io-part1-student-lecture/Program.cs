@@ -11,10 +11,10 @@ namespace FileInputLecture
             // EXCEPTION HANDLING LECTURE
             Part1_Exceptions lecture1 = new Part1_Exceptions();
 
-            lecture1.CauseIndexOutOfRangeException();
+            //lecture1.CauseIndexOutOfRangeException();
             // lecture1.CauseDivisionByZeroException();
-            // lecture1.CauseNullReferenceException();
-            // lecture1.CauseFormatException();
+            lecture1.CauseNullReferenceException();
+            lecture1.CauseFormatException();
             // lecture1.CallAnotherMethodThatThrowsAnException();
 
 

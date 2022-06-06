@@ -40,7 +40,7 @@ namespace FileInputLecture
             return result;
         }
 
-        private List<string> myStrings; // defaults to null
+        private List<string> myStrings = new List<string>(); // defaults to null
 
         public void CauseNullReferenceException()
         {
