@@ -80,7 +80,7 @@ namespace FileInputLecture.FileReading
             DirectoryInfo info = new DirectoryInfo("C:\\Users");
             FileInfo file = new FileInfo("C:\\users\\student\\alice.txt");
             string currentDir = Environment.CurrentDirectory;
-            Path myFilePath = Path.Combine(currentDir, "MyFile.txt");
+            string myFilePath = Path.Combine(currentDir, "MyFile.txt");
 
             // Let's take a look at Path
 
