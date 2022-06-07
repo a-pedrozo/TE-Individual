@@ -23,23 +23,45 @@ namespace FileInputLecture.FileReading
              * A using statement opens a resource that implements IDisposable and makes sure it is closed when
              * the scope completes - even if an Exception was encountered
              */
-
-            // Add a using statement that creates a StreamReader pointing at the correct file
+            int lineNumber = 0;
+            try
             {
-                // While we haven't reached the end of the file...
+                // Add a using statement that creates a StreamReader pointing at the correct file
+                using (StreamReader reader = new StreamReader(filePath)) // StreamReader opens the file for reading 
                 {
-                    // Read in the next line from the file
-
-                    // If the line needs censoring,
+                    // While we haven't reached the end of the file...
+                    while (!reader.EndOfStream)
                     {
-                        // Censor the line as needed by replacing WordToCensor with CensoredText
+                        // Read in the next line from the file
+                        string line = reader.ReadLine();
 
-                        // Print the censored line to the Console
+                        lineNumber++;
+
+
+                        // If the line needs censoring,
+                        if (line.Contains(wordToCensor))
+                        {
+                            line = line.Replace(wordToCensor, replacementWord);
+                            // Print the censored line to the Console
+                            Console.WriteLine(line);
+                        }
                     }
+
                 }
-
             }
-
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine("could not find file" + filePath);
+                Console.WriteLine(ex.Message);
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch(IOException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             Console.WriteLine("Done Censoring");
 
@@ -51,6 +73,11 @@ namespace FileInputLecture.FileReading
         public void ExploreDirectories()
         {
             // Let's take a look at DirectoryInfo and Environment
+            DirectoryInfo info = new DirectoryInfo("C:\\Users");
+            FileInfo file = new FileInfo("C:\\users\\studnet\\alice.txt");
+            string currentDir = Environment.CurrentDirectory;
+            string myFilePath = Path.Combine(currentDir, "MyFile.txt");
+
 
             // Let's take a look at Path
 

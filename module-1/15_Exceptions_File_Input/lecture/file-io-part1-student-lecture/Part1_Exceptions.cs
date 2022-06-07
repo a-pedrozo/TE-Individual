@@ -62,9 +62,19 @@ namespace FileInputLecture
 
         public void CallAnotherMethodThatThrowsAnException()
         {
+            try
+            {
+
             int result = CauseDivisionByZeroException();
 
             Console.WriteLine("The result of division was " + result);
+            }
+            catch (DivideByZeroException ex)
+            {
+                Console.WriteLine("divided by zero happened");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
         }
     }
 }

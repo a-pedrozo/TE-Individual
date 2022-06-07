@@ -11,4 +11,14 @@ namespace FileInputLecture
             this.OverdraftAmount = overdraftAmount;
         }
     }
+
+    public class NoDietDoctorPepperEcetion : Exception // created another class inside overdraft exception 
+    {
+        public NoDietDoctorPepperEcetion(string message)
+            : base(message)
+        {
+
+        }
+    }
+
 }
