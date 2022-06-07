@@ -11,9 +11,10 @@ namespace Assessment
 
             TicketPurchase classTickets = new TicketPurchase("John", 19);
 
-            classTickets.Surcharge(true, true);
-            decimal baseTotal = classTickets.BasePrice * classTickets.NumOfTickets;
+            decimal baseTotal = classTickets.BasePrice * classTickets.Surcharge(true, true);
             Console.WriteLine(baseTotal);
+            
+            
 
 
 
