@@ -6,8 +6,15 @@ namespace BugTrackerConsoleApp
     {
         public static void Main(string[] args)
         {
-            UserInterface ui = new UserInterface();
-            ui.ShowMainMenu();
+            try
+            {
+                UserInterface ui = new UserInterface();
+                ui.ShowMainMenu();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("A bad thing happened. The program is now closing. Sorry.");
+            }
         }
     }
 }

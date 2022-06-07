@@ -10,21 +10,21 @@ namespace BugTrackerConsoleApp
     /// </summary>
     public class UserInterface
     {
-        private readonly BugManager bugs = new BugManager();
+        private BugManager bugManager;
 
         /// <summary>
         /// Lists main menu options for the user.
         /// </summary>
         public void ShowMainMenu()
         {
-            // LOAD BUGS HERE
+            // TODO: LOAD BUGS HERE
 
             bool shouldQuit = false;
 
             while (!shouldQuit)
             {
                 Console.WriteLine();
-                Console.WriteLine("Welcome to .NET 15 Bugz");
+                Console.WriteLine("Welcome to Moth!");
                 Console.WriteLine();
 
                 Console.WriteLine("What do you want to do?");
@@ -65,27 +65,28 @@ namespace BugTrackerConsoleApp
             }
         }
 
-        private void CloseBug()
-        {
-            Console.WriteLine("What is the bug ID?");
-            int bugId = int.Parse(Console.ReadLine());
-
-            bugs.SquashBug(bugId);
-        }
-
         private void ListBugs()
         {
-            if (this.bugs.AllBugs.Length <= 0)
+            if (bugManager.AllBugs.Length <= 0)
             {
                 Console.WriteLine("No bugs exist! Ship it!");
             }
             else
             {
-                foreach (TrackedItem someBug in this.bugs.AllBugs)
+                foreach (Bug someBug in bugManager.AllBugs)
                 {
-                    Console.WriteLine(someBug.DisplayText);
+                    Console.WriteLine(someBug);
                 }
             }
+        }
+
+        private void CloseBug()
+        {
+            Console.WriteLine("What is the bug ID?");
+            int bugId = int.Parse(Console.ReadLine());
+
+            Bug item = bugManager.FindBug(bugId);
+            item.IsOpen = false;
         }
 
         private void AddNewItem()
@@ -93,35 +94,13 @@ namespace BugTrackerConsoleApp
             Console.WriteLine("Please describe the bug");
             string description = Console.ReadLine();
 
-            Console.WriteLine("Is this a bug or a feature? (B/F)");
-            string itemType = Console.ReadLine().ToUpper();
+            Console.WriteLine("Where do you suspect this bug occurs?");
+            string location = Console.ReadLine();
 
-            switch (itemType)
-            {
-                case "B": // bug
-                    Console.WriteLine("Where do you suspect this bug occurs?");
-                    string location = Console.ReadLine();
+            Bug bug = new Bug(description);
+            bug.Location = location;
 
-                    Bug bug = new Bug(description);
-                    bug.Location = location;
-
-                    this.bugs.AddBug(bug);
-                    break;
-
-                case "F": // Feature
-                    Console.WriteLine("How many hours do you expect this will take?");
-                    string estimate = Console.ReadLine();
-
-                    Feature feature = new Feature(description);
-                    feature.HoursEstimated = double.Parse(estimate);
-                    this.bugs.AddBug(feature);
-                    break;
-
-                default: // Some other choice
-                    Console.WriteLine("Wrong choice, buddy!");
-                    break;
-            }
-
+            bugManager.AddBug(bug);
         }
     }
 }

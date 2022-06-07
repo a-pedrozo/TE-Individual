@@ -4,9 +4,12 @@ using System.Text;
 
 namespace BugTrackerConsoleApp.Items
 {
-    public abstract class TrackedItem
+    /// <summary>
+    /// Represents a bug in the system.
+    /// </summary>
+    public class Bug
     {
-        protected TrackedItem(string summary) : base()
+        public Bug(string summary)
         {
             this.Summary = summary;
         }
@@ -22,20 +25,18 @@ namespace BugTrackerConsoleApp.Items
         public string Summary { get; set; }
 
         /// <summary>
-        /// The date and time the bug was created
+        /// The name of the developer who summoned the bug into existence
         /// </summary>
-        public DateTime Created { get; set; } = DateTime.Now;
+        public string ResponsibleDev { get; set; } = "Jimothy"; // Dangit, Jimothy!
+
+        /// <summary>
+        /// The place in our code the bug exists (or likely exists)
+        /// </summary>
+        public string Location { get; set; }
 
         /// <summary>
         /// Whether or not the bug is currently unresolved
         /// </summary>
         public bool IsOpen { get; set; } = true;
-
-        public abstract string DisplayText { get; }
-
-        public override string ToString()
-        {
-            return DisplayText;
-        }
     }
 }

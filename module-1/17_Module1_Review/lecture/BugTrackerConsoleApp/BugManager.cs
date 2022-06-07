@@ -1,7 +1,6 @@
 ﻿using BugTrackerConsoleApp.Items;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BugTrackerConsoleApp
 {
@@ -11,64 +10,46 @@ namespace BugTrackerConsoleApp
     public class BugManager
     {
         // Field or Class Variable
-        private readonly List<TrackedItem> bugs = new List<TrackedItem>();
+        private readonly List<Bug> bugs = new List<Bug>();
 
-        private int nextId = 1;
+        private int nextBugId = 1;
 
         public BugManager() : base()
         {
             
         }
 
-        public void SquashBug(int id)
+        /// <summary>
+        /// Adds a new bug
+        /// </summary>
+        /// <param name="newBug">The bug to add</param>
+        public void AddBug(Bug newBug)
         {
-            // Find Bug
-            TrackedItem bug = FindBug(id);
-
-            // Close it if we found it
-            if (bug != null)
+            // Ensure the bug we're adding has a good ID
+            if (newBug.Id <= 0)
             {
-                bug.IsOpen = false;
+                newBug.Id = nextBugId;
+                nextBugId += 1;
             }
+
+            bugs.Add(newBug);
         }
+
 
         /// <summary>
         /// Finds a bug with a specified ID or returns null.
         /// </summary>
         /// <param name="id">The ID to look for</param>
         /// <returns>The first matching bug, or null</returns>
-        public TrackedItem FindBug(int id)
+        public Bug FindBug(int id)
         {
-            foreach (TrackedItem bug in bugs)
-            {
-                // If this is the bug we want, leave now
-                if (bug.Id == id)
-                {
-                    return bug;
-                }
-            }
-
-            // We didn't find a bug with that ID
-            return null;
+            throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Adds a new bug
+        /// Gets an unmodifiable array of the current bugs
         /// </summary>
-        /// <param name="newBug">The bug to add</param>
-        public void AddBug(TrackedItem newBug)
-        {
-            newBug.Id = nextId;
-
-            nextId += 1;
-
-            bugs.Add(newBug);
-        }
-
-        /// <summary>
-        /// All of the current bugs
-        /// </summary>
-        public TrackedItem[] AllBugs
+        public Bug[] AllBugs
         {
             get
             {
