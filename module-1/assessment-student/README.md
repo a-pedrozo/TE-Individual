@@ -48,7 +48,7 @@ We understand this assessment can be difficult and may trigger anxiety, but this
 5. Instantiate an instance of this class in `Main()` and store it in a variable.
 6. Call the method you made in step 4 on the variable you made in step 5 and store the result in a variable.
     * You do not need to get any user input for this step. Feel free to pass in hard-coded values for any parameters provided.
-7. Override the `ToString()` method for the ticket purchase and have it return `"TICKET - {name} - {estimated total}"` where `{name}` and `{estimated total}` are placeholders for the actual values from the object's properties. You will not need to call the method from step 4 for this step.
+7. Override the `ToString()` method for the ticket purchase and have it return `"TICKET - {name} - {base price}"` where `{name}` and `{base price}` are placeholders for the actual values from the object's properties. You will not need to call the method from step 4 for this step.
 8. In `Main()` test the `ToString` method of your class by writing its value to the console.
 9. CHALLENGE: Implement unit tests to validate the functionality of:
     * The calculate total price method defined in step 4
