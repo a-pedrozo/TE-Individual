@@ -15,7 +15,7 @@ namespace BugTrackerTests
             manager.AddBug(new Bug("TestBug"));
 
             // Act
-            WorkItem bug = manager.FindBug(1);
+            Bug bug = manager.FindBug(1);
 
             // Assert
             Assert.IsNotNull(bug);
@@ -30,7 +30,7 @@ namespace BugTrackerTests
             BugManager manager = new BugManager();
 
             // Act
-            WorkItem bug = manager.FindBug(42);
+            Bug bug = manager.FindBug(42);
 
             // Assert
             Assert.IsNull(bug);

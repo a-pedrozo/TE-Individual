@@ -33,7 +33,8 @@ namespace BugTrackerConsoleApp
                 Console.WriteLine("1) Add a Bug");
                 Console.WriteLine("2) List Existing Bugs");
                 Console.WriteLine("3) Close a Bug");
-                Console.WriteLine("4) Quit");
+                Console.WriteLine("4) Save Bugs to Disk");
+                Console.WriteLine("5) Quit");
                 Console.WriteLine();
 
                 string input = Console.ReadLine();
@@ -53,7 +54,11 @@ namespace BugTrackerConsoleApp
                         CloseBug();
                         break;
 
-                    case "4": // Quit
+                    case "4": // Save Bugs
+                        SaveBugs();
+                        break;
+
+                    case "5": // Quit
                         shouldQuit = true;
                         Console.WriteLine("That's all folks!");
                         break;
@@ -101,6 +106,11 @@ namespace BugTrackerConsoleApp
             bug.Location = location;
 
             bugManager.AddBug(bug);
+        }
+
+        private void SaveBugs()
+        {
+            throw new NotImplementedException();
         }
     }
 }

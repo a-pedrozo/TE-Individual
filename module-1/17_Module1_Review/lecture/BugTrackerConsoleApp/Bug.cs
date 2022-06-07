@@ -38,5 +38,7 @@ namespace BugTrackerConsoleApp.Items
         /// Whether or not the bug is currently unresolved
         /// </summary>
         public bool IsOpen { get; set; } = true;
+
+        // TODO: Overriding ToString is a good idea
     }
 }

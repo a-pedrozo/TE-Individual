@@ -9,32 +9,30 @@ namespace BugTrackerConsoleApp
     /// </summary>
     public class BugManager
     {
-        // Field or Class Variable
+        // Fields (Class Variables)
         private readonly List<Bug> bugs = new List<Bug>();
-
         private int nextBugId = 1;
 
+        // Constructor
         public BugManager() : base()
         {
             
         }
 
-        /// <summary>
-        /// Adds a new bug
-        /// </summary>
-        /// <param name="newBug">The bug to add</param>
-        public void AddBug(Bug newBug)
-        {
-            // Ensure the bug we're adding has a good ID
-            if (newBug.Id <= 0)
-            {
-                newBug.Id = nextBugId;
-                nextBugId += 1;
-            }
+        // Properties
 
-            bugs.Add(newBug);
+        /// <summary>
+        /// Gets an unmodifiable array of the current bugs
+        /// </summary>
+        public Bug[] AllBugs
+        {
+            get
+            {
+                return bugs.ToArray();
+            }
         }
 
+        // Methods
 
         /// <summary>
         /// Finds a bug with a specified ID or returns null.
@@ -47,13 +45,34 @@ namespace BugTrackerConsoleApp
         }
 
         /// <summary>
-        /// Gets an unmodifiable array of the current bugs
+        /// Adds a new bug
         /// </summary>
-        public Bug[] AllBugs
+        /// <param name="newBug">The bug to add</param>
+        public void AddBug(Bug newBug)
         {
-            get
+            // Ensure the bug we're adding has a good ID
+            if (newBug.Id <= 0)
             {
-                return bugs.ToArray();
+                newBug.Id = nextBugId;
+            }
+
+            bugs.Add(newBug);
+
+            EnsureNextBugIdIsValid();
+        }
+
+        /// <summary>
+        /// Makes sure that the next bug ID we generate is greater than any other 
+        /// bug ID we have access to. This will never make nextBugId smaller
+        /// </summary>
+        private void EnsureNextBugIdIsValid()
+        {
+            foreach (Bug bug in bugs)
+            {
+                if (bug.Id >= nextBugId)
+                {
+                    nextBugId = bug.Id + 1;
+                }
             }
         }
     }

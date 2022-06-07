@@ -10,4 +10,10 @@
     <None Remove="Tasks.md" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="bugs.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
