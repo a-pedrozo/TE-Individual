@@ -10,7 +10,7 @@ namespace BugTrackerConsoleApp
     public class BugManager
     {
         // Fields (Class Variables)
-        private readonly List<Bug> bugs = new List<Bug>();
+        private readonly List<Bug> bugs = new List<Bug>(); // readonly means cannot = itself to new, only one instance of list 
         private int nextBugId = 1;
 
         // Constructor
@@ -41,7 +41,17 @@ namespace BugTrackerConsoleApp
         /// <returns>The first matching bug, or null</returns>
         public Bug FindBug(int id)
         {
-            throw new NotImplementedException();
+            foreach(Bug bug in bugs)
+            {
+                //is this bug id we're looking for?
+                if (bug.Id == id)
+                {
+                    return bug;
+                }
+
+            }
+
+            return null;
         }
 
         /// <summary>

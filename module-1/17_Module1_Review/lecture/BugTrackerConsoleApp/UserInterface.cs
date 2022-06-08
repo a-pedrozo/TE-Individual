@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace BugTrackerConsoleApp
 {
@@ -10,7 +11,9 @@ namespace BugTrackerConsoleApp
     /// </summary>
     public class UserInterface
     {
-        private BugManager bugManager;
+
+        private BugManager bugManager = new BugManager();
+        private BugCSVFile csvFile = new BugCSVFile();
 
         /// <summary>
         /// Lists main menu options for the user.
@@ -18,6 +21,8 @@ namespace BugTrackerConsoleApp
         public void ShowMainMenu()
         {
             // TODO: LOAD BUGS HERE
+            string csvFilePath = Path.Combine(Environment.CurrentDirectory, "bugs.csv");
+            csvFile.ImportFromFIle(csvFilePath, bugManager);
 
             bool shouldQuit = false;
 
@@ -92,6 +97,16 @@ namespace BugTrackerConsoleApp
 
             Bug item = bugManager.FindBug(bugId);
             item.IsOpen = false;
+
+            if(item != null)
+            {
+                item.IsOpen = false;
+                Console.WriteLine("Bug closed");
+            }
+            else
+            {
+                Console.WriteLine("Could not find a bug with ID of" + bugId);
+            }
         }
 
         private void AddNewItem()

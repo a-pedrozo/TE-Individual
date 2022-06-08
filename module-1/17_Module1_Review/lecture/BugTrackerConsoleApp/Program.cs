@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace BugTrackerConsoleApp
 {
@@ -11,9 +12,9 @@ namespace BugTrackerConsoleApp
                 UserInterface ui = new UserInterface();
                 ui.ShowMainMenu();
             }
-            catch (Exception ex)
+            catch (IOException ex)
             {
-                Console.WriteLine("A bad thing happened. The program is now closing. Sorry.");
+                Console.WriteLine(ex.Message);
             }
         }
     }

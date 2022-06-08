@@ -40,5 +40,10 @@ namespace BugTrackerConsoleApp.Items
         public bool IsOpen { get; set; } = true;
 
         // TODO: Overriding ToString is a good idea
+        public override string ToString()
+        {
+            return Id + ") " + Summary + "(Is Open: " + IsOpen + ")";
+        }
+
     }
 }
