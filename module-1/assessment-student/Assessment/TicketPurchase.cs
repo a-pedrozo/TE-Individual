@@ -4,45 +4,51 @@ using System.Text;
 
 namespace Assessment
 {
-    public class TicketPurchase
+    public class TicketPurchase // class representing set of tickets 
     {
+        // name of person buying tickets
         public string Name { get; }
+        // number of tickets purchased 
         public int NumOfTickets { get; }
-        
-        public decimal BasePrice
+
+        public decimal BasePrice // derived property base purchase price for num of tickets 
         {
             get
             {
-                decimal basePrice = NumOfTickets * 59.99m;
-                return basePrice;
+                // decimal basePrice = NumOfTickets * 59.99m; code I wrote before 
+                return NumOfTickets * 59.99m;
             }
         }
 
-        public TicketPurchase(string name, int numOfTickets)
+        public TicketPurchase(string name, int numOfTickets) // could apply throw exception for negative values 
         {
             this.Name = name;
             this.NumOfTickets = numOfTickets;
         }
 
-        public decimal Surcharge(bool earlyCheckIn,bool priorityRideAccess)
+        public decimal Surcharge(bool earlyCheckIn, bool priorityRideAccess)
         {
-            decimal earlyCheckinCharge = 10.00m;
-            decimal priorityRideAccessCharge = 50.00m;
-            if(earlyCheckIn == true && priorityRideAccess == true)
+            const decimal earlyCheckinCharge = 10.00m;
+            const decimal priorityRideAccessCharge = 50.00m;
+            decimal price = BasePrice; // start with base price for # of people can do independant if statements 
+
+           
+            if (earlyCheckIn == true)
             {
-                return BasePrice + earlyCheckinCharge + priorityRideAccessCharge;
+                price += earlyCheckinCharge * NumOfTickets;
             }
-            else if(earlyCheckIn == true)
+            if (priorityRideAccess == true)
             {
-                return BasePrice + earlyCheckinCharge;
+                price += priorityRideAccessCharge * NumOfTickets; // correct math of adding tickets
             }
-            else if(priorityRideAccess == true)
-            {
-                return BasePrice + priorityRideAccessCharge;
-            }
-            else 
-            return BasePrice;
+            return price; 
         }
+
+        public override string ToString()
+        {
+            return $"TICKET - {this.Name} - {BasePrice.ToString("C")}";
+        }
+
 
     }
 }
