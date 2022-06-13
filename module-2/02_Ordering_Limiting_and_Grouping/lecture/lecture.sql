@@ -1,6 +1,6 @@
 -- ORDERING RESULTS
 
--- Populations of all states from largest to smallest.
+-- Populations of all states from smallest to largest.
 
 
 -- States sorted alphabetically (A-Z) within their census region. The census regions are sorted in reverse alphabetical (Z-A) order.
@@ -65,24 +65,8 @@
 
 
 
--- Miscelleneous
+-- SUBQUERIES
 
--- While you can use TOP to limit the number of results returned by a query,
--- it's recommended to use OFFSET and FETCH if you want to get
--- "pages" of results.
--- For instance, to get the first 10 rows in the city table
--- ordered by the name, you could use the following query.
--- (Skip 0 rows, and return only the first 10 rows from the sorted result set.)
+-- Select the name and population of every state, but include the average population as a column for reference
 
-
-
--- SUBQUERIES (optional)
-
--- Include state name rather than the state abbreviation while counting the number of cities in each state,
-
-
--- Include the names of the smallest and largest parks
-
-
--- List the capital cities for the states in the Northeast census region.
-
+-- Select the name, state, and population of every city, and include the maximum and minimum populations for cities in that state
