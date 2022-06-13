@@ -42,6 +42,8 @@ namespace BugTrackerConsoleApp
                 Console.WriteLine("5) Quit");
                 Console.WriteLine();
 
+                
+
                 string input = Console.ReadLine();
                 Console.WriteLine();
 
