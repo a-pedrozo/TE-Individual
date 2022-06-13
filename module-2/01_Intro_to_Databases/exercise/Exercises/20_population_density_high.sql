@@ -4,7 +4,7 @@ SELECT
 	s.state_name,
 	s.population,
 	s.area,
-	s.population / s.area AS 'population density'
+	s.population / s.area AS 'population_density'
 FROM
 	state s
 WHERE
