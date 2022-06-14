@@ -10,6 +10,9 @@ FROM
 	city c
 WHERE
 	c.state_abbreviation IN ('PA', 'WV', 'KY', 'IN', 'MI')
+ORDER BY
+	c.state_abbreviation,
+	c.city_name
 	
 
 

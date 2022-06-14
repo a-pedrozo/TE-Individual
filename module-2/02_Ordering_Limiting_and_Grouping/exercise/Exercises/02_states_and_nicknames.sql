@@ -3,3 +3,13 @@
 -- Order the results alphabetically by nickname.
 -- (51 rows)
 
+SELECT 
+	COUNT (s.state_nickname),
+	s.state_name + '(' + s.state_nickname + ')' AS 'state_and_nickname'
+FROM
+	state s
+ 
+GROUP BY
+	s.state_nickname
+ORDER BY 
+	COUNT (s.state_nickname) 
