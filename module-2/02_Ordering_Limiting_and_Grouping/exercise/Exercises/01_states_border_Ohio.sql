@@ -11,5 +11,5 @@ FROM
 WHERE
 	c.state_abbreviation IN ('PA', 'WV', 'KY', 'IN', 'MI')
 	
-GROUP BY 
-ORDER BY
+
+
