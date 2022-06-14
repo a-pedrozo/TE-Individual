@@ -3,3 +3,15 @@
 -- Order the results from lowest to highest average population.
 -- (4 rows)
 
+SELECT 
+	s.census_region,
+	
+	
+	
+	state s
+WHERE
+	s.census_region IS NOT NULL
+	
+	
+ORDER BY 
+	AVG(s.population)

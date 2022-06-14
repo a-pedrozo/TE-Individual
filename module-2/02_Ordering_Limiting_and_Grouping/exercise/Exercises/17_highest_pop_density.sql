@@ -3,3 +3,7 @@
 -- Exepcted answer is around 4,000
 -- (1 row)
 
+SELECT
+	MAX(s.population / s.area) AS 'population_density'
+FROM
+	state s

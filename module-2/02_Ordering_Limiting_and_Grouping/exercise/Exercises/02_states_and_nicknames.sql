@@ -4,12 +4,12 @@
 -- (51 rows)
 
 SELECT 
-	COUNT (s.state_nickname),
 	s.state_name + '(' + s.state_nickname + ')' AS 'state_and_nickname'
 FROM
 	state s
- 
-GROUP BY
-	s.state_nickname
+ WHERE
+	s.state_nickname IS NOT NULL
 ORDER BY 
-	COUNT (s.state_nickname) 
+	s.state_nickname
+
+
