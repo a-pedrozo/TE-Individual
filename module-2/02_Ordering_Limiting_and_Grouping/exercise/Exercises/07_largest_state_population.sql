@@ -2,3 +2,12 @@
 -- Expected answer is around 39,500,000
 -- (1 row)
 
+SELECT TOP 1
+	MAX(s.population) AS 'largest_state_population'
+FROM
+	state s
+
+GROUP BY 
+	s.population
+ORDER BY
+	MAX(s.population) DESC

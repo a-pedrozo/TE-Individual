@@ -2,3 +2,13 @@
 -- Expected answer is around 8,300,000
 -- (1 row)
 
+SELECT TOP 1
+	MAX(c.population) AS 'largest_city_population',
+	c.city_name
+FROM 
+	city c
+GROUP BY
+	c.city_name
+
+ORDER BY
+		MAX(c.population) DESC
