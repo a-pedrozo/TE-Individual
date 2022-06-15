@@ -10,9 +10,31 @@
 
 
 
+-- DELETE
+
+-- Delete Hawkins, IN from the city table.
+
+
+
+-- TRANSACTIONS Part 1
+
+-- Delete the record for Smallville, KS within a transaction.
+
+
+-- Delete all of the records from the park_state table, but then "undo" the deletion by rolling back the transaction.
+
+
+-- Delete all cities with a population of less than 1,000 people from the city table.
+
+
+
+
 -- UPDATE
 
--- Change the state nickname of California to "The Happiest Place on Earth."
+-- Rename Columbus, OH to Flavortown, OH
+
+
+-- Update all of the cities to be in the state of Texas (TX), but then roll back the transaction.
 
 
 -- Increase the population of California by 1,000,000.
@@ -21,16 +43,8 @@
 -- Change the capital of California to Anaheim.
 
 
--- Change California's nickname back to "The Golden State", reduce the population by 1,000,000, and change the capital back to Sacramento.
+-- Change Ohio's nickname and adjust its population
 
-
-
--- DELETE
-
--- Delete Hawkins, IN from the city table.
-
-
--- Delete all cities with a population of less than 1,000 people from the city table.
 
 
 
@@ -42,7 +56,9 @@
 -- Try deleting California from the state table.
 
 
--- Try deleting Disneyland from the park table. Try again after deleting its record from the park_state table.
+-- Try deleting Disneyland from the park table. 
+
+-- Try again after deleting its record from the park_state table.
 
 
 
@@ -68,15 +84,7 @@
 
 
 
--- TRANSACTIONS
-
--- Delete the record for Smallville, KS within a transaction.
-
-
--- Delete all of the records from the park_state table, but then "undo" the deletion by rolling back the transaction.
-
-
--- Update all of the cities to be in the state of Texas (TX), but then roll back the transaction.
+-- TRANSACTIONS Part 2
 
 
 -- Demonstrate two different SQL connections trying to access the same table where one is inside of a transaction but hasn't committed yet.
