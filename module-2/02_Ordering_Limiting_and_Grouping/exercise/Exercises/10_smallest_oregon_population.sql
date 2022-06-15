@@ -2,8 +2,7 @@
 -- Expected answer is around 100,000
 -- (1 row)
 SELECT TOP 1
-	c.city_name,
-	(c.population) AS 'smallest_oregon_population'
+	c.population AS 'smallest_oregon_population'
 FROM
 	city c
 WHERE
