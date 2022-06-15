@@ -3,7 +3,7 @@
 -- (1 row)
 
 SELECT TOP 1
-	MIN(s.area) AS 'smalleset_northeast_area'
+	MIN(s.area) AS 'smallest_northeast_area'
 	
 FROM
 	state s

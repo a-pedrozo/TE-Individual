@@ -3,8 +3,8 @@
 -- (1 row)
 
 SELECT TOP 1
-	MAX(c.population) AS 'largest_city_population',
-	c.city_name
+	MAX(c.population) AS 'largest_city_population'
+	
 FROM 
 	city c
 GROUP BY

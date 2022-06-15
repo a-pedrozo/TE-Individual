@@ -4,7 +4,7 @@
 -- (51 rows)
 
 SELECT 
-	s.state_name + '(' + s.state_nickname + ')' AS 'state_and_nickname'
+	s.state_name + ' (' + s.state_nickname + ')' AS 'state_and_nickname'
 FROM
 	state s
  WHERE
