@@ -3,7 +3,7 @@
 
 SELECT 
 	g.genre_name,
-	SUM(m.movie_id) AS 'num_of_movies'
+	COUNT(m.title) AS 'num_of_movies'
 FROM 
 	movie m 
 	INNER JOIN movie_genre mg ON m.movie_id = mg.movie_id

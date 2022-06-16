@@ -8,4 +8,4 @@ FROM
 	INNER JOIN person p ON ma.actor_id = p.person_id
 	INNER JOIN person d ON m.director_id = d.person_id
 WHERE
-	d.person_name = p.person_name
+	p.person_name = d.person_name
