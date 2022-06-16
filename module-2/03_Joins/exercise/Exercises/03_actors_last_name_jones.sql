@@ -9,4 +9,6 @@ FROM
 	INNER JOIN movie m ON ma.movie_id = m.movie_id
 WHERE
 	p.person_name LIKE ('% Jones')
+ORDER BY 
+	p.person_name
 
