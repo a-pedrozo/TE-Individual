@@ -10,3 +10,5 @@ FROM
 	INNER JOIN genre g ON mg.genre_id = g.genre_id
 GROUP BY 
 	g.genre_name
+ORDER BY 
+	g.genre_name

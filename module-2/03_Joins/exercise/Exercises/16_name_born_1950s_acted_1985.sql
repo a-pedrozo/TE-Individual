@@ -1,7 +1,7 @@
 -- 16. The names and birthdays of actors born in the 1950s who acted in movies that were released in 1985 (20 rows)
 SELECT
 	p.person_name,
-	p.biography
+	p.birthday
 FROM 
 	person p 
 	INNER JOIN movie_actor ma ON p.person_id = actor_id
