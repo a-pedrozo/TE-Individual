@@ -75,7 +75,7 @@ Think about these questions as you work through the exercise:
 1. Get a pen and paper or a whiteboard and a whiteboard marker.
 2. Write down the list of entities that must be represented in the database.
 3. Draw lines between the entities to represent the relationships between them.
-4. Create a file called `meetups.sql`.
+4. Open the empty file named `meetups.sql`.
 5. Inside of the file, take the database you designed in the first two steps, and begin adding the DDL statements to implement the design.
 6. Add DML statements to populate the tables with the required data.
 7. Create your database by running the script you created.
