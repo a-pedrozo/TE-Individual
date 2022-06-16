@@ -4,7 +4,10 @@ SELECT
 	m.release_date
 FROM 
 	movie m 
+	INNER JOIN movie_genre mg ON m.movie_id = mg.movie_id
+	INNER JOIN genre g ON mg.genre_id = g.genre_id
 WHERE 
+	g.genre_name = 'Comedy'
 
 ORDER BY
-
+	m.release_date
