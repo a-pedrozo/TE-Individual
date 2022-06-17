@@ -1,9 +1,9 @@
 -- 7. Remove the actor appearances in "Avengers: Infinity War" (14 rows)
 -- Note: Don't remove the actors themeselves, just make it so it seems no one appeared in the movie.
 
-BEGIN TRANSACTION 
-DELETE 
-FROM person
-WHERE person_name = 'Avengers: Infinity War'
+--BEGIN TRANSACTION 
+DELETE
+FROM movie_actor
+WHERE movie_id = 299536
 
-ROLLBACK TRANSACTION 
+--ROLLBACK TRANSACTION 

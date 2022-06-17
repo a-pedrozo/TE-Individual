@@ -2,10 +2,12 @@
 -- You'll have to remove data from another table before you can make him "disappear" (Get it? Because he's a magician...) (1 row each)
 
 BEGIN TRANSACTION 
-DELETE 
+DELETE
 FROM 
-DELETE 
-FROM person 
-WHERE person_name = 'Penn Jillette'
---SELECT * FROM person WHERE person_name = 'Penn Jillette'
+	movie_actor
+WHERE actor_id = 37221
+DELETE
+FROM person
+WHERE person_id = 37221
+--37221 -- 862 -- Toy Story 
 ROLLBACK TRANSACTION 
