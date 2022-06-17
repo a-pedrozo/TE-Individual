@@ -4,12 +4,12 @@ INSERT INTO genre(genre_name)
 VALUES ('Sports')
 
 --SELECT * FROM movie WHERE movie_id = 7214
-SELECT * FROM genre WHERE genre_id = 11775
+SELECT* FROM movie WHERE title = 'Coach Carter'
 --ROLLBACK TRANSACTION
 
 --BEGIN TRANSACTION 
 INSERT INTO movie_genre (movie_id, genre_id)
-VALUES (7214,11775)
+VALUES (7214,11771)
 --ROLLBACK TRANSACTION
 
 

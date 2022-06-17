@@ -9,10 +9,15 @@ select *
 from movie
 where movie_id in (137,10315,10433,120467,399174,83666)
 
+BEGIN TRANSACTION 
+DELETE FROM collection WHERE collection_id = 895487
+
+ROLLBACK TRANSACTION 
+
 --BEGIN TRANSACTION 
 INSERT INTO collection (collection_name)
-VALUES ('The Bill Murray Collection')
-SELECT * FROM collection WHERE collection_name = 'The Bill Murray Collection'
+VALUES ('Bill Murray Collection')
+SELECT * FROM collection WHERE collection_name = 'Bill Murray Collection'
 --895485
 --ROLLBACK TRANSACTION 
 
@@ -44,3 +49,20 @@ WHERE movie_id = 10315
 --SELECT * FROM movie WHERE collection_id = 895487
 
 --ROLLBACK TRANSACTION
+
+BEGIN TRANSACTION 
+
+UPDATE movie 
+SET 
+collection_id = (SELECT collection_id FROM collection WHERE collection_name = 'Bill Murray Collection')
+WHERE 
+	movie_id IN (SELECT 
+	m.movie_id
+FROM 
+movie m 
+INNER JOIN movie_actor ma ON ma.movie_id = m.movie_id
+INNER JOIN person p ON p.person_id = ma.actor_id
+WHERE 
+	p.person_name = 'Bill Murray')
+
+ROLLBACK TRANSACTION 
