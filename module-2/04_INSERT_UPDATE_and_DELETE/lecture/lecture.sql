@@ -12,7 +12,7 @@ SELECT * FROM park
 INSERT INTO 
 	city (city_name, state_abbreviation, population, area)
 VALUES 
-	('Hawkins', 'IN', 30000, 38.1),
+	--('Hawkins', 'IN', 30000, 38.1),
 	('Cicely', 'AK', 839, 11.4)
 SELECT * FROM city
 
@@ -34,49 +34,115 @@ WHERE
 
 -- TRANSACTIONS Part 1
 
--- Delete the record for Smallville, KS within a transaction.
+-- Delete the record for Cicely, AK within a transaction.
+SELECT * FROM city WHERE city_name = 'Cicely'
 
+BEGIN TRANSACTION
+
+DELETE FROM 
+	city
+WHERE 
+	city_name = 'Cicely'
+	AND state_abbreviation = 'AK'
+
+COMMIT TRANSACTION -- makes changes to database 
 
 -- Delete all of the records from the park_state table, but then "undo" the deletion by rolling back the transaction.
+BEGIN TRANSACTION
 
+DELETE FROM
+	park_state
+ROLLBACK TRANSACTION -- makes copies not making changes to database 
 
+SELECT * FROM park_state
 -- Delete all cities with a population of less than 1,000 people from the city table.
+BEGIN TRANSACTION 
 
+DELETE FROM city 
+WHERE population < 1000
+
+ROLLBACK TRANSACTION 
 
 
 
 -- UPDATE
 
 -- Rename Columbus, OH to Flavortown, OH
+	BEGIN TRANSACTION 
 
+	UPDATE 
+		city 
+	SET 
+		city_name = 'Flavortown'
+	WHERE 
+		city_name = 'Columbus'
+		AND state_abbreviation = 'OH'
+
+	COMMIT TRANSACTION 
 
 -- Update all of the cities to be in the state of Texas (TX), but then roll back the transaction.
+BEGIN TRANSACTION 
+	UPDATE 
+		city 
+	SET	
+		state_abbreviation = 'TX'
 
+ROLLBACK TRANSACTION
 
 -- Increase the population of California by 1,000,000.
-
-
 -- Change the capital of California to Anaheim.
+BEGIN TRANSACTION 
+	UPDATE 
+		state 
+	SET
+		population += 10000000,
+		capital = 9 --(SELECT city_id FROM city WHERE city_name = 'Anaheim' AND state_abbreviation = 'CA') this returns 9, the city of ID is anehiem sub query route
+	WHERE 
+		state_abbreviation = 'CA'
+
+	SELECT population, capital FROM state WHERE state_abbreviation = 'CA'
+ROLLBACK TRANSACTION 
+
 
 
 -- Change Ohio's nickname and adjust its population
 
+
+BEGIN TRANSACTION
+	UPDATE 
+		state 
+	SET
+		state_nickname = ' the brown star'
+		population = (SELECT 
+	SUM(population)
+FROM 
+	city 
+WHERE 
+	state_abbreviation = 'OH')
+WHERE 
+	state_abbreviation = 'OH'
+	
+
+
+
+ROLLBACK TRANSACTION
 
 
 
 -- REFERENTIAL INTEGRITY
 
 -- Try adding a city to the city table with "XX" as the state abbreviation.
-
+	INSERT INTO city (city_name, state_abbreviation, area)
+	VALUES ('Dotnettopolis', 'XX', 42)
 
 -- Try deleting California from the state table.
-
+DELETE FROM state WHERE state_abbreviation = 'CA'
 
 -- Try deleting Disneyland from the park table. 
-
+DELETE FROM park WHERE park_name LIKE 'Disney%'
 -- Try again after deleting its record from the park_state table.
-
-
+DELETE FROM park_state WHERE park_id = 64 --64 is disneyland
+DELETE FROM park WHERE park_name LIKE 'Disney%'
 
 -- CONSTRAINTS
 
@@ -86,21 +152,35 @@ WHERE
 
 -- DEFAULT constraint
 -- Try adding Smallville, KS again, specifying an area but not a population.
-
+	INSERT INTO city (city_name, state_abbreviation, area)
+	VALUES ('Smallville', 'KS', 1)
 
 -- Retrieve the new record to confirm it has been given a default, non-null value for population.
 
 
 -- UNIQUE constraint
 -- Try changing California's nickname to "Vacationland" (which is already the nickname of Maine).
-
+UPDATE state 
+SET
+	state_nickname = 'Boring'
+WHERE 
+	state_abbreviation = 'CA'
 
 -- CHECK constraint
 -- Try changing the census region of Florida (FL) to "Southeast" (which is not a valid census region).
-
+UPDATE state
+SET 
+	census_region = 'Mars'
+WHERE
+	state_abbreviation = 'FL'
 
 
 -- TRANSACTIONS Part 2
 
 
 -- Demonstrate two different SQL connections trying to access the same table where one is inside of a transaction but hasn't committed yet.
+BEGIN TRANSACTION 
+	UPDATE park
+	SET has_camping = 1
+
+ROLLBACK TRANSACTION 
