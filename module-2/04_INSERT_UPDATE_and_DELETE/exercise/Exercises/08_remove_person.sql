@@ -1,7 +1,7 @@
 -- 8. Remove "Penn Jillette" from the person table 
 -- You'll have to remove data from another table before you can make him "disappear" (Get it? Because he's a magician...) (1 row each)
 
-BEGIN TRANSACTION 
+--BEGIN TRANSACTION 
 DELETE
 FROM 
 	movie_actor
@@ -10,4 +10,4 @@ DELETE
 FROM person
 WHERE person_id = 37221
 --37221 -- 862 -- Toy Story 
-ROLLBACK TRANSACTION 
+--ROLLBACK TRANSACTION 

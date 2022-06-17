@@ -6,7 +6,7 @@ SELECT * FROM movie WHERE title = 'The Blob'
 INSERT INTO person(person_name, birthday)
 VALUES ('Augustine Pedrozo', '19941209')
 
-SELECT * fROM person WHERE person_name = 'Augustine Pedrozo'
+--SELECT * fROM person WHERE person_name = 'Augustine Pedrozo'
 --3984922
  
 UPDATE movie 
