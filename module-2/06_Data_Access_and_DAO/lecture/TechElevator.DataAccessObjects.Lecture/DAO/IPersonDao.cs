@@ -1,4 +1,8 @@
-﻿namespace TechElevator.DataAccess
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace TechElevator.DataAccess.DAO
 {
     public interface IPersonDao
     {

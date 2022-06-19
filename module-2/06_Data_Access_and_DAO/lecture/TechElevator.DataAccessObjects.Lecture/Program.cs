@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Microsoft.Extensions.Configuration;
+using TechElevator.DataAccess.DAO;
 
 namespace TechElevator.DataAccess
 {
@@ -8,9 +9,19 @@ namespace TechElevator.DataAccess
     {
         public static void Main()
         {
-            // Ensure we have a connection string
+            // Load the database connection string from appsettings.json
             string connectionString = GetDatabaseConnectionString("ArtGallery");
-            Console.WriteLine("Hello World! My database connection string is " + connectionString);
+
+            Console.WriteLine("The database connection string is " + connectionString);
+
+            // Part 1: Paintings
+            IPaintingDao paintingDao = new PaintingSqlDao(connectionString);
+
+            // Part 2: Purchases
+            IPurchaseDao purchaseDao = new PurchaseSqlDao(connectionString);
+
+            // Part 3: People
+            IPersonDao personDao = new PersonSqlDao(connectionString);
         }
 
         private static string GetDatabaseConnectionString(string settingName)
@@ -18,7 +29,7 @@ namespace TechElevator.DataAccess
             // Get the connection string from the appsettings.json file
             IConfigurationBuilder builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false);
 
             IConfigurationRoot configuration = builder.Build();
 
