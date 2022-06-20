@@ -14,7 +14,6 @@ After completing this exercise, you'll understand:
 Your code will be evaluated based on the following criteria:
 
 * The project must not have any build errors.
-* You must fill out the provided `BugReport.txt` file for four bugs you found and fixed.
 * The provided integration test methods must all be completed and passing.
 * Code is clean, concise, and readable.
 
@@ -78,19 +77,6 @@ public void DeleteTimesheet(int timesheetId)
         cmd.ExecuteNonQuery();
     }
 }
-```
-
-Then you'd complete the bug report as follows:
-
-```
-Test that demonstrates problem:
-    DeletedTimesheetCantBeRetrieved
-Expected output:
-    GetTimesheet(2) returns null after calling DeleteTimesheet(2)
-Actual output:
-    GetTimesheet(2) was still returning a Timesheet object
-How did you fix this bug?
-    Replaced hardcoded value of 1 in DeleteTimesheet with timesheetId so it doesn't always delete the same timesheet.
 ```
 ---
 
