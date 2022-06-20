@@ -1,0 +1,71 @@
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Data.SqlClient;
+using System.IO;
+using System.Transactions;
+
+namespace WorldGeography.Tests.DAL
+{
+    [TestClass]
+    public abstract class WorldDAOTestsBase
+    {
+        protected string ConnectionString { get; } = @"Server=.\SQLEXPRESS;Database=World;Trusted_Connection=True;";
+
+        /// <summary>
+        /// The transaction for each test.
+        /// </summary>
+        private TransactionScope transaction;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            // Begin the transaction. This line makes any SQL Commands we run part of a transaction just by existing.
+            // Yes, this is weird. Matt doesn't like this, but nobody asked Matt.
+            transaction = new TransactionScope(); // BEGIN TRANSACTION
+
+            // Get the SQL Script to run
+            string sql = File.ReadAllText("test-script.sql");
+
+            // Execute the script
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            // Roll back the transaction, if it exists
+            if (transaction != null)
+            {
+                // This is the equivalent of ROLLBACK TRANSACTION
+                transaction.Dispose();
+
+                // Alternatively, if we wanted a COMMIT TRANSACTION, we could do the following:
+                // transaction.Complete();
+            }
+        }
+
+        /// <summary>
+        /// Gets the row count for a table.
+        /// </summary>
+        /// <param name="table"></param>
+        /// <returns></returns>
+        protected int GetRowCount(string table)
+        {
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand($"SELECT COUNT(*) FROM {table}", conn);
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+                return count;
+            }
+        }
+    }
+}
