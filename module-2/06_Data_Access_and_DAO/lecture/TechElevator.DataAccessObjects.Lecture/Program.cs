@@ -10,12 +10,12 @@ namespace TechElevator.DataAccess
         public static void Main()
         {
             // Load the database connection string from appsettings.json
-            string connectionString = GetDatabaseConnectionString("ArtGallery");
+            string connectionString = GetDatabaseConnectionString("ArtGallery"); // method that takes string called connectionstring
 
             Console.WriteLine("The database connection string is " + connectionString);
 
             // Part 1: Paintings
-            IPaintingDao paintingDao = new PaintingSqlDao(connectionString);
+            IPaintingDao paintingDao = new PaintingSqlDao(connectionString); // paramater to contructor 
 
             // Part 2: Purchases
             IPurchaseDao purchaseDao = new PurchaseSqlDao(connectionString);
