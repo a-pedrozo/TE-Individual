@@ -9,10 +9,10 @@ namespace EmployeeProjects.Tests.DAO
     [TestClass]
     public class BaseDaoTests
     {
-        private const string DatabaseName = "EmployeeProjectsTemp";
+        private const string DatabaseName = "EmployeeProjectsTesting";
 
-        private static string AdminConnectionString;
-        protected static string ConnectionString;
+        private const string AdminConnectionString = @"Server=.\SQLEXPRESS;Database=master;Trusted_Connection=True;";
+        protected const string ConnectionString = @"Server=.\SQLEXPRESS;Database=" + DatabaseName + ";Trusted_Connection=True;";
 
         /// <summary>
         /// The transaction for each test.
@@ -22,8 +22,6 @@ namespace EmployeeProjects.Tests.DAO
         [AssemblyInitialize]
         public static void BeforeAllTests(TestContext context)
         {
-            SetConnectionString(DatabaseName);
-
             string sql = File.ReadAllText("create-test-db.sql").Replace("test_db_name", DatabaseName);
 
             using (SqlConnection conn = new SqlConnection(AdminConnectionString))
@@ -71,24 +69,6 @@ namespace EmployeeProjects.Tests.DAO
         {
             // Roll back the transaction
             transaction.Dispose();
-        }
-
-        private static void SetConnectionString(string defaultDbName)
-        {
-            string host = System.Environment.GetEnvironmentVariable("DB_HOST") ?? @".\SQLEXPRESS";
-            string dbName = System.Environment.GetEnvironmentVariable("DB_DATABASE") ?? defaultDbName;
-            string username = System.Environment.GetEnvironmentVariable("DB_USERNAME");
-            string password = System.Environment.GetEnvironmentVariable("DB_PASSWORD");
-
-            if (username != null && password != null)
-            {
-                ConnectionString = $"Data Source={host};Initial Catalog={dbName};User Id={username};Password={password};";
-            }
-            else
-            {
-                ConnectionString = $"Data Source={host};Initial Catalog={dbName};Integrated Security=SSPI;";
-            }
-            AdminConnectionString = ConnectionString.Replace(dbName, "master");
         }
 
     }

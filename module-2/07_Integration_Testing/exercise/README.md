@@ -1,60 +1,97 @@
-# Database connectivity (DAO) exercises
+# DAO testing exercises
 
-For this exercise, you'll be responsible for implementing the data access objects for a CLI application that manages information for employees, departments, and projects. The purpose of this exercise is to practice writing application code that interacts with a database.
+The `EmployeeProjects` database is being enhanced with timesheet tracking. A new DAO has been created to handle creating, reading, updating, and deleting records from the `timesheet` table. For this exercise, you'll be responsible for writing integration tests and using them to identify bugs in this new DAO. You'll then fix the bugs you've found.
 
 ## Learning objectives
 
 After completing this exercise, you'll understand:
 
-* How to create database connections.
-* How to execute SQL statements and use parameters.
-* How the DAO pattern encapsulates database access logic.
+* How to write integration tests.
+* How to use integration tests to find bugs in a DAO.
 
 ## Evaluation criteria and functional requirements
 
 Your code will be evaluated based on the following criteria:
 
 * The project must not have any build errors.
-* The unit tests pass as expected.
+* You must fill out the provided `BugReport.txt` file for four bugs you found and fixed.
+* The provided integration test methods must all be completed and passing.
 * Code is clean, concise, and readable.
-
-You may use the provided CLI application to test your code. However, your goal is to make sure the tests pass.
 
 ## Getting started
 
-1. In the folder with this README, there's an `EmployeeProjects.sql` SQL script that drops and recreates the `EmployeeProjects` database. You can run that script to create a copy of the database to reference while you work. Be aware, however, that the tests don't use that database. The tests use a temporary database with the same structure. You'll find the SQL for that temporary database in `EmployeeProjects.Tests/test-data.sql`.
-    - *Note that the `timesheet` table is not used in today's exercise.*
-2. Open the `DaoExercise.sln` solution in Visual Studio.
-3. Click on the **Test Explorer** tab to run the provided unit tests and see their results.
+1. You'll use the same `EmployeeProjects` database you used for the DAO exercises.
+2. Open the `DAOTestingExercise.sln` solution in Visual Studio.
 
-## Step One: Explore starting code and database schema
+## Step One: Explore starting code
 
 Before you begin, review the provided classes in the `Models` and `DAO` folders.
 
-You'll write your code to complete the data access methods in the `DepartmentSqlDao`, `ProjectSqlDao`, and `EmployeeSqlDao` classes.
+You should also familiarize yourself with the provided test classes and the `test-data.sql` file.
 
-You should also familiarize yourself with the database schema either by looking at the database in SQL Server Management Studio or the `EmployeeProjects.sql` script.
+## Step Two: Implement the `TimesheetSqlDaoTests` methods
 
-## Step Two: Implement the `DepartmentSqlDao` methods
+In the nine test methods, replace the `Assert.Fail()` with the code necessary to implement the test described by the method name. You can refer to the comments in the `ITimesheetDao` interface for descriptions of what each DAO method does.
 
-Complete the data access methods in `DepartmentSqlDao`. Refer to the documentation comments in the `IDepartmentDao` interface for the expected input and result of each method.
+Use today's lecture code and the integration tests from the DAO exercises as examples to reference while working. Static constant `Timesheet`s have been provided that you can use in your tests.
 
-You can remove any existing `return` statement in the method when you start working on it.
+When fully implemented, five of the tests pass, and four continue to fail due to bugs in `TimesheetSqlDao`.
 
-After you complete this step, the tests in `DepartmentSqlDaoTests` pass.
+## Step Three: Complete bug reports and fix bugs
 
-## Step Three: Implement the `ProjectSqlDao` methods
+Fill out `BugReport.txt` with information about the four bugs you've identified in `TimesheetSqlDao` using the integration tests.
 
-Complete the data access methods in `ProjectSqlDao`. Refer to the documentation comments in the `IProjectDao` interface for the expected input and result of each method.
+---
+### An example of reporting and fixing a bug
 
-You can remove any existing `return` statement in the method when you start working on it.
+Consider the following `DeleteTimesheet` method:
 
-After you complete this step, the tests in `ProjectSqlDaoTests` pass.
+```csharp
+public void DeleteTimesheet(int timesheetId)
+{
+    using (SqlConnection conn = new SqlConnection(connectionString))
+    {
+        conn.Open();
 
-## Step Four: Implement the `EmployeeSqlDao` methods
+        SqlCommand cmd = new SqlCommand("DELETE FROM timesheet WHERE timesheet_id = @timesheet_id;", conn);
+        cmd.Parameters.AddWithValue("@timesheet_id", 1);
+        cmd.ExecuteNonQuery();
+    }
+}
+```
 
-Complete the data access methods in `EmployeeSqlDao`. Refer to the documentation comments in the `IEmployeeDao` interface for the expected input and result of each method.
+If the method was written this way, it would contain a bug. It always deletes the record with a `timesheet_id` of 1 rather than using the value of `timesheetId`.
 
-You can remove any existing `return` statement in the method when you start working on it.
+There are several ways this could cause the `DeletedTimesheetCantBeRetrieved` test to fail—for example, if the test called `DeleteTimesheet(2)` and then found that `GetTimesheet(2)` still retrieved the timesheet.
 
-After you complete this step, the tests in `EmployeeSqlDaoTests` pass.
+After that test fails, you'd fix the `DeleteTimesheet` method like this:
+
+```csharp
+public void DeleteTimesheet(int timesheetId)
+{
+    using (SqlConnection conn = new SqlConnection(connectionString))
+    {
+        conn.Open();
+
+        SqlCommand cmd = new SqlCommand("DELETE FROM timesheet WHERE timesheet_id = @timesheet_id;", conn);
+        cmd.Parameters.AddWithValue("@timesheet_id", timesheetId);
+        cmd.ExecuteNonQuery();
+    }
+}
+```
+
+Then you'd complete the bug report as follows:
+
+```
+Test that demonstrates problem:
+    DeletedTimesheetCantBeRetrieved
+Expected output:
+    GetTimesheet(2) returns null after calling DeleteTimesheet(2)
+Actual output:
+    GetTimesheet(2) was still returning a Timesheet object
+How did you fix this bug?
+    Replaced hardcoded value of 1 in DeleteTimesheet with timesheetId so it doesn't always delete the same timesheet.
+```
+---
+
+After you've found and fixed the four bugs, all nine of the tests in `TimesheetSqlDao` pass.

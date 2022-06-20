@@ -46,21 +46,24 @@ CREATE TABLE timesheet (
     CONSTRAINT FK_timesheet_project FOREIGN KEY (project_id) REFERENCES project(project_id)
 );
 
+-- Need a department so we can add employees
 INSERT INTO department (name)
-VALUES ('Department 1'), -- department_id will be 1
-       ('Department 2'); -- department_id will be 2
+VALUES ('Department 1'); -- department_id will be 1
 
-INSERT INTO project (name, from_date, to_date)
-VALUES ('Project 1', '2000-01-02', '2000-12-31'), -- project_id will be 1
-       ('Project 2', '2001-01-02', '2001-12-31'); -- project_id will be 2
-
+-- Need employees so we can add timesheets
 INSERT INTO employee (department_id, first_name, last_name, birth_date, hire_date)
 VALUES (1, 'First1', 'Last1', '1981-01-01', '2001-01-02'), -- employee_id will be 1
-       (2, 'First2', 'Last2', '1982-02-01', '2002-02-03'), -- employee_id will be 2
-       (1, 'First3', 'Last3', '1983-03-01', '2003-03-04'); -- employee_id will be 3
+       (1, 'First2', 'Last2', '1982-02-01', '2002-02-03'); -- employee_id will be 2
 
-INSERT INTO project_employee (project_id, employee_id)
-VALUES (1, 1),
-       (2, 2), (2, 3); -- Don't assign Employee #4 to any project
+-- Need projects so we can add timesheets
+INSERT INTO project (name, from_date, to_date)
+VALUES ('Project 1', '2000-01-02', '2000-12-31'), -- project_id will be 1
+       ('Project 2', '2001-01-02', '2001-12-31');                 -- project_id will be 2
+
+INSERT INTO timesheet (employee_id, project_id, date_worked, hours_worked, is_billable, description)
+VALUES (1, 1, '2021-01-01', 1.0, 1, 'Timesheet 1'),  -- timesheet_id will be 1
+       (1, 1, '2021-01-02', 1.5, 1, 'Timesheet 2'),  -- timesheet_id will be 2
+       (2, 1, '2021-01-01', 0.25, 1, 'Timesheet 3'), -- timesheet_id will be 3
+       (2, 2, '2021-02-01', 2.0, 0, 'Timesheet 4'); -- timesheet_id will be 4
 
 COMMIT TRANSACTION;
