@@ -62,7 +62,3 @@ VALUES ('this place' , 'sql is kicking me in the gut' , '20221111', 30, 'breakfa
 ('interdemintional cable tv show' , 'lets get shwifty' , '20221112', 69, 'those guys', 3),
 ('captan jack sparrow adventures' , 'but why is the rum gone' , '20221111', 55, 'men of culture', 4)
 
---select * from tbl_Group
---select * from Member
---select * from tbl_Event
-select * from Member
