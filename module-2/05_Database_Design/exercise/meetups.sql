@@ -43,15 +43,15 @@ group_name nvarchar(200) NOT NULL
 ); 
 GO 
 
-INSERT INTO Member (member_id, first_name, last_name, email, phone_number, birthday)
-VALUES (1, 'Jimothy', 'DOTnet', 'sqlhard@gmail.com', null, '19961201'), 
-(2, 'Archer', 'Sterling', 'phrasing@gmail.com', null, '19951113'), 
-(3, 'Monkey D', 'Luffy', 'kingofpirates@gmail.com', null, '19990511'), 
-(1,'Johhny', 'Depp', 'whydoesmybedsmellfunnny@gmail.com', null, '19010512'), 
-(2,'morty', 'smith', 'weirdmail@gmail.com', null, '20070408'), 
-(3,'ash', 'ketchum', 'gottacatchthemall@gmail.com', null, '19850311'), 
-(2,'Rick', 'Sanchez', 'c137@gmail.com', null, '120012108'), 
-(1,'Bender', 'Rodriguez', 'meatbag@gmail.com', null, '30051605')
+INSERT INTO Member (member_id, first_name, last_name, email, phone_number, birthday, email_notification)
+VALUES (1, 'Jimothy', 'DOTnet', 'sqlhard@gmail.com', null, '19961201', 1), 
+(2, 'Archer', 'Sterling', 'phrasing@gmail.com', null, '19951113', 0), 
+(3, 'Monkey D', 'Luffy', 'kingofpirates@gmail.com', null, '19990511', 1), 
+(1,'Johhny', 'Depp', 'whydoesmybedsmellfunnny@gmail.com', null, '19010512', 0), 
+(2,'morty', 'smith', 'weirdmail@gmail.com', null, '20070408', 1), 
+(3,'ash', 'ketchum', 'gottacatchthemall@gmail.com', null, '19850311', 0), 
+(2,'Rick', 'Sanchez', 'c137@gmail.com', null, '120012108', 1), 
+(1,'Bender', 'Rodriguez', 'meatbag@gmail.com', null, '30051605', 1)
 
 INSERT INTO tbl_Group (group_name, member_id, event_id)
 VALUES ('breakfast club', 1, 2), ('men of culture', 2, 4), ('thoseguys', 3, 3)
@@ -65,3 +65,4 @@ VALUES ('this place' , 'sql is kicking me in the gut' , '20221111', 30, 'breakfa
 --select * from tbl_Group
 --select * from Member
 --select * from tbl_Event
+select * from Member

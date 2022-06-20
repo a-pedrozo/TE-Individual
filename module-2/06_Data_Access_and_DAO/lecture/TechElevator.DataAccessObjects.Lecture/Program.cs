@@ -2,6 +2,8 @@
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using TechElevator.DataAccess.DAO;
+using TechElevator.DataAccess.Models;
+using System.Collections.Generic;
 
 namespace TechElevator.DataAccess
 {
@@ -16,6 +18,19 @@ namespace TechElevator.DataAccess
 
             // Part 1: Paintings
             IPaintingDao paintingDao = new PaintingSqlDao(connectionString); // paramater to contructor 
+            Painting painting = paintingDao.GetPaintingById(1);
+            IList<Painting> allPaintings = paintingDao.GetAll();
+            paintingDao.DeletePaintingById(2);
+
+            Painting myPainting = new Painting();
+            myPainting.Title = "C# Keystrokes in Flight";
+            myPainting.ArtistId = 3;
+            paintingDao.AddPainting(myPainting);
+
+            Console.WriteLine("The new painting's ID is " + myPainting.Id);
+
+            myPainting.Title = "staring at a wall of code";
+            paintingDao.UpdatePainting(myPainting);
 
             // Part 2: Purchases
             IPurchaseDao purchaseDao = new PurchaseSqlDao(connectionString);
