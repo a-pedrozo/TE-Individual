@@ -32,7 +32,7 @@ You should also familiarize yourself with the provided test classes and the `tes
 
 In the nine test methods, replace the `Assert.Fail()` with the code necessary to implement the test described by the method name. You can refer to the comments in the `ITimesheetDao` interface for descriptions of what each DAO method does.
 
-Use today's lecture code and the integration tests from the DAO exercises as examples to reference while working. Static constant `Timesheet`s have been provided that you can use in your tests.
+Use today's lecture code and the integration tests from the DAO exercises as examples to reference while working. Private `Timesheet`s have been provided that you can use in your tests.
 
 When fully implemented, five of the tests pass, and four continue to fail due to bugs in `TimesheetSqlDao`.
 
