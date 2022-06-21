@@ -18,7 +18,7 @@ namespace WorldGeography.DAL
             connectionString = databaseConnectionString;
         }
 
-        public IEnumerable<Language> GetLanguages(string countryCode)
+        public List<Language> GetLanguages(string countryCode)
         {
             List<Language> languages = new List<Language>();
 

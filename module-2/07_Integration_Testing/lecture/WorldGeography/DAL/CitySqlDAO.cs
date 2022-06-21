@@ -47,7 +47,7 @@ namespace WorldGeography.DAL
             }
         }
 
-        public IEnumerable<City> GetCitiesByCountryCode(string countryCode)
+        public List<City> GetCitiesByCountryCode(string countryCode)
         {
             List<City> cities = new List<City>();
 

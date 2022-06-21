@@ -27,7 +27,10 @@ namespace EmployeeProjects.Tests.DAO
         [TestMethod]
         public void GetTimesheet_ReturnsCorrectTimesheetForId()
         {
-            Assert.Fail();
+            TimesheetSqlDao dao = new TimesheetSqlDao(ConnectionString);
+
+            Timesheet timesheet = dao.GetTimesheet(4);
+            Assert.AreEqual(4,timesheet.TimesheetId);
         }
 
         [TestMethod]

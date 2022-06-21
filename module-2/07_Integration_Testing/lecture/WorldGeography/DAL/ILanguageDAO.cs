@@ -10,7 +10,7 @@ namespace WorldGeography.DAL
         /// </summary>
         /// <param name="countryCode">The country code to filter by.</param>
         /// <returns></returns>
-        IEnumerable<Language> GetLanguages(string countryCode);
+        List<Language> GetLanguages(string countryCode);
 
         /// <summary>
         /// Inserts a new language.

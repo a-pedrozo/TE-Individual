@@ -97,15 +97,12 @@ namespace EmployeeProjects.DAO
             {
                 conn.Open();
 
-                string sql = "INSERT INTO project (project_id, name, from_date, to_date) VALUES (@project_id, @name, @from_date, @to_date); SELECT @@IDENTITY";//wtf does identity set to off mean??
+                string sql = "INSERT INTO project (name, from_date, to_date) VALUES (@name, @fromDate, @toDate); SELECT @@IDENTITY;";
 
                 SqlCommand command = new SqlCommand(sql, conn);
                 command.Parameters.AddWithValue("name", newProject.Name);
-                command.Parameters.AddWithValue("project_id", newProject.ProjectId);
-                command.Parameters.AddWithValue("from_date", newProject.FromDate);
-                command.Parameters.AddWithValue("to_date", newProject.ToDate);
-
-
+                command.Parameters.AddWithValue("fromDate", newProject.FromDate);
+                command.Parameters.AddWithValue("toDate", newProject.ToDate);
 
                 int id = Convert.ToInt32(command.ExecuteScalar());
 
