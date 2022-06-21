@@ -91,7 +91,7 @@ namespace TechElevator.DataAccess.DAO
                     results.Add(painting);
 
                 }
-                return null;
+                return results;
 
             }
         }

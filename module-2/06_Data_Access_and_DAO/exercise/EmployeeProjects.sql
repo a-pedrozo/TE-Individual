@@ -117,3 +117,8 @@ INSERT INTO project_employee (project_id, employee_id) VALUES (6, 10);
 INSERT INTO project_employee (project_id, employee_id) VALUES (6, 11);
 
 COMMIT TRANSACTION;
+
+BEGIN TRANSACTION 
+DELETE FROM project WHERE project_id = 1
+--INSERT INTO project (project_id, name, from_date, to_date) VALUES (7,'the danger zone', '2009-12-09', '3009-07-11')
+ROLLBACK TRANSACTION 
