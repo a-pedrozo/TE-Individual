@@ -7,12 +7,20 @@ using BugTrackerConsoleApp.Items;
 namespace BugTrackerConsoleApp
 {
     /// <summary>
-    /// Responsible for reading and writing bugs to a comma separated value (CSV) file.
+    /// Responsible for reading bugs from a comma separated value (CSV) file.
     /// </summary>
-    public class BugCSVFile
+    public class BugCSVFileLoader : IBugLoader
     {
-        public void ImportFromFile(string filePath, BugManager bugManager)
+        private readonly string filePath;
+
+        public BugCSVFileLoader(string filePath)
         {
+            this.filePath = filePath;
+        }
+
+        public List<Bug> LoadBugs()
+        {
+            List<Bug> bugs = new List<Bug>();
 
             // Open the file for reading
             using (StreamReader reader = new StreamReader(filePath))
@@ -39,11 +47,12 @@ namespace BugTrackerConsoleApp
                     newBug.Location = location;
                     newBug.IsOpen = isOpen;
 
-                    // Add the bug to a bug manager
-                    bugManager.AddBug(newBug);
+                    // Add the bug to the result list
+                    bugs.Add(newBug);
                 }
             }
 
+            return bugs;
         }
     }
 }

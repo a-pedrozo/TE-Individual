@@ -10,7 +10,7 @@ namespace BugTrackerConsoleApp
     public class BugManager
     {
         // Fields (Class Variables)
-        private readonly List<Bug> bugs = new List<Bug>();
+        private List<Bug> bugs = new List<Bug>();
         private int nextBugId = 1;
 
         // Constructor
@@ -30,6 +30,11 @@ namespace BugTrackerConsoleApp
             {
                 return bugs.ToArray();
             }
+        }
+
+        public void Load(IBugLoader bugLoader)
+        {
+            this.bugs = bugLoader.LoadBugs();
         }
 
         // Methods

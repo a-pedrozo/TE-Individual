@@ -12,7 +12,13 @@ namespace BugTrackerConsoleApp
     public class UserInterface
     {
         private BugManager bugManager = new BugManager();
-        private BugCSVFile csvFile = new BugCSVFile();
+        private IBugLoader bugLoader;
+
+        public UserInterface()
+        {
+            string csvFilePath = Path.Combine(Environment.CurrentDirectory, "bugs.csv");
+            this.bugLoader = new BugCSVFileLoader(csvFilePath);
+        }
 
         /// <summary>
         /// Lists main menu options for the user.
@@ -20,8 +26,7 @@ namespace BugTrackerConsoleApp
         public void ShowMainMenu()
         {
             // TODO: LOAD BUGS HERE
-            string csvFilePath = Path.Combine(Environment.CurrentDirectory, "bugs.csv");
-            csvFile.ImportFromFile(csvFilePath, bugManager);
+            bugManager.Load(bugLoader);
 
             bool shouldQuit = false;
 
