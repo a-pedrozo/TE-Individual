@@ -119,6 +119,10 @@ INSERT INTO project_employee (project_id, employee_id) VALUES (6, 11);
 COMMIT TRANSACTION;
 
 BEGIN TRANSACTION 
-DELETE FROM project WHERE project_id = 1
---INSERT INTO project (project_id, name, from_date, to_date) VALUES (7,'the danger zone', '2009-12-09', '3009-07-11')
+--DELETE FROM project_employee WHERE employee_id =1 ; DELETE FROM employee WHERE employee_id = 1
+--INSERT INTO project_employee (project_id, employee_id) VALUES (1,7)
+--SELECT  * FROM employee e INNER JOIN project_employee pe ON e.employee_id = pe.employee_id INNER JOIN project j ON pe.project_id = j.project_id WHERE e.employee_id = 7
+
+SELECT * FROM project WHERE name = 'sqlsucks'
 ROLLBACK TRANSACTION 
+

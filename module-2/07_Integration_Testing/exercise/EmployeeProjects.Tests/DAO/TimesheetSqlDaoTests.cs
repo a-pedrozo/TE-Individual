@@ -118,19 +118,63 @@ namespace EmployeeProjects.Tests.DAO
         [TestMethod]
         public void UpdatedTimesheetHasExpectedValuesWhenRetrieved()
         {
-            Assert.Fail();
+            //arrange
+            TimesheetSqlDao dao = new TimesheetSqlDao(ConnectionString);
+            //act
+            Timesheet timesheet = new Timesheet();
+            timesheet.TimesheetId = 5; // what numbers go here???
+            timesheet.EmployeeId = 2;
+            timesheet.ProjectId = 2;
+            timesheet.DateWorked = DateTime.Parse("2021-01-01");
+            timesheet.HoursWorked = 6.9m;
+            timesheet.IsBillable = false;
+            timesheet.Description = "doesmanos";
+
+            Timesheet newSheet = dao.CreateTimesheet(timesheet);
+            //assert 
+            Assert.AreEqual(5,newSheet.TimesheetId);
         }
 
         [TestMethod]
         public void DeletedTimesheetCantBeRetrieved()
         {
-            Assert.Fail();
+            TimesheetSqlDao dao = new TimesheetSqlDao(ConnectionString);
+            Timesheet timesheet = new Timesheet();
+            timesheet.EmployeeId = 2;
+            timesheet.ProjectId = 2;
+            timesheet.DateWorked = DateTime.Parse("2021-01-01");
+            timesheet.HoursWorked = 6.9m;
+            timesheet.IsBillable = false;
+            timesheet.Description = "doesmanos";
+
+
+            // Act
+             dao.DeleteTimesheet(timesheet.TimesheetId);//why wont this work???
+
+             //Assert
+               Assert.AreEqual(0, timesheet.TimesheetId);
         }
 
         [TestMethod]
         public void GetBillableHours_ReturnsCorrectTotal()
         {
-            Assert.Fail();
+            //arrange
+            TimesheetSqlDao dao = new TimesheetSqlDao(ConnectionString);
+
+            //act
+           
+            Timesheet timesheet = new Timesheet();
+            timesheet.EmployeeId = 1;
+            timesheet.ProjectId = 1;
+            timesheet.DateWorked = DateTime.Parse("2021-01-01");
+            timesheet.HoursWorked = 1.0m;
+            timesheet.IsBillable = true;
+            timesheet.Description = "timesheet1";
+            decimal timesheet1 = dao.GetBillableHours(1,1);
+
+            //assert
+
+            Assert.AreEqual(1,timesheet1);
         }
 
         private void AssertTimesheetsMatch(Timesheet expected, Timesheet actual)
