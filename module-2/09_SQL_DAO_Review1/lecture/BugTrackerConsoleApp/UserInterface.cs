@@ -36,12 +36,9 @@ namespace BugTrackerConsoleApp
                 Console.WriteLine("1) Add a Bug");
                 Console.WriteLine("2) List Existing Bugs");
                 Console.WriteLine("3) Close a Bug");
-                Console.WriteLine("4) Save Bugs to Disk");
+                Console.WriteLine("4) Delete a Bug");
                 Console.WriteLine("5) Quit");
                 Console.WriteLine();
-
-                string text = "ABC";
-                string text2 = text.PadRight(5);
 
                 string input = Console.ReadLine();
                 Console.WriteLine();

@@ -41,7 +41,13 @@ namespace BugTrackerConsoleApp
 
         public override string ToString()
         {
-            return Id + ") " + Summary + " (Is Open: " + IsOpen + ")";
+            string isOpenText = "Open";
+            if (!IsOpen)
+            {
+                isOpenText = "Closed";
+            }
+
+            return $"{Id}) {Summary} ({isOpenText})";
         }
     }
 }

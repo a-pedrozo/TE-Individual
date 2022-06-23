@@ -5,6 +5,9 @@ namespace BugTrackerConsoleApp
 {
     public class Program
     {
+        // Part 1: Create DDL to add a Bug database and table
+        // Part 2: Create a DAO
+
         public static void Main()
         {
             try
@@ -35,7 +38,7 @@ namespace BugTrackerConsoleApp
         private static IBugManager BuildFileBugManager()
         {
             string csvFilePath = Path.Combine(Environment.CurrentDirectory, "bugs.csv");
-            FileBasedBugManager bugManager = new FileBasedBugManager(csvFilePath);
+            CSVFileBugManager bugManager = new CSVFileBugManager(csvFilePath);
 
             return bugManager;
         }

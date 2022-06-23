@@ -6,17 +6,20 @@ using System.IO;
 namespace BugTrackerConsoleApp
 {
     /// <summary>
-    /// Responsible for reading bugs from a comma separated value (CSV) file.
+    /// Responsible for reading and writing bugs from a comma separated value (CSV) file.
     /// </summary>
-    public class FileBasedBugManager : IBugManager
+    public class CSVFileBugManager : IBugManager
     {
         private readonly string filePath;
         private List<Bug> bugs = new List<Bug>();
         private int nextBugId = 1;
 
-        public FileBasedBugManager(string filePath)
+        public CSVFileBugManager(string filePath)
         {
             this.filePath = filePath;
+
+            // Ensure bugs are loaded on start to avoid odd errors
+            GetAllBugs();
         }
 
         public Bug AddBug(Bug newBug)
@@ -132,6 +135,9 @@ namespace BugTrackerConsoleApp
             else
             {
                 bug.IsOpen = false;
+
+                SaveBugsToFile();
+
                 return true;
             }
         }
