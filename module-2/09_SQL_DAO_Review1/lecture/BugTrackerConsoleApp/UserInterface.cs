@@ -1,5 +1,4 @@
-﻿using BugTrackerConsoleApp.Items;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
@@ -11,13 +10,11 @@ namespace BugTrackerConsoleApp
     /// </summary>
     public class UserInterface
     {
-        private BugManager bugManager = new BugManager();
-        private IBugLoader bugLoader;
+        private IBugManager bugManager;
 
-        public UserInterface()
+        public UserInterface(IBugManager bugManager)
         {
-            string csvFilePath = Path.Combine(Environment.CurrentDirectory, "bugs.csv");
-            this.bugLoader = new BugCSVFileLoader(csvFilePath);
+            this.bugManager = bugManager;
         }
 
         /// <summary>
@@ -25,9 +22,6 @@ namespace BugTrackerConsoleApp
         /// </summary>
         public void ShowMainMenu()
         {
-            // TODO: LOAD BUGS HERE
-            bugManager.Load(bugLoader);
-
             bool shouldQuit = false;
 
             while (!shouldQuit)
@@ -66,8 +60,8 @@ namespace BugTrackerConsoleApp
                         CloseBug();
                         break;
 
-                    case "4": // Save Bugs
-                        SaveBugs();
+                    case "4": // Delete Bugs
+                        DeleteBug();
                         break;
 
                     case "5": // Quit
@@ -84,13 +78,15 @@ namespace BugTrackerConsoleApp
 
         private void ListBugs()
         {
-            if (bugManager.AllBugs.Length <= 0)
+            List<Bug> bugs = bugManager.GetAllBugs();
+
+            if (bugs.Count <= 0)
             {
                 Console.WriteLine("No bugs exist! Ship it!");
             }
             else
             {
-                foreach (Bug someBug in bugManager.AllBugs)
+                foreach (Bug someBug in bugs)
                 {
                     Console.WriteLine(someBug);
                 }
@@ -102,16 +98,28 @@ namespace BugTrackerConsoleApp
             Console.WriteLine("What is the bug ID?");
             int bugId = int.Parse(Console.ReadLine());
 
-            Bug item = bugManager.FindBug(bugId);
-
-            if (item != null)
+            if (bugManager.CloseBug(bugId))
             {
-                item.IsOpen = false;
                 Console.WriteLine("Bug Closed!");
             }
             else
             {
-                Console.WriteLine("Could not find a bug with ID of " + bugId);
+                Console.WriteLine("Could not close the bug with ID of " + bugId);
+            }
+        }
+
+        private void DeleteBug()
+        {
+            Console.WriteLine("What is the bug ID?");
+            int bugId = int.Parse(Console.ReadLine());
+
+            if (bugManager.DeleteBug(bugId))
+            {
+                Console.WriteLine("Bug Deleted!");
+            }
+            else
+            {
+                Console.WriteLine("Could not delete the bug with ID of " + bugId);
             }
         }
 
@@ -120,18 +128,9 @@ namespace BugTrackerConsoleApp
             Console.WriteLine("Please describe the bug");
             string description = Console.ReadLine();
 
-            Console.WriteLine("Where do you suspect this bug occurs?");
-            string location = Console.ReadLine();
-
             Bug bug = new Bug(description);
-            bug.Location = location;
 
             bugManager.AddBug(bug);
-        }
-
-        private void SaveBugs()
-        {
-            throw new NotImplementedException();
         }
     }
 }

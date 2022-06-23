@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BugTrackerConsoleApp.Items
+namespace BugTrackerConsoleApp
 {
     /// <summary>
     /// Represents a bug in the system.
     /// </summary>
     public class Bug
     {
+        public Bug()
+        {
+
+        }
+
         public Bug(string summary)
         {
             this.Summary = summary;
@@ -30,16 +35,10 @@ namespace BugTrackerConsoleApp.Items
         public string ResponsibleDev { get; set; } = "Jimothy"; // Dangit, Jimothy!
 
         /// <summary>
-        /// The place in our code the bug exists (or likely exists)
-        /// </summary>
-        public string Location { get; set; }
-
-        /// <summary>
         /// Whether or not the bug is currently unresolved
         /// </summary>
         public bool IsOpen { get; set; } = true;
 
-        // TODO: Overriding ToString is a good idea
         public override string ToString()
         {
             return Id + ") " + Summary + " (Is Open: " + IsOpen + ")";
