@@ -12,8 +12,9 @@ namespace BugTrackerConsoleApp
     {
         private IBugManager bugManager;
 
-        public UserInterface(IBugManager bugManager)
+        public UserInterface(IBugManager bugManager) 
         {
+            // We don't know which BugManager we got, we just know we have one
             this.bugManager = bugManager;
         }
 
