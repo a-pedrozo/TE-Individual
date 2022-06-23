@@ -5,6 +5,17 @@ using System.IO;
 
 namespace BugTrackerConsoleApp
 {
+    // Matt's TODO List
+
+    // Part 1: Create a Joke table
+    // Part 2: List all jokes
+    // Part 3: Insert a joke
+    // Part 4: Add a Dad Table and hard-code in relationships
+    // Part 5: Revise List all Jokes
+    // Part 6: Discuss how we might modify Insert a Joke
+    // Part 7: ???
+    // Part 8: Profit!!!
+
     /// <summary>
     /// This class is responsible for all user input and menu code.
     /// </summary>
