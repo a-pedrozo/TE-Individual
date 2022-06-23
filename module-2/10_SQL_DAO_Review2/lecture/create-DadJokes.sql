@@ -1,0 +1,12 @@
+USE master;
+GO
+
+DROP DATABASE IF EXISTS DadJokes;
+GO
+
+CREATE DATABASE DadJokes;
+GO
+
+USE DadJokes;
+GO
+

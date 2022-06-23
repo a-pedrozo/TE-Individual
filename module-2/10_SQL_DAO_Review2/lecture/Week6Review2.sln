@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A84B8F1C-EDA6-4386-B827-5BA3FB204C4C}"
+	ProjectSection(SolutionItems) = preProject
+		create-DadJokes.sql = create-DadJokes.sql
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DadabaseApp", "DadabaseApp\DadabaseApp.csproj", "{353EF25E-48A3-4446-8C26-77E70B5CF9C1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{353EF25E-48A3-4446-8C26-77E70B5CF9C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{353EF25E-48A3-4446-8C26-77E70B5CF9C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{353EF25E-48A3-4446-8C26-77E70B5CF9C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{353EF25E-48A3-4446-8C26-77E70B5CF9C1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7052A929-F94D-4739-BCB3-3E19B134EF77}
+	EndGlobalSection
+EndGlobal
