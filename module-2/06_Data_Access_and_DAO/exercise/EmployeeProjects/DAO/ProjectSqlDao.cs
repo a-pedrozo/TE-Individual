@@ -119,17 +119,14 @@ namespace EmployeeProjects.DAO
             {
                 conn.Open();
 
-                string sql = "DELETE FROM project WHERE project_id = @id";
+                string sql = "DELETE FROM project_employee WHERE project_id = @project_id; DELETE FROM project WHERE project_id = @project_id;";
 
                 SqlCommand command = new SqlCommand(sql, conn);
-                command.Parameters.AddWithValue("id", projectId);
+                command.Parameters.AddWithValue("project_id", projectId);
 
                 int rowsAffected = command.ExecuteNonQuery();
 
-                if (rowsAffected > 0)
-                {
-                    
-                }
+               
             }
 
         }

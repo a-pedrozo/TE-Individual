@@ -30,7 +30,7 @@ namespace EmployeeProjects.Tests.DAO
             TimesheetSqlDao dao = new TimesheetSqlDao(ConnectionString);
 
             Timesheet timesheet = dao.GetTimesheet(4);
-            Assert.AreEqual(4,timesheet.TimesheetId);
+            Assert.AreEqual(4, timesheet.TimesheetId);
         }
 
         [TestMethod]
@@ -38,7 +38,7 @@ namespace EmployeeProjects.Tests.DAO
         {
             //arrrange 
             TimesheetSqlDao dao = new TimesheetSqlDao(ConnectionString);
-            
+
             //act
             Timesheet result = dao.GetTimesheet(0);
             //assert
@@ -54,7 +54,7 @@ namespace EmployeeProjects.Tests.DAO
             //act
             IList<Timesheet> result = dao.GetTimesheetsByEmployeeId(2);
             //assert
-            
+
             Assert.AreEqual(1, result.Count);
         }
 
@@ -84,11 +84,11 @@ namespace EmployeeProjects.Tests.DAO
             timesheet.IsBillable = false;
             timesheet.Description = "doesmanos";
 
-             Timesheet newSheet = dao.CreateTimesheet(timesheet);
+            Timesheet newSheet = dao.CreateTimesheet(timesheet);
 
             //asert
 
-            Assert.AreEqual(5,newSheet.TimesheetId);
+            Assert.AreEqual(5, newSheet.TimesheetId);
 
         }
 
@@ -107,11 +107,10 @@ namespace EmployeeProjects.Tests.DAO
             timesheet.IsBillable = false;
             timesheet.Description = "doesmanos";
 
-            Timesheet newSheet = dao.CreateTimesheet(timesheet);
+            Timesheet createdTimesheet = dao.CreateTimesheet(timesheet);
 
-            //asert
 
-            Assert.AreEqual(5, newSheet.TimesheetId);
+            Assert.AreEqual(5, createdTimesheet.TimesheetId);
 
         }
 
@@ -129,10 +128,11 @@ namespace EmployeeProjects.Tests.DAO
             timesheet.HoursWorked = 6.9m;
             timesheet.IsBillable = false;
             timesheet.Description = "doesmanos";
-
-            Timesheet newSheet = dao.CreateTimesheet(timesheet);
+            
+            
+            Timesheet updatedSheet = dao.CreateTimesheet(timesheet);
             //assert 
-            Assert.AreEqual(5,newSheet.TimesheetId);
+            Assert.AreEqual(5, updatedSheet.TimesheetId);
         }
 
         [TestMethod]
@@ -149,10 +149,10 @@ namespace EmployeeProjects.Tests.DAO
 
 
             // Act
-             dao.DeleteTimesheet(timesheet.TimesheetId);//why wont this work???
+            dao.DeleteTimesheet(timesheet.TimesheetId);//why wont this work???
 
-             //Assert
-               Assert.AreEqual(0, timesheet.TimesheetId);
+            //Assert
+            Assert.AreEqual(0, timesheet.TimesheetId);
         }
 
         [TestMethod]
@@ -162,7 +162,7 @@ namespace EmployeeProjects.Tests.DAO
             TimesheetSqlDao dao = new TimesheetSqlDao(ConnectionString);
 
             //act
-           
+
             Timesheet timesheet = new Timesheet();
             timesheet.EmployeeId = 1;
             timesheet.ProjectId = 1;
@@ -170,11 +170,11 @@ namespace EmployeeProjects.Tests.DAO
             timesheet.HoursWorked = 1.0m;
             timesheet.IsBillable = true;
             timesheet.Description = "timesheet1";
-            decimal timesheet1 = dao.GetBillableHours(1,1);
+            decimal timesheet1 = dao.GetBillableHours(1, 1);
 
             //assert
 
-            Assert.AreEqual(1,timesheet1);
+            Assert.AreEqual(2.5m, timesheet1);
         }
 
         private void AssertTimesheetsMatch(Timesheet expected, Timesheet actual)

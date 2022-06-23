@@ -65,10 +65,10 @@ namespace EmployeeProjects.DAO
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                string sql_query = "SELECT e.last_name, e.first_name FROM employee e WHERE e.first_name = @firstName OR e.last_name = @lastName";
+                string sql_query = "SELECT e.first_name, e.last_name FROM employee e WHERE first_name LIKE @first_name OR last_name LIKE @last_name";
                 SqlCommand command = new SqlCommand(sql_query, conn);
-                command.Parameters.AddWithValue("firstName", firstNameSearch);
-                command.Parameters.AddWithValue("lastName", lastNameSearch);
+                command.Parameters.AddWithValue("first_name", firstNameSearch);
+                command.Parameters.AddWithValue("last_name", lastNameSearch);
 
 
                 SqlDataReader reader = command.ExecuteReader();
@@ -84,7 +84,7 @@ namespace EmployeeProjects.DAO
                     Employee employee = new Employee();
                     employee.FirstName = firstName;
                     employee.LastName = lastName;
-
+                    
 
                     return results;
 
@@ -99,6 +99,22 @@ namespace EmployeeProjects.DAO
 
         public IList<Employee> GetEmployeesByProjectId(int projectId)
         {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string sql = "SELECT e.first_name, e.last_name FROM employee e INNER JOIN project_employee pe ON e.employee_id = pe.employee_id WHERE project_id = @project_id";
+
+                SqlCommand command = new SqlCommand(sql, conn);
+                command.Parameters.AddWithValue("project_id", projectId);
+               
+
+
+                int id = Convert.ToInt32(command.ExecuteScalar());
+
+
+
+            }
             return new List<Employee>();
         }
 
