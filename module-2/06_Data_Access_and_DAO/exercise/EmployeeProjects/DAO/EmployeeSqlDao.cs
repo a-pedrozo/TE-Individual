@@ -84,7 +84,7 @@ namespace EmployeeProjects.DAO
                     Employee employee = new Employee();
                     employee.FirstName = firstName;
                     employee.LastName = lastName;
-                    
+                    results.Add(employee);
 
                     return results;
 
@@ -96,26 +96,40 @@ namespace EmployeeProjects.DAO
 
             }
         }
-
+        //"SELECT e.first_name, e.last_name FROM employee e INNER JOIN project_employee pe ON e.employee_id = pe.employee_id WHERE project_id = @project_id";
         public IList<Employee> GetEmployeesByProjectId(int projectId)
         {
+            List<Employee> result = new List<Employee>();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
 
-                string sql = "SELECT e.first_name, e.last_name FROM employee e INNER JOIN project_employee pe ON e.employee_id = pe.employee_id WHERE project_id = @project_id";
-
-                SqlCommand command = new SqlCommand(sql, conn);
+              
+                string query = "SELECT e.first_name, e.last_name FROM employee e INNER JOIN project_employee pe ON e.employee_id = pe.employee_id WHERE project_id = @project_id";
+                SqlCommand command = new SqlCommand(query, conn);
                 command.Parameters.AddWithValue("project_id", projectId);
-               
 
+                SqlDataReader reader = command.ExecuteReader(); 
 
-                int id = Convert.ToInt32(command.ExecuteScalar());
+                if (reader.Read()) 
+                {
+                    string lastName = Convert.ToString(reader["e.last_name"]);
+                    int id = Convert.ToInt32(reader["project_id"]);
+                    string firstName = Convert.ToString(reader["e.first_name"]);
 
+                    Employee employee = new Employee();
+                    employee.LastName = lastName; 
+                    employee.FirstName = firstName;
+                    result.Add(employee);
 
-
+                
+                    return result; 
+                }
+                else
+                {
+                    return null;
+                }
             }
-            return new List<Employee>();
         }
 
         public void AddEmployeeToProject(int projectId, int employeeId)

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
+using System.Data.SqlClient;
 
 namespace BugTrackerConsoleApp
 {
@@ -18,7 +19,7 @@ namespace BugTrackerConsoleApp
             try
             {
                 // Build the bug manager
-                bool useFileBugManager = true;
+                bool useFileBugManager = false;
                 IBugManager bugManager;
                 if (useFileBugManager)
                 {
@@ -37,6 +38,10 @@ namespace BugTrackerConsoleApp
             {
                 Console.WriteLine(ex.Message);
             }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         // Static methods are still bad, 'mmmkay? 
@@ -46,8 +51,9 @@ namespace BugTrackerConsoleApp
             string connectionString = LoadConnectionString();
 
             // TODO: Create and return a BugDAO
+            BugDAO dao = new BugDAO(connectionString);
 
-            return null;
+            return dao;
         }
 
         private static IBugManager BuildFileBugManager()
