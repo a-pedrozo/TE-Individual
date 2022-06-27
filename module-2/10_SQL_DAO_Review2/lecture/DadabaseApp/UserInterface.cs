@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-namespace BugTrackerConsoleApp
+namespace DadabaseApp
 {
     // Matt's TODO List
 
@@ -21,6 +21,13 @@ namespace BugTrackerConsoleApp
     /// </summary>
     public class UserInterface
     {
+        private JokeDAO jokesDAO;
+
+        public UserInterface(string connectionString)
+        {
+            this.jokesDAO = new JokeDAO(connectionString);
+        }
+
         /// <summary>
         /// Lists main menu options for the user.
         /// </summary>
@@ -53,11 +60,11 @@ namespace BugTrackerConsoleApp
                 switch (input)
                 {
                     case "1": // List Dad Jokes
-                        throw new NotImplementedException();
+                        ShowAllDadJokes();
                         break;
 
                     case "2": // Add a Dad Joke
-                        throw new NotImplementedException();
+                        AddDadJoke();
                         break;
 
                     case "3": // Get Dad Jokes by Dad
@@ -74,6 +81,37 @@ namespace BugTrackerConsoleApp
                         break;
                 }
             }
+        }
+
+        private int AddDadJoke()
+        {
+            Console.WriteLine("What is the joke's setup?");
+            Console.WriteLine();
+            string setup = Console.ReadLine();
+
+            Console.WriteLine("What is the joke's punchline?");
+            Console.WriteLine();
+            string punchline = Console.ReadLine();
+
+            Joke newJoke = new Joke();
+            newJoke.SetUp = setup;
+            newJoke.PunchLine = punchline;
+            newJoke.DateAdded = DateTime.Now;
+
+            int newJokeId = jokesDAO.AddJoke(newJoke);
+
+            Console.WriteLine("joke added! its ID is " + newJokeId);
+            return newJokeId;
+        }
+        private List<Joke> ShowAllDadJokes()
+        {
+            List<Joke> jokes = jokesDAO.GetAllDadJokes();
+
+            foreach (Joke joke in jokes)
+            {
+                Console.WriteLine(joke);
+            }
+            return jokes;
         }
     }
 }

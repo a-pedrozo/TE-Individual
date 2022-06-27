@@ -78,12 +78,25 @@ namespace EmployeeProjects.DAO
                 {
                     string firstName = Convert.ToString(reader["first_name"]);
                     string lastName = Convert.ToString(reader["last_name"]);
+                    //int id = Convert.ToInt32(reader["employee_id"]);
+                    int departmentId = Convert.ToInt32(reader["department_id"]);
+                    DateTime birthday = Convert.ToDateTime(reader["birth_date"]);
+                    DateTime hireDate = Convert.ToDateTime(reader["hire_date"]);
+
+
+
                    
 
 
                     Employee employee = new Employee();
                     employee.FirstName = firstName;
                     employee.LastName = lastName;
+                   // employee.EmployeeId = id;
+                    employee.DepartmentId = departmentId;
+                    employee.BirthDate = birthday;
+                    employee.HireDate = hireDate;
+
+
                     results.Add(employee);
 
                     return results;

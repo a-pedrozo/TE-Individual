@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Data.SqlClient;
 
-namespace BugTrackerConsoleApp
+namespace DadabaseApp
 {
     public class Program
     {
@@ -15,7 +15,7 @@ namespace BugTrackerConsoleApp
                 // TODO: We'll need to do something with this connection string
 
                 // Create and run the user interface
-                UserInterface ui = new UserInterface();
+                UserInterface ui = new UserInterface(connectionString);
                 ui.ShowMainMenu();
             }
             catch (SqlException ex)
