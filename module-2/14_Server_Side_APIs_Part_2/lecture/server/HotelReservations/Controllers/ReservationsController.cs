@@ -48,6 +48,7 @@ namespace HotelReservations.Controllers
 
         // DELETE reservations/{id}
 
+        // If time allows...
         // Let's also add a TeapotController with a GET to get a 418 status code. For science!
     }
 }

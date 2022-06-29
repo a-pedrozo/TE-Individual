@@ -63,7 +63,7 @@ namespace HotelReservations.Dao
             int nextId = 1;
             foreach (Reservation oldReservation in Reservations)
             {
-                if (oldReservation.Id.HasValue && oldReservation.Id > nextId)
+                if (oldReservation.Id.HasValue && oldReservation.Id >= nextId)
                 {
                     nextId = oldReservation.Id.Value + 1;
                 }

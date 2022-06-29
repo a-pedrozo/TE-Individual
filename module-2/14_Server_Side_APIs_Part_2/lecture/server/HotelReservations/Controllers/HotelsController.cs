@@ -12,10 +12,10 @@ namespace HotelReservations.Controllers
         private readonly IHotelDao hotelDao;
         private readonly IReservationDao reservationDao;
 
-        public HotelsController(IHotelDao _hotelDao, IReservationDao _reservationDao)
+        public HotelsController(IHotelDao hotelDao, IReservationDao reservationDao)
         {
-            hotelDao = _hotelDao;
-            reservationDao = _reservationDao;
+            this.hotelDao = hotelDao;
+            this.reservationDao = reservationDao;
         }
 
         [HttpGet("hotels")]
@@ -42,21 +42,14 @@ namespace HotelReservations.Controllers
             List<Hotel> filteredHotels = new List<Hotel>();
 
             List<Hotel> hotels = hotelDao.List();
+
             // return hotels that match state
             foreach (Hotel hotel in hotels)
             {
-                if (city != null)
+                if (city == null || city.ToUpper() == hotel.Address.City.ToUpper())
                 {
-                    // if city was passed we don't care about the state filter
-                    if (hotel.Address.City.ToLower().Equals(city.ToLower()))
-                    {
-                        filteredHotels.Add(hotel);
-                    }
-                }
-                else
-                {
-                    if (hotel.Address.State.ToLower().Equals(state.ToLower()))
-                    {
+                    if (state == null || state.ToUpper() == hotel.Address.State.ToUpper()) 
+                    { 
                         filteredHotels.Add(hotel);
                     }
                 }

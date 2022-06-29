@@ -10,6 +10,11 @@ namespace HotelReservations.Models
         public decimal CostPerNight { get; set; }
         public string CoverImage { get; set; }
 
+        public Hotel()
+        {
+
+        }
+
         public Hotel(int id, string name, Address address, int stars, int rooms, decimal cost, string image)
         {
             Id = id;

@@ -9,6 +9,11 @@ namespace HotelReservations.Models
         public string State { get; set; }
         public string Zip { get; set; }
 
+        public Address()
+        {
+
+        }
+
         public Address(string address, string address2, string city, string state, string zip)
         {
             Id = System.Guid.NewGuid().ToString();

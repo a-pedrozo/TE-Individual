@@ -34,9 +34,14 @@ namespace HotelReservations
             });
             #endregion
 
-            // Dependency Injection configuration ------ (The only part you care about) ------------------------
-            services.AddSingleton<IHotelDao>(sp => new HotelMemoryDao());
-            services.AddSingleton<IReservationDao>(sp => new ReservationMemoryDao());
+            // Dependency Injection configuration ------ (The only scary stuff you care about) ------------------------
+
+            services.AddSingleton<IHotelDao>(ignoreMe => new HotelMemoryDao());
+            services.AddSingleton<IReservationDao>(ignoreMe => new ReservationMemoryDao());
+
+            // Don't worry about "ignoreMe" here. We'll revisit this concept in a few weeks.
+
+            // TODO: What happens if we don't do this?
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
