@@ -2,6 +2,16 @@
 {
     public class Hotel
     {
+        public Hotel(int id)
+        {
+            this.Id = id;
+        }
+
+        public Hotel()  //RestSharp needs a parameterless constructor 
+        {
+
+        }
+        
         public int Id { get; set; }
         public string Name { get; set; }
         public int Stars { get; set; }

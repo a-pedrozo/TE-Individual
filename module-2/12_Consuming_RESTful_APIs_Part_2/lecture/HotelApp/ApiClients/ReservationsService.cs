@@ -9,16 +9,29 @@ namespace HTTP_Web_Services_POST_PUT_DELETE_lecture.ApiClients
         private readonly RestClient client;
 
         public ReservationsService(string base_url)
-        {
+        {   // this base_url is automatically added to the beggining of every request made with this RestClient
             this.client = new RestClient(base_url); // Looks like https://te-mockauction-server.azurewebsites.net/students/42/
         }
 
         public List<Hotel> GetHotels()
         {
-            RestRequest request = new RestRequest("hotels");
+            RestRequest request = new RestRequest("hotels"); // baseUrl + "hotels" 
 
             IRestResponse<List<Hotel>> response = client.Get<List<Hotel>>(request);
 
+            // what happens if we can't connect?
+            if (response.ResponseStatus != ResponseStatus.Completed)
+            {
+                Console.WriteLine("Could not connect to the server to get hotels");
+                return null;
+            }
+
+            //what happens if we get a 400 or 500 series error code from the server?
+            if (!response.IsSuccessful)
+            {
+                Console.WriteLine("Error communicating with server to get hotels: " + response.StatusCode);
+                return null;
+            }
             return response.Data;
         }
 
@@ -42,22 +55,83 @@ namespace HTTP_Web_Services_POST_PUT_DELETE_lecture.ApiClients
 
         public Reservation GetReservation(int reservationId)
         {
-            throw new NotImplementedException();
+            // GET https://te-mockauction-server.azurewebsites.net/students/01874/reservations/2
+            RestRequest request = new RestRequest("reservations/" + reservationId);
+
+            IRestResponse<Reservation> response = client.Get<Reservation>(request);
+
+            return response.Data; // Data is set by deserializing the response body JSON into a C# object
         }
 
         public Reservation AddReservation(Reservation newReservation)
         {
-            throw new NotImplementedException();
+            // POST to reservations with a Body JSON for the reservation 
+            RestRequest request = new RestRequest("reservations");
+
+            //Next we need to set the JSON body of the request
+            request.AddJsonBody(newReservation); // Serialize newReservation to JSon and put it in the request body
+
+            //Make the request 
+            IRestResponse<Reservation> response = client.Post<Reservation>(request);
+
+            if (response.ResponseStatus != ResponseStatus.Completed)
+            {
+                Console.WriteLine("Could not communicate with server: please try again.");
+                return null;
+            }
+            
+
+            if (!response.IsSuccessful)
+            {
+                Console.WriteLine("Could not make reservation: " + response.StatusDescription);
+                return null;
+            }
+            return response.Data;
         }
 
         public Reservation UpdateReservation(Reservation reservationToUpdate)
         {
-            throw new NotImplementedException();
+            // POST to reservations with a Body JSON for the reservation 
+            RestRequest request = new RestRequest("reservations/" + reservationToUpdate.Id);
+
+            //Next we need to set the JSON body of the request
+            request.AddJsonBody(reservationToUpdate); // Serialize newReservation to JSon and put it in the request body
+
+            //Make the request 
+            IRestResponse<Reservation> response = client.Put<Reservation>(request);
+
+            if (response.ResponseStatus != ResponseStatus.Completed) 
+            {
+                Console.WriteLine("Could not communicate with server: please try again.");
+                return null;
+            }
+
+
+            if (!response.IsSuccessful) // status code NOT 200-299
+            {
+                Console.WriteLine("Could not update reservation: " + response.StatusDescription);
+                return null;
+            }
+            return response.Data;
         }
 
         public void DeleteReservation(int reservationId)
         {
-            throw new NotImplementedException();
+            RestRequest request = new RestRequest("reservations/" + reservationId);
+
+            // Since this method does not return anything, does not need to use IRestResponse<T>
+            IRestResponse response = client.Delete(request);
+
+            if(response.ResponseStatus != ResponseStatus.Completed)
+            {
+                Console.WriteLine("Couldnt not connect to server, please try again");
+                return;
+            }
+            if (!response.IsSuccessful)
+            {
+                Console.WriteLine("Could not delete reservation: " + response.StatusDescription);
+                return;
+            }
         }
     }
 }
