@@ -1,0 +1,77 @@
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using HotelReservations.Dao;
+
+namespace HotelReservations
+{
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            #region Scary Stuff goes here
+            services.AddControllers();
+
+            // Adds swagger documentation file support. See https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-3.1&tabs=visual-studio for more details
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
+                {
+                    Version = "v1",
+                    Title = ".NET Purple Hotel Reservations API",
+                    Description = "We swear there are no bedbugs"
+                });
+            });
+            #endregion
+
+            // Dependency Injection configuration ------ (The only scary stuff you care about) ------------------------
+
+            services.AddSingleton<IHotelDao>(ignoreMe => new HotelMemoryDao());
+            services.AddSingleton<IReservationDao>(ignoreMe => new ReservationMemoryDao());
+
+            // Don't worry about "ignoreMe" here. We'll revisit this concept in a few weeks.
+
+            // TODO: What happens if we don't do this?
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            #region More Scary stuff you don't care about
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            // Adds swagger documentation file. See https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-3.1&tabs=visual-studio for more details
+            app.UseSwagger();
+            app.UseSwaggerUI(s => {
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                s.RoutePrefix = string.Empty;
+            });
+
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+            #endregion
+        }
+    }
+}
