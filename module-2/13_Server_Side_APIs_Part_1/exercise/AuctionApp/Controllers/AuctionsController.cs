@@ -24,27 +24,27 @@ namespace AuctionApp.Controllers
         }
 
         [HttpGet("auctions")]
-        public List<Auction> ListAllAuctions(string title_like = "", double currentBid_lte = 0)
+        public List<Auction> ListAuctions(string title_like = "", double currentBid_lte = 0)
         {
-            List<Auction> auctions = dao.List(); 
+            List<Auction> auctions = dao.List();
 
-            List<Auction> results = dao.SearchByTitle(title_like);
-            
+            List<Auction> results = dao.SearchByTitleAndPrice(title_like, currentBid_lte);
+
 
             foreach (Auction auction in auctions)
             {
                 if (title_like == null || auction.Title == title_like)
                 {
-                    
-                    results.Add(auction);
-                    return results;
+                    if (currentBid_lte == 0 || auction.CurrentBid == currentBid_lte)
+                    {
+                        results.Add(auction);
+                        return results;
+
+                    }
                 }
-                else
-                {
-                    return dao.List();
-                }
+
             }
-            return null;
+            return results;
         }
 
         [HttpGet("auctions/{auctionId}")]
