@@ -13,8 +13,7 @@ namespace DadabaseApp
         public int Id { get; set; }
 
         public DateTime DateAdded { get; set; }
-
-        public int DadId { get; set; } // NOTE: int? might appropriate since DadId may be null
+        public DateTime DateModified { get; set; }
 
         public string DadName { get; set; }
     }

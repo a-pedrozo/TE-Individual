@@ -5,8 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Controllers\.gitkeep" />
+    <None Remove="DAOs\.gitkeep" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="DAOs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
 
