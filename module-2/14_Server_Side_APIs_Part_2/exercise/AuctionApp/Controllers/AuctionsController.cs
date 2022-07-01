@@ -53,17 +53,18 @@ namespace AuctionApp.Controllers
 
             return Created("/auction/" + newAuction.Id, newAuction);
             
-            //return dao.Create(auction); // store this insto variable, then return variable, look for Created method in todays lecutre
+           
         }
 
         [HttpPut("{id}")]
         public ActionResult<Auction> Update(Auction auction, int id)
         {
-            if (id != auction.Id)
+            Auction updated = dao.Update(id, auction);
+           
+            if (updated == null)
             {
                 return NotFound();
             }
-            Auction updated = dao.Update(id, auction);
             return Ok(updated);
         }
 
@@ -78,7 +79,7 @@ namespace AuctionApp.Controllers
             }
             else
             {
-                return NotFound("Could not find reservation with id " + id);
+                return NotFound();
             }
         }
     }

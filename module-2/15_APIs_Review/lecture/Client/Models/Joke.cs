@@ -6,6 +6,9 @@ namespace DadabaseApp
 {
     public class Joke
     {
+        public Joke()
+        {
+        }
         public Joke(string setup, string punchline)
         {
             this.Setup = setup;
