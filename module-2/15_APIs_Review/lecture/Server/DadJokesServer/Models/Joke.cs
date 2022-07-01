@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DadabaseApp
+namespace DadJokesServer.Models
 {
     public class Joke
     {
@@ -13,8 +13,9 @@ namespace DadabaseApp
         public int Id { get; set; }
 
         public DateTime DateAdded { get; set; }
-        public DateTime DateModified { get; set; }
 
         public string DadName { get; set; }
+
+        public int? DadId { get; set; }
     }
 }
