@@ -21,7 +21,8 @@ namespace HotelReservations.Controllers
         [HttpGet("hotels")]
         public ActionResult ListHotels()
         {
-            return Ok(hotelDao.List());
+            List<Hotel> hotels = hotelDao.List();
+            return Ok(hotels); // 200 ok stats
         }
 
         [HttpGet("hotels/{id}")]
@@ -30,8 +31,16 @@ namespace HotelReservations.Controllers
             Hotel hotel = hotelDao.Get(id);
 
             // TODO: What if hotel is null? How do we return a 404?
-
+            if (hotel == null)
+            {
+                return NotFound("Could not find hotel " + id);
+            }
             // TODO: What happens if we get an exception here?
+            if (hotel.Address.State != "OH")
+            {
+                int divisor = 0;
+                int answer = 42 / divisor; // this will break
+            }
 
             return Ok(hotel);
         }
@@ -62,9 +71,16 @@ namespace HotelReservations.Controllers
         public ActionResult ListReservationsByHotel(int hotelId)
         {
             // TODO: What if the ID is negative?
-
+            if (hotelId <= 0)
+            {
+                return BadRequest("hotelId must be postitive but was " + hotelId);
+            }
             // TODO: What if they give us a hotel that doesn't exist?
-
+            Hotel hotel = hotelDao.Get(hotelId);
+            if (hotel == null)
+            {
+                return NotFound("Could not find hotel " + hotelId);
+            }
             return Ok(reservationDao.FindByHotel(hotelId));
         }
     }

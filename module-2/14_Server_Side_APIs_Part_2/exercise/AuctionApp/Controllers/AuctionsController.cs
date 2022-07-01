@@ -48,7 +48,38 @@ namespace AuctionApp.Controllers
         [HttpPost]
         public ActionResult<Auction> Create(Auction auction)
         {
-            return dao.Create(auction);
+            
+            Auction newAuction = dao.Create(auction);
+
+            return Created("/auction/" + newAuction.Id, newAuction);
+            
+            //return dao.Create(auction); // store this insto variable, then return variable, look for Created method in todays lecutre
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<Auction> Update(Auction auction, int id)
+        {
+            if (id != auction.Id)
+            {
+                return NotFound();
+            }
+            Auction updated = dao.Update(id, auction);
+            return Ok(updated);
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<Auction> Delete(int id)
+        {
+            bool deleted = dao.Delete(id);
+
+            if (deleted)
+            {
+                return NoContent();
+            }
+            else
+            {
+                return NotFound("Could not find reservation with id " + id);
+            }
         }
     }
 }

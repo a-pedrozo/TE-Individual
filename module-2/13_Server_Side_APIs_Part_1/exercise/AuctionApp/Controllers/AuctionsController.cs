@@ -5,7 +5,7 @@ using AuctionApp.DAO;
 
 namespace AuctionApp.Controllers
 {
-    [Route("/")]
+    [Route("[controller]")]
     [ApiController]
     public class AuctionsController : ControllerBase
     {
@@ -23,7 +23,7 @@ namespace AuctionApp.Controllers
             }
         }
 
-        [HttpGet("auctions")]
+        [HttpGet]
         public List<Auction> ListAuctions(string title_like = "", double currentBid_lte = 0)
         {
             List<Auction> auctions = dao.List();
@@ -31,8 +31,8 @@ namespace AuctionApp.Controllers
             List<Auction> results = dao.SearchByTitleAndPrice(title_like, currentBid_lte);
 
 
-            foreach (Auction auction in auctions)
-            {
+           
+            
                 if (title_like == null || auction.Title == title_like)
                 {
                     if (currentBid_lte == 0 || auction.CurrentBid == currentBid_lte)
@@ -43,18 +43,18 @@ namespace AuctionApp.Controllers
                     }
                 }
 
-            }
+            
             return results;
         }
 
-        [HttpGet("auctions/{auctionId}")]
+        [HttpGet("{auctionId}")]
         public Auction GetAuctionById(int auctionId)
         {
             Auction auction = dao.Get(auctionId);
             return auction;
         }
 
-        [HttpPost("auctions")]
+        [HttpPost]
         public Auction CreateNewAuction([FromBody] Auction newAuction)
         {
             return dao.Create(newAuction);
