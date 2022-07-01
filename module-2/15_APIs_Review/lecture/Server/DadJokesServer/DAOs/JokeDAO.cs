@@ -6,7 +6,7 @@ using DadJokesServer.Models;
 
 namespace DadJokesServer.DAOs
 {
-    public class JokeDAO
+    public class JokeDAO : IJokeDAO
     {
         private readonly string connectionString;
 

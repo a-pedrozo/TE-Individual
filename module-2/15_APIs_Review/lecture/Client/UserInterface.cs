@@ -154,7 +154,7 @@ namespace DadabaseApp
 
         private Joke AddDadJoke()
         {
-            Joke newJoke = new Joke();
+            Joke newJoke = new Joke("", "");
             newJoke.Id = -1;
             newJoke.DateAdded = DateTime.Now;
 
@@ -185,7 +185,7 @@ namespace DadabaseApp
             Console.WriteLine();
 
             newJoke.Setup = setup;
-            newJoke.Punchline = punchline;
+            newJoke.PunchLine = punchline;
         }
 
         private List<Joke> ShowAllDadJokes()
@@ -195,7 +195,7 @@ namespace DadabaseApp
             foreach (Joke joke in jokes)
             {
                 Console.WriteLine(joke.Setup);
-                Console.WriteLine(joke.Punchline);
+                Console.WriteLine(joke.PunchLine);
                 Console.WriteLine();
             }
 

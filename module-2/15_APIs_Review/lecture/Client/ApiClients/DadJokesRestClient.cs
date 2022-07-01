@@ -17,49 +17,27 @@ namespace DadabaseClient.ApiClients
 
         public List<Joke> GetAllJokes()
         {
-            RestRequest request = new RestRequest("api/jokes");
-
-            IRestResponse<List<Joke>> response = client.Get<List<Joke>>(request);
-
-            return response.Data;
+            throw new NotImplementedException();
         }
 
         public Joke CreateJoke(Joke newJoke)
         {
-            RestRequest request = new RestRequest("api/jokes");
-            request.AddJsonBody(newJoke);
-
-            IRestResponse<Joke> response = client.Post<Joke>(request);
-
-            return response.Data;
+            throw new NotImplementedException();
         }
 
         public Joke GetJokeById(int jokeId)
         {
-            RestRequest request = new RestRequest("api/jokes/" + jokeId);
-
-            IRestResponse<Joke> response = client.Get<Joke>(request);
-
-            return response.Data;
+            throw new NotImplementedException();
         }
 
         public Joke UpdateJoke(Joke oldJoke)
         {
-            RestRequest request = new RestRequest("api/jokes/");
-            request.AddJsonBody(oldJoke);
-
-            IRestResponse<Joke> response = client.Put<Joke>(request);
-
-            return response.Data;
+            throw new NotImplementedException();
         }
 
         public bool DeleteJokeById(int jokeId)
         {
-            RestRequest request = new RestRequest("api/jokes/" + jokeId);
-
-            IRestResponse response = client.Delete(request);
-
-            return response.IsSuccessful;
+            throw new NotImplementedException();
         }
     }
 }

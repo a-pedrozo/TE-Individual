@@ -36,7 +36,6 @@ namespace DadJokesServer
             // DEPENDENCY INJECTION
             string connectionString = Configuration.GetConnectionString("DadJokes");
             services.AddSingleton<IDadDAO>(ignore => new DadDAO(connectionString));
-            services.AddSingleton<JokeDAO>(ignore => new JokeDAO(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
