@@ -53,7 +53,7 @@ VALUES
 ('As a programmer, sometimes I feel a void', 'And I know I’ve reached the point of no return', 3000),
 ('Why does Yoda’s code always crash?', 'Because there is no try.', 3000),
 ('Why did the functions stop calling each other?', 'Because they had constant arguments (or parameters)', 3001),
-('My wife said I was immature.', 'So I told her to get out of my fort!', 3000),
+('My spouse said I was immature.', 'So I told them to get out of my fort!', 3000),
 ('What concert is just 45 cents?', '50 cent featuring Nickelback', NULL),
 ('Why don’t bachelors like Git?', 'They''re afraid to commit.', NULL),
 ('I was having a hard time understanding source control...','But now I''m starting to git it.', 3001)
