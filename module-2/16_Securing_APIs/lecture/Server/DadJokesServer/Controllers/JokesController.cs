@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DadJokesServer.DAOs;
 using DadJokesServer.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DadJokesServer.Controllers
 {
@@ -20,6 +21,7 @@ namespace DadJokesServer.Controllers
             this.jokeDAO = jokeDAO;
         }
 
+        [AllowAnonymous]
         [HttpGet] // GET Jokes
         public ActionResult GetAllJokes()
         {
@@ -28,6 +30,7 @@ namespace DadJokesServer.Controllers
             return Ok(jokes);
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public ActionResult GetJoke(int id)
         {
@@ -41,6 +44,7 @@ namespace DadJokesServer.Controllers
             return Ok(joke);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult CreateJoke(Joke joke)
         {
@@ -49,6 +53,7 @@ namespace DadJokesServer.Controllers
             return Ok(createdJoke); // or Created("jokes/" + createdJoke.Id, createdJoke);
         }
 
+        [Authorize]
         [HttpPut("{jokeId}")]
         public ActionResult UpdateJoke(int jokeId, [FromBody] Joke joke)
         {
@@ -67,6 +72,7 @@ namespace DadJokesServer.Controllers
             return Ok(updated);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public ActionResult DeleteAJoke(int id)
         {

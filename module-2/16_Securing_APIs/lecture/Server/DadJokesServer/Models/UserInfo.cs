@@ -1,9 +1,10 @@
 ﻿namespace DadJokesServer.Models
 {
     /// <summary>
-    /// Model to return upon successful login
+    /// Model to return upon successful login.
+    /// This does NOT contain any sensitive information such as salt or hash.
     /// </summary>
-    public class NonSensitiveUser
+    public class UserInfo
     {
         public int UserId { get; set; }
         public string Username { get; set; }

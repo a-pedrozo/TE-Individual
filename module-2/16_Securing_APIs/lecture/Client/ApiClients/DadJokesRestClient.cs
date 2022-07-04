@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using DadabaseApp;
+using DadabaseApp.Models;
 using RestSharp;
 
 namespace DadabaseClient.ApiClients

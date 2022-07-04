@@ -1,11 +1,16 @@
-﻿namespace DadJokesServer.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DadJokesServer.Models
 {
     /// <summary>
     /// Model to accept login parameters
     /// </summary>
-    public class LoginUser
+    public class LoginInfo
     {
+        [Required]
         public string Username { get; set; }
+
+        [Required]
         public string Password { get; set; }
     }
 }

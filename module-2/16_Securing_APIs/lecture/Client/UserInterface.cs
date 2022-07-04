@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using DadabaseClient.ApiClients;
+using DadabaseApp.Models;
 
 namespace DadabaseApp
 {

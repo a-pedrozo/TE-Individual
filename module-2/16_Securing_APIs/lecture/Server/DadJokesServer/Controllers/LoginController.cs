@@ -31,7 +31,7 @@ namespace DadJokesServer.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Authenticate(LoginUser userParam)
+        public IActionResult Authenticate(LoginInfo userParam)
         {
             // Default to bad username/password message
             IActionResult result = BadRequest(new { message = "Username or password is incorrect" });
@@ -46,7 +46,7 @@ namespace DadJokesServer.Controllers
                 string token = tokenGenerator.GenerateToken(user.Id, user.Username/*, user.Role*/);
 
                 // Create a user object to return to the client
-                NonSensitiveUser retUser = new NonSensitiveUser();
+                UserInfo retUser = new UserInfo();
                 retUser.UserId = user.Id;
                 retUser.Username = user.Username;
                 retUser.Role = user.Role;
@@ -61,7 +61,7 @@ namespace DadJokesServer.Controllers
 
         [HttpPost("register")]
         [AllowAnonymous]
-        public IActionResult Register(LoginUser userParam)
+        public IActionResult Register(LoginInfo userParam)
         {
             IActionResult result;
 
