@@ -71,7 +71,8 @@ namespace DadJokesServer.Controllers
                 return Conflict(new { message = "Username already taken. Please choose a different username." });
             }
 
-            User user = userDAO.AddUser(userParam.Username, userParam.Password);
+            string role = "User";
+            User user = userDAO.AddUser(userParam.Username, userParam.Password, role);
             if (user != null)
             {
                 result = Created(user.Username, null); //values aren't read on client

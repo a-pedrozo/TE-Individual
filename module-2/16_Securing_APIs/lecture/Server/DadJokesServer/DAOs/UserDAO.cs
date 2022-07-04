@@ -62,7 +62,7 @@ namespace DadJokesServer.DAOs
             return returnUsers;
         }
 
-        public User AddUser(string username, string password)
+        public User AddUser(string username, string password, string role)
         {
             PasswordHasher passwordHasher = new PasswordHasher();
             PasswordHash hash = passwordHasher.ComputeHash(password);
@@ -71,18 +71,11 @@ namespace DadJokesServer.DAOs
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO users (username, password_hash, salt) VALUES (@username, @password_hash, @salt)", conn);
+                SqlCommand cmd = new SqlCommand("INSERT INTO users (username, password_hash, salt, role) VALUES (@username, @password_hash, @salt, @role)", conn);
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@password_hash", hash.Password);
                 cmd.Parameters.AddWithValue("@salt", hash.Salt);
-                cmd.ExecuteNonQuery();
-
-                cmd = new SqlCommand("SELECT @@IDENTITY", conn);
-                int userId = Convert.ToInt32(cmd.ExecuteScalar());
-
-                cmd = new SqlCommand("INSERT INTO accounts (user_id, balance) VALUES (@userid, @startBalance)", conn);
-                cmd.Parameters.AddWithValue("@userid", userId);
-                cmd.Parameters.AddWithValue("@startBalance", startingBalance);
+                cmd.Parameters.AddWithValue("@role", role);
                 cmd.ExecuteNonQuery();
             }
 
