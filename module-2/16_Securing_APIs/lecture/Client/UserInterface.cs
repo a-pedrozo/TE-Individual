@@ -144,6 +144,7 @@ namespace DadabaseApp
                 string jwt = loggedInUser.Token;
 
                 Console.WriteLine("Successfully logged in with JWT of " + jwt);
+
                 // TODO: tell the jokesClient we're authenticated with a valid JWT
             }
         }
@@ -168,7 +169,7 @@ namespace DadabaseApp
 
                 if (oldJoke == null)
                 {
-                    Console.WriteLine("That joke could not be found.");
+                    Console.WriteLine("Could not update the joke.");
                     return;
                 }
 
@@ -223,7 +224,7 @@ namespace DadabaseApp
                 }
                 else 
                 {
-                    Console.WriteLine("That joke could not be found.");
+                    Console.WriteLine("Could not delete the joke.");
                 }
             }
             catch (FormatException)

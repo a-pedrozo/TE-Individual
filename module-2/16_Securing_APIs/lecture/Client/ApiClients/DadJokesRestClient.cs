@@ -16,14 +16,6 @@ namespace DadabaseClient.ApiClients
             this.client = new RestClient("https://localhost:44301/"); // ASP .NET is running on this port
         }
 
-        public bool HasAuthToken
-        {
-            get
-            {
-                return false; // TODO: Return true if one is present
-            }
-        }
-
         public List<Joke> GetAllJokes()
         {
             RestRequest request = new RestRequest("jokes");
@@ -100,6 +92,7 @@ namespace DadabaseClient.ApiClients
         public Joke UpdateJoke(Joke oldJoke)
         {
             RestRequest request = new RestRequest("jokes/" + oldJoke.Id);
+
             request.AddJsonBody(oldJoke);
 
             IRestResponse<Joke> response = client.Put<Joke>(request);
@@ -144,5 +137,14 @@ namespace DadabaseClient.ApiClients
 
             return response.IsSuccessful;
         }
+
+        public bool HasAuthToken
+        {
+            get
+            {
+                return false; // TODO: Return true if one is present
+            }
+        }
+
     }
 }

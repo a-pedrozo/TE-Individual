@@ -30,11 +30,10 @@ namespace DadJokesServer.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public IActionResult Authenticate(LoginInfo userParam)
         {
             // Default to bad username/password message
-            IActionResult result = BadRequest(new { message = "Username or password is incorrect" });
+            IActionResult result = BadRequest("Username or password is incorrect");
 
             // Get the user by username
             User user = userDAO.GetUser(userParam.Username);
@@ -60,7 +59,6 @@ namespace DadJokesServer.Controllers
         }
 
         [HttpPost("register")]
-        [AllowAnonymous]
         public IActionResult Register(LoginInfo userParam)
         {
             IActionResult result;
@@ -68,7 +66,7 @@ namespace DadJokesServer.Controllers
             User existingUser = userDAO.GetUser(userParam.Username);
             if (existingUser != null)
             {
-                return Conflict(new { message = "Username already taken. Please choose a different username." });
+                return Conflict("Username already taken. Please choose a different username.");
             }
 
             string role = "User";
@@ -79,7 +77,7 @@ namespace DadJokesServer.Controllers
             }
             else
             {
-                result = BadRequest(new { message = "An error occurred and user was not created." });
+                result = BadRequest("An error occurred and user was not created.");
             }
 
             return result;

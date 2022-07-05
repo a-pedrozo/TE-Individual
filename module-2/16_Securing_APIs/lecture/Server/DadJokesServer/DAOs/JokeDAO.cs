@@ -21,12 +21,13 @@ namespace DadJokesServer.DAOs
             {
                 conn.Open();
 
-                const string sql = "INSERT INTO Jokes (setup, punchline) " +
-                    "VALUES (@setup, @punchline); SELECT @@IDENTITY";
+                const string sql = "INSERT INTO Jokes (setup, punchline, user_id) " +
+                    "VALUES (@setup, @punchline, @userId); SELECT @@IDENTITY";
 
                 SqlCommand command = new SqlCommand(sql, conn);
                 command.Parameters.AddWithValue("@setup", newJoke.Setup);
                 command.Parameters.AddWithValue("@punchline", newJoke.Punchline);
+                command.Parameters.AddWithValue("@userId", newJoke.UserId);
 
                 int id = Convert.ToInt32(command.ExecuteScalar());
 
