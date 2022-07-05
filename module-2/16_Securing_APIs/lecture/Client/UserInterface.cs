@@ -12,7 +12,8 @@ namespace DadabaseApp
     /// </summary>
     public class UserInterface
     {
-        private DadJokesRestClient apiClient = new DadJokesRestClient();
+        private DadJokesRestClient jokesClient = new DadJokesRestClient();
+        private AuthenticationRestClient loginClient = new AuthenticationRestClient();
 
         /// <summary>
         /// Lists main menu options for the user.
@@ -24,21 +25,30 @@ namespace DadabaseApp
             Console.WriteLine();
             Console.WriteLine("Get it? It's funny because it\'s a database of dad jokes.");
             Console.WriteLine("You\'ll laugh later.");
-            Console.WriteLine();
 
             bool shouldQuit = false;
 
             while (!shouldQuit)
             {
-
+                Console.WriteLine();
                 Console.WriteLine("What do you want to do?");
                 Console.WriteLine();
 
-                Console.WriteLine("1) Get Dad Jokes");
-                Console.WriteLine("2) Add a Dad Joke");
-                Console.WriteLine("3) Update a Dad Joke");
-                Console.WriteLine("4) Delete a Dad Joke");
-                Console.WriteLine("5) Quit");
+                if (jokesClient.HasAuthToken)
+                {
+                    Console.WriteLine("1) Log Out");
+                }
+                else
+                {
+                    Console.WriteLine("1) Log In");
+                }
+
+                Console.WriteLine("2) Register");
+                Console.WriteLine("3) Get Dad Jokes");
+                Console.WriteLine("4) Add a Dad Joke");
+                Console.WriteLine("5) Update a Dad Joke");
+                Console.WriteLine("6) Delete a Dad Joke");
+                Console.WriteLine("7) Quit");
                 Console.WriteLine();
 
                 string input = Console.ReadLine();
@@ -46,23 +56,38 @@ namespace DadabaseApp
 
                 switch (input)
                 {
-                    case "1": // List Dad Jokes
+                    case "1": // Log In / Log Out
+                        if (jokesClient.HasAuthToken)
+                        {
+                            LogOut();
+                        } 
+                        else
+                        {
+                            LogIn();
+                        }
+                        break;
+
+                    case "2": // Register
+                        Register();
+                        break;
+
+                    case "3": // List Dad Jokes
                         ShowAllDadJokes();
                         break;
 
-                    case "2": // Add a Dad Joke
+                    case "4": // Add a Dad Joke
                         AddDadJoke();
                         break;
 
-                    case "3": // Update a Dad Joke
+                    case "5": // Update a Dad Joke
                         UpdateDadJoke();
                         break;
 
-                    case "4": // Delete a Dad Joke
+                    case "6": // Delete a Dad Joke
                         DeleteDadJoke();
                         break;
 
-                    case "5": // Quit
+                    case "7": // Quit
                         shouldQuit = true;
                         Console.WriteLine("Have fun telling dad jokes!");
                         break;
@@ -72,6 +97,60 @@ namespace DadabaseApp
                         break;
                 }
             }
+        }
+
+
+        private void Register()
+        {
+            Console.WriteLine("What is your username?");
+            string username = Console.ReadLine();
+
+            Console.WriteLine();
+            Console.WriteLine("What is your password?");
+            string password = Console.ReadLine();
+
+            Console.WriteLine();
+
+            if (loginClient.Register(username, password))
+            {
+                Console.WriteLine("You are now registered. Please log in using the new user to access all features.");
+            }
+            else
+            {
+                Console.WriteLine("Unable to register a new user");
+            }
+        }
+
+
+        private void LogIn()
+        {
+            Console.WriteLine("What is your username?");
+            string username = Console.ReadLine();
+
+            Console.WriteLine();
+            Console.WriteLine("What is your password?");
+            string password = Console.ReadLine();
+
+            Console.WriteLine();
+
+            UserInfo loggedInUser = loginClient.Login(username, password);
+
+            if (loggedInUser == null)
+            {
+                Console.WriteLine("Could not log in");
+            }
+            else
+            {
+                string jwt = loggedInUser.Token;
+
+                Console.WriteLine("Successfully logged in with JWT of " + jwt);
+                // TODO: tell the jokesClient we're authenticated with a valid JWT
+            }
+        }
+
+        private void LogOut()
+        {
+            // TODO: tell the jokesClient we're no longer authenticated
         }
 
         private void UpdateDadJoke()
@@ -85,7 +164,7 @@ namespace DadabaseApp
             {
                 int jokeId = int.Parse(jokeIdStr);
 
-                Joke oldJoke = apiClient.GetJokeById(jokeId);
+                Joke oldJoke = jokesClient.GetJokeById(jokeId);
 
                 if (oldJoke == null)
                 {
@@ -95,7 +174,7 @@ namespace DadabaseApp
 
                 SetJokeProperties(oldJoke);
 
-                Joke newJoke = apiClient.UpdateJoke(oldJoke);
+                Joke newJoke = jokesClient.UpdateJoke(oldJoke);
 
                 if (newJoke == null)
                 {
@@ -114,7 +193,7 @@ namespace DadabaseApp
 
         private void DisplayJokesWithIds()
         {
-            List<Joke> jokes = apiClient.GetAllJokes();
+            List<Joke> jokes = jokesClient.GetAllJokes();
 
             // Display all Jokes with their IDs
             foreach (Joke joke in jokes)
@@ -136,7 +215,7 @@ namespace DadabaseApp
             {
                 int jokeId = int.Parse(jokeIdStr);
 
-                bool deleted = apiClient.DeleteJokeById(jokeId);
+                bool deleted = jokesClient.DeleteJokeById(jokeId);
 
                 if (deleted)
                 {
@@ -161,7 +240,7 @@ namespace DadabaseApp
 
             SetJokeProperties(newJoke);
 
-            newJoke = apiClient.CreateJoke(newJoke);
+            newJoke = jokesClient.CreateJoke(newJoke);
 
             if (newJoke == null)
             {
@@ -191,7 +270,7 @@ namespace DadabaseApp
 
         private List<Joke> ShowAllDadJokes()
         {
-            List<Joke> jokes = apiClient.GetAllJokes();
+            List<Joke> jokes = jokesClient.GetAllJokes();
 
             foreach (Joke joke in jokes)
             {
