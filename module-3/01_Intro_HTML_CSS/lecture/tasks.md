@@ -1,25 +1,19 @@
 We need to make sure we cover the following:
 
-- [x] Headers (h1, h2, h3, ...)
-- [x] Strong
-- [x] Emphasis
-- [x] Quotes (q and blockquote)
-- [x] Semantic HTML: main, footer, header, section, article, aside, nav
+- [ ] Headers (h1, h2, h3, ...)
+- [ ] Images and alt tags
+- [ ] Semantic HTML: main, footer, header, section, article, aside, nav, blockquote
 
-- [x] Images and alt tags
+- [ ] Ordered Lists, Unordered Lists, and List Items
+- [ ] Tables, Table Headers, Table Rows, and Table Datas
 
-- [x] Ordered Lists, Unordered Lists, and List Items
-- [x] Tables, Table Headers, Table Rows, and Table Datas
+- [ ] Multiple Pages
+- [ ] Hyperlinks
 
-- [x] Multiple Pages
-- [x] Hyperlinks
+- [ ] CSS
+- [ ] CSS Files + link tag with rel and href
 
-- [x] Forms, Inputs, Actions, and Methods
-
-- [x] CSS
-- [x] CSS Files + link tag with rel and href
-- [x] Color
-- [x] Background Color
+- [ ] Forms, Inputs, Actions, and Methods
 
 Tech Elevator Colors for Reference:
 
