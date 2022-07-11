@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Tribute to Bees</title>
+    <link href="site.css" rel="stylesheet" />
+    <style>
+        /* This is a selector
+           This sets all "p" tags to have color & bg color */
+        p {
+            color: yellow;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <span>Helpful navigation resources</span>
+        <nav>
+            <ul>
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Asian_giant_hornet">
+                        Wikipedia Bees Article
+                    </a>
+                </li>
+                <li>
+                    <a href="test.html">View Test Page</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Bees are great, y'all</h1>
+
+    <img alt="A bee on a flower with a green background"
+         src="assets/Images/bee.jpg"
+         style="width: 400px;"> <!-- Inline style -->
+
+    <section>
+        <h2 id="whyBees">Why I like bees</h2>
+        <p>
+            Bees are cute and nifty - <em>now that they stopped stinging me all the time</em>, like they did when I was
+            a kid.
+        </p>
+        <p style="color: magenta;">
+            Not that I'm bitter about being stung alot.
+        </p>
+    </section>
+
+    <section>
+        <h2>Types of Bees</h2>
+        <p>These are the types of bees that I can remember.</p>
+        <ul>
+            <!-- This is an unordered list -->
+            <li>Bumblebee</li>
+            <li>Hornet</li>
+            <li>Murder Hornet</li>
+            <li>Wasp</li>
+            <li>Honeybee</li>
+        </ul>
+        <!-- Table: type of bee, country of origin, population -->
+        <table>
+            <thead> <!-- This is the header of my table -->
+                <tr> <!-- The header row -->
+                    <th> <!-- A header cell in the table-->
+                        Type
+                    </th>
+                    <th>
+                        Country of Origin
+                    </th>
+                    <th>
+                        Population
+                    </th>
+                </tr>
+            </thead>
+            <tbody> <!-- Main data of the table -->
+                <tr> <!-- A data row-->
+                    <td> <!-- Table Data (a cell in the table) -->
+                        Honeybee
+                    </td>
+                    <td>
+                        Spain
+                    </td>
+                    <td>
+                        12
+                    </td>
+                </tr>
+                <tr> <!-- A data row-->
+                    <td> <!-- Table Data (a cell in the table) -->
+                        Murder Hornet
+                    </td>
+                    <td>
+                        Mongolia
+                    </td>
+                    <td>
+                        17,000
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Quotes about bees</h2>
+
+        <blockquote class="highlighted">
+            Bees are coming! <cite>- Oprah</cite>
+        </blockquote>
+
+        <blockquote>
+            Bzzzzt <cite>- Katie Kroell</cite>
+        </blockquote>
+
+        <blockquote>
+            The bee is domesticated but not tamed. <cite>- William Long Good</cite>
+        </blockquote>
+    </section>
+
+    <section>
+        <h2>Saw a bee? Tell us!</h2>
+        <p>If you saw a bee, you should tell someone. Fill out the form below and let us know.</p>
+        <form action="https://google.com" method="POST">
+            <div class="highlighted">
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="name" required> <!-- Note no </input> -->
+            </div>
+
+            <br /> <!-- We don't use this anymore -->
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="where" required>
+
+            <br />
+
+            <label for="quantity">How many?</label>
+            <input type="number" id="quantity" name="quantity" value="1">
+
+            <br />
+
+            <input type="submit" value="Send Report">
+        </form>
+    </section>
+
+    <footer>
+        <small>
+            Copyright &copy; Tech Elevator 2022
+        </small>
+    </footer>
+
+</body>
+
+</html>
