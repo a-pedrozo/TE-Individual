@@ -1,35 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="info.css" rel="stylesheet" />
 </head>
+
 <body>
     <section>
-        <h2>Submit form to ask any questions </h2>
-        <p>If you saw a bee, you should tell someone. Fill out the form below and let us know.</p>
+        <h2>Information Form</h2>
+
         <form action="https://google.com" method="GET">
             <div class="highlighted">
-            <label for="fullname">Full Name:</label>
-            <input type="text" id="fullname" name="name" required> <!-- Note no </input> -->
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required> 
             </div>
 
-            <br /> <!-- We don't use this anymore -->
+            <br /> 
 
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="where" required>
-
-            <br />
-
-            <label for="quantity">How many?</label>
-            <input type="number" id="quantity" name="quantity" value="1">
-
-            <br />
-
+            <div class="highlighted">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <br>
+            <div class="highlighted">
+                <label for="date-of-birth">Date of Birth:</label>
+                <input type="text" id="date-of-birth" name="date-of-birth">
+            </div>
+            <br>
+            <div class="highlighted">
+                <label for="favorite-color">Favorite Color:</label>
+                <input type="color" id="favorite-color" name="favorite-color">
+            </div>
+            <br>
+            <div class="highlighted">
+                <label for="lucky-number">Lucky Number:</label>
+                <input type="number" id="lucky-number" name="lucky-number">
+            </div>
+            <br>
+            <div class="highlighted">
+                <label for="confirmation">Confirmation:</label>
+                <input type="checkbox" id="confirmation" name="c">
+            </div>
+            <br>
             <input type="submit" value="Send Report">
         </form>
     </section>
 
 </body>
+
 </html>

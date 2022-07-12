@@ -1,6 +1,6 @@
 body {
-    background-color: rgb(49, 49, 49);
-    color: #fff9a9;
+    background-color: blanchedalmond;
+    color:darkslateblue;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -13,14 +13,7 @@ th {
     font-size: 18pt;
 }
 
-/* ID Selector Look for the element with an id of "whyBees" */
-#whyBees {
-    color: brown;
-}
-
-/* Class selector is a generic class that can be applied */
-.highlighted {
-    background-color: black;
-    color: yellow;
-    font-weight: bold;
+h1 {
+    text-align:  center;
+    font-size: 28px;
 }
