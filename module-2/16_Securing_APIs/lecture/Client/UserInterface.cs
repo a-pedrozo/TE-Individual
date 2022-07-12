@@ -12,7 +12,10 @@ namespace DadabaseApp
     /// </summary>
     public class UserInterface
     {
+        // talks to everything in jokes controller 
         private DadJokesRestClient jokesClient = new DadJokesRestClient();
+
+        // talks to everything in authentication controller
         private AuthenticationRestClient loginClient = new AuthenticationRestClient();
 
         /// <summary>
@@ -146,12 +149,14 @@ namespace DadabaseApp
                 Console.WriteLine("Successfully logged in with JWT of " + jwt);
 
                 // TODO: tell the jokesClient we're authenticated with a valid JWT
+                jokesClient.UpdateToken(jwt);
             }
         }
 
         private void LogOut()
         {
             // TODO: tell the jokesClient we're no longer authenticated
+            jokesClient.UpdateToken(null);
         }
 
         private void UpdateDadJoke()

@@ -3,6 +3,7 @@ using RestSharp.Authenticators;
 using AuctionApp.Models;
 using System.Net.Http;
 
+
 namespace AuctionApp.Services
 {
     public class AuthenticatedApiService
@@ -21,11 +22,17 @@ namespace AuctionApp.Services
 
         public ApiUser Login(string submittedName, string submittedPass)
         {
+            RestRequest request = new RestRequest("/login");
+            LoginUser user = new LoginUser();
+            user.Username = submittedName;
+            user.Password = submittedPass;
+
+            request.AddJsonBody(user);
             // Create the "POST login" request
-            IRestResponse<ApiUser> response = null;
+            IRestResponse<ApiUser> response = client.Post<ApiUser>(request);
 
             CheckForError(response);
-            user.Token = response.Data.Token;
+           //user.Token = response.Data.Token;
 
             // Set the authenticator on the client 
 
@@ -51,6 +58,7 @@ namespace AuctionApp.Services
         /// <param name="action">Description of the action the application was taking. Written to the log file for context.</param>
         protected void CheckForError(IRestResponse response)
         {
+            
             string message;
             if (response.ResponseStatus != ResponseStatus.Completed)
             {
@@ -61,7 +69,15 @@ namespace AuctionApp.Services
             {
                 // Set an appropriate error message
                 message = $"An http error occurred. Status code {(int)response.StatusCode} {response.StatusDescription}";
-
+                if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    message = $"Authorization is required and the user has not logged in.";
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    message = $"The user does not have permission.";
+                }
+                throw new HttpRequestException(message);
 
                 // Throw an HttpRequestException with the appropriate message
             }

@@ -22,11 +22,11 @@ namespace DadJokesServer.Controllers
         private readonly IPasswordHasher passwordHasher;
         private readonly IUserDAO userDAO;
 
-        public LoginController(ITokenGenerator _tokenGenerator, IPasswordHasher _passwordHasher, IUserDAO _userDAO)
+        public LoginController(ITokenGenerator tokenGenerator, IPasswordHasher passwordHasher, IUserDAO userDAO)
         {
-            tokenGenerator = _tokenGenerator;
-            passwordHasher = _passwordHasher;
-            userDAO = _userDAO;
+            this.tokenGenerator = tokenGenerator;
+            this.passwordHasher = passwordHasher;
+            this.userDAO = userDAO;
         }
 
         [HttpPost]

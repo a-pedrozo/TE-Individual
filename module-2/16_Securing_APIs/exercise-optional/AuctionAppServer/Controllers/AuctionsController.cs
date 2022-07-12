@@ -8,6 +8,7 @@ namespace AuctionApp.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class AuctionsController : ControllerBase
     {
         private readonly IAuctionDao auctionDao;
@@ -18,6 +19,7 @@ namespace AuctionApp.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public List<Auction> List(string title_like = "", double currentBid_lte = 0)
         {
             if (title_like != "")
@@ -47,6 +49,7 @@ namespace AuctionApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin, creator")]
         public ActionResult<Auction> Create(Auction auction)
         {
             Auction returnAuction = auctionDao.Create(auction);
@@ -54,6 +57,7 @@ namespace AuctionApp.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles ="admin, creator")]
         public ActionResult<Auction> Update(int id, Auction auction)
         {
             Auction existingAuction = auctionDao.Get(id);
@@ -67,6 +71,7 @@ namespace AuctionApp.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
             Auction auction = auctionDao.Get(id);
@@ -89,7 +94,9 @@ namespace AuctionApp.Controllers
         [HttpGet("whoami")]
         public ActionResult WhoAmI()
         {
-            return Ok("");
+            IActionResult result = BadRequest("username or password is incorrect");
+            User user = new User();
+            return Ok();
         }
     }
 }

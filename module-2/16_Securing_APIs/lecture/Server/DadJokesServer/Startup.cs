@@ -46,8 +46,8 @@ namespace DadJokesServer
             ConfigureJwtAuthentication(services, jwtSecret);
 
             // DEPENDENCY INJECTION
-            string connectionString = Configuration.GetConnectionString("DadJokes");
-            services.AddSingleton<IJokeDAO>(ignore => new JokeDAO(connectionString));
+            string connectionString = Configuration.GetConnectionString("DadJokes"); // things on the left are interfaces 
+            services.AddSingleton<IJokeDAO>(ignore => new JokeDAO(connectionString)); // things on the right is what impliments them 
             services.AddSingleton<IUserDAO>(ignore => new UserDAO(connectionString));
             services.AddSingleton<IPasswordHasher>(ignore => new PasswordHasher());
             services.AddSingleton<ITokenGenerator>(ignore => new JwtGenerator(jwtSecret));

@@ -6,6 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    
+    <section>
+        <h2>Submit form to ask any questions </h2>
+        <p>If you saw a bee, you should tell someone. Fill out the form below and let us know.</p>
+        <form action="https://google.com" method="GET">
+            <div class="highlighted">
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="name" required> <!-- Note no </input> -->
+            </div>
+
+            <br /> <!-- We don't use this anymore -->
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="where" required>
+
+            <br />
+
+            <label for="quantity">How many?</label>
+            <input type="number" id="quantity" name="quantity" value="1">
+
+            <br />
+
+            <input type="submit" value="Send Report">
+        </form>
+    </section>
+
 </body>
 </html>

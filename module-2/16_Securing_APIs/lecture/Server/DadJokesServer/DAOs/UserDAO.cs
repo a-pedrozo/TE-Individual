@@ -24,7 +24,7 @@ namespace DadJokesServer.DAOs
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("SELECT user_id, username, password_hash, salt FROM users WHERE username = @username", conn);
+                SqlCommand cmd = new SqlCommand("SELECT user_id, username, password_hash, salt, role FROM users WHERE username = @username", conn);
                 cmd.Parameters.AddWithValue("@username", username);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -45,7 +45,7 @@ namespace DadJokesServer.DAOs
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("SELECT user_id, username, password_hash, salt FROM users", conn);
+                SqlCommand cmd = new SqlCommand("SELECT user_id, username, password_hash, salt, role FROM users", conn);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -90,6 +90,7 @@ namespace DadJokesServer.DAOs
                 Username = Convert.ToString(reader["username"]),
                 PasswordHash = Convert.ToString(reader["password_hash"]),
                 Salt = Convert.ToString(reader["salt"]),
+                Role = Convert.ToString(reader["role"]),
             };
         }
     }

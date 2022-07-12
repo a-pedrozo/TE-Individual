@@ -4,6 +4,7 @@ using System.Text;
 using DadabaseApp;
 using DadabaseApp.Models;
 using RestSharp;
+using RestSharp.Authenticators;
 
 namespace DadabaseClient.ApiClients
 {
@@ -117,6 +118,7 @@ namespace DadabaseClient.ApiClients
         public bool DeleteJokeById(int jokeId)
         {
             RestRequest request = new RestRequest("jokes/" + jokeId);
+            request.AddHeader("Authorization", "Bearer " + token); // this adds token when requesting delete, a solution but needs to exists with every method
 
             IRestResponse response = client.Delete(request);
 
@@ -142,8 +144,26 @@ namespace DadabaseClient.ApiClients
         {
             get
             {
-                return false; // TODO: Return true if one is present
+                return token != null; // TODO: Return true if one is present
             }
+        }
+
+        private string token;
+        public void UpdateToken(string jwt) // this is also part of method to manual set token
+        {
+            token = jwt;
+
+            if (jwt == null)
+            {
+                client.Authenticator = null; // this properly sets jwt to null 
+            }
+            else
+            {
+                // any request with this client in the future will Automatically contain the Authorization/Bearer token header
+                client.Authenticator = new JwtAuthenticator(jwt);
+
+            }
+
         }
 
     }
