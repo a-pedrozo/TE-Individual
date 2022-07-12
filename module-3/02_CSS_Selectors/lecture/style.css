@@ -82,12 +82,23 @@ main {
     - Have a background color of #DDDDDD
     - Have a border radius of 2px
     */
+    div.trello-list {
+    display: inline-block;
+    width: 300px;
+    margin: 0 1rem 1rem 0; /*N E S W */
+    vertical-align: top;
+    background-color: gray;
+    border-radius: 10px;
+    }
 
 /* Each H2 inside of a trello-list div should be bold, have a margin of 1rem, 
 and a font size equal to the document root's font size */
 
 /* Each ordered list inside of a trello-list div should have no margin or padding */
-
+div.trello-list{
+    margin: 0;
+    padding: 0;
+}
 /* Each list item inside of a trello-list div should have:
     - A white background
     - A font size 90% of normal
@@ -95,6 +106,9 @@ and a font size equal to the document root's font size */
     - 0.5rem padding
     - Have a list style of none
 */
+div.trello-list{
+
+}
 
 /* Any anchor tag inside of a trello-list div should 
     - display block, 
@@ -103,6 +117,13 @@ and a font size equal to the document root's font size */
     - have a color of #888888
     - Have left and right padding of 8px, a top padding of 0, and a bottom padding of 5px
     */
+    div.trello-list a {
+        display: block;
+        text-decoration: none;
+        font-size: 85%;
+        color: lightgray;
+        padding: 0 8px 5px 8px;
+    }
 
 /* Any span somewhere inside of an element with a class of "labels" should:
     - Display inline block,
@@ -110,6 +131,14 @@ and a font size equal to the document root's font size */
     - Be 2rem wide and 0.5rem tall,
     - Have a border radius of 0.5rem
     */
+    .labels span {
+        display: inline-block;
+        vertical-align: top;
+        width: 2rem;
+        height: 0.5rem;
+        border-radius: 0.5rem;
+        
+    }
 
 /* Label coloring. Once earlier steps are complete, this should actually do something */
 .label.pathway {
