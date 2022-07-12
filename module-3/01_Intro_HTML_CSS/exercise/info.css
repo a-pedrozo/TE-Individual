@@ -6,3 +6,8 @@ body {
     background-color: blanchedalmond;
     color: darkslateblue
 }
+.highlighted{
+    
+    color: black;
+    font: bold;
+}

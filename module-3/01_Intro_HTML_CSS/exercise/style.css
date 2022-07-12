@@ -16,4 +16,11 @@ th {
 h1 {
     text-align:  center;
     font-size: 28px;
+
+ 
+
+}
+#quote {
+    font-style: italic;
+    color: blue;
 }

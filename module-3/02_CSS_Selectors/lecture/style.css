@@ -62,6 +62,7 @@ header > h1, header > p{
         left: 0;
         right: 0;
         background-color: #44444444;
+        z-index: 1;
         height: 2.5rem;
         padding: 0 0.5rem; /*0 top , bottom, 0.5 left /right  */
     }
@@ -162,20 +163,31 @@ div.trello-list{
 
 /* Any list item in a div.trello-list that is the last child should have a different 
    margin or border bottom (pick something fun) */
+   div.trello-list li:last-child{
+       border-bottom: 4px solid purple;
+   }
+
 
 /* Any list item inside of a div.trello-list that the user hovers should 
 have a background of #f5f6f7, a foreground of #092d42, and a finger cursor */
+div.trello-list li:hover {
+    background: peachpuff;
+    color: darkred;
+    cursor: pointer;
 
+}
 /* Any anchor tag in a div.trello-list should have a background color of 
 RGB 9, 45, 66 with 10% opacity on hover */
-
-/* Scrollbar Styles
+div.trello-list a {
+    background-color: rgba(0, 69, 69 , 0.85);
+}
+/* Scrollbar Styles */
 body::-webkit-scrollbar {
-    width: 10px;
+    width: 20px;
 }
 
 body::-webkit-scrollbar-track {
-    background: #BBB;    
+    background: purple;    
 }
 
 body::-webkit-scrollbar-thumb {
@@ -186,4 +198,3 @@ body::-webkit-scrollbar-thumb {
 body::webkit-scrollbar-thumb:hover {
     background: #888;    
 }
-*/
