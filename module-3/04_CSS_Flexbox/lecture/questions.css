@@ -115,7 +115,6 @@ header, footer {
 
 header {
     grid-area: navBar;
-    text-align: center;
     border-bottom: 5px solid #FFCB48;
 }
 
@@ -130,7 +129,6 @@ header>a {
 
 footer {
     border-top: 5px solid #FFCB48;
-    text-align: center;
     padding: 1rem;
     grid-area: footer;
 }
