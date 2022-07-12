@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   font-family: Tahoma, Verdana, Segoe, sans-serif;
+  border-width: 1px;
 }
 
 html {
@@ -14,4 +15,21 @@ body {
 ul {
   margin: 0;
   padding: 0;
+}
+aside{
+  position: absolute;
+  border: #00ADEE;
+  height: 100%; /*not sure*/
+  border-left-width: 200px;
+  margin: 0 1rem 1rem 0; /*N E S W */
+  
+}
+aside > img {
+  width: 120px;
+  margin: 0 1rem 1rem 0; /*N E S W */ /*not sure*/
+}
+main {
+  display: inline-block;
+
+  
 }
