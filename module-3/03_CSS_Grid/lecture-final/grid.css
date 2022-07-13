@@ -1,0 +1,71 @@
+div.container {
+    /* Display all of our direct children in a grid */
+    display: grid;
+
+    /* Define the rows and cells of the grid */
+    grid-template-areas:
+        "top top top"
+        "current-events article links"
+        "legal legal legal";
+    
+    grid-template-columns: 2fr 5fr 2fr;
+}
+
+/* Put content into the correct grid area */
+footer {
+    /* Which cell do I go in? */
+    grid-area: legal;
+}
+
+header {
+    grid-area: top;
+}
+
+#menu-nav {
+    grid-area: links;
+}
+
+#upcoming-events {
+    grid-area: current-events;
+}
+
+main {
+    grid-area: article;
+}
+
+/* This does not work since div.food-item is not a direct child
+of our grid. Grids ONLY arrange their direct children */
+div.food-item {
+    grid-area: article;
+}
+
+/* Media Queries for tablet & Mobile displays */
+@media screen and (max-width: 768px) {
+
+    /* These rules only apply <= 768px */
+    div.container {
+        grid-template-areas:
+            "top top"
+            "links article"
+            "current-events article"
+            "legal legal";        
+        grid-template-columns: auto;
+    }
+
+}
+
+/* Mobile device layout */
+@media screen and (max-width: 425px) {
+
+    /* These rules only apply <= 425px */
+    div.container {
+        grid-template-areas:
+            "top"
+            "current-events"
+            "article"
+            "links"
+            "legal";        
+        grid-template-columns: auto;
+    }
+
+}

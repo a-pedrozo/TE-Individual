@@ -1,0 +1,27 @@
+footer > nav {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.questionContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: stretch;
+}
+
+.questionContainer article {
+    flex-grow: 1;
+    width: 250px;
+}
+
+body > header {
+    display: flex;;
+}
+
+body > header > nav {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
