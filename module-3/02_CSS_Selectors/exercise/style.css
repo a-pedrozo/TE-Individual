@@ -10,6 +10,8 @@ html {
 
 body {
   background-color: rgba(192, 192, 192, 0.1);
+  border: 1px;
+  border-color: rgba(0, 173, 238, 0.4);
 }
 
 ul {
@@ -18,18 +20,58 @@ ul {
 }
 aside{
   position: absolute;
-  border: #00ADEE;
+  border-right: 1px solid rgba(0, 173, 238, 0.4);
   height: 100%; /*not sure*/
-  border-left-width: 200px;
-  margin: 0 1rem 1rem 0; /*N E S W */
-  
+  width: 200px;
+  margin: 0rem 10rem 10rem 0rem;
 }
 aside > img {
   width: 120px;
-  margin: 0 1rem 1rem 0; /*N E S W */ /*not sure*/
+  height: 120px;
+  margin: 0 0 0 2.4rem;;
+  
 }
 main {
   display: inline-block;
-
+  margin-left: 220px;
+  margin-right: 5px;
   
+
+}
+aside > nav > ul > li{
+  text-align: center;
+  text-transform: capitalize ;
+  border-bottom: 1px solid rgba(0, 173, 238, 0.4);
+  list-style:none;
+  margin-bottom: 10px;
+  
+}
+aside > nav > ul > li > a{
+  text-decoration: none;
+  color: #00ADEE;
+  font-weight: bold;
+  text-align: center;
+}
+main > header >img {
+  height: 100px;
+  margin-bottom: 5px;
+  
+}
+main> img{
+  width: 100%;
+}
+section > div{
+  width: 33%;
+  display: inline-block;
+}
+
+section > div > h2 {
+  color:#8cc36F;
+}
+selection > div > h2 > i{
+  color: hotpink;
+}
+
+.class.fas.fa-star-of-life{
+  background-color: crimson;
 }
