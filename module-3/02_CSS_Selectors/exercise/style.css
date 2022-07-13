@@ -32,7 +32,7 @@ aside > img {
   
 }
 main {
-  display: inline-block;
+  display: block;
   margin-left: 220px;
   margin-right: 5px;
   
@@ -44,6 +44,7 @@ aside > nav > ul > li{
   border-bottom: 1px solid rgba(0, 173, 238, 0.4);
   list-style:none;
   margin-bottom: 10px;
+  padding-block: 5px;
   
 }
 aside > nav > ul > li > a{
@@ -51,6 +52,7 @@ aside > nav > ul > li > a{
   color: #00ADEE;
   font-weight: bold;
   text-align: center;
+  
 }
 main > header >img {
   height: 100px;
@@ -68,10 +70,22 @@ section > div{
 section > div > h2 {
   color:#8cc36F;
 }
-selection > div > h2 > i{
-  color: hotpink;
+
+#what-we-do{
+border-right: 1px solid rgba(170, 239, 135, 0.8);
 }
 
-.class.fas.fa-star-of-life{
-  background-color: crimson;
+#our-work{
+  border-right: 1px solid rgba(170, 239, 135, 0.8);
+}
+
+.fas.fa-pencil-alt{
+  margin-right: 1rem;
+}
+
+.fas.fa-star-of-life{
+  margin-right: 1rem;
+}
+.fas.fa-envelope{
+  margin-right: 1rem;
 }

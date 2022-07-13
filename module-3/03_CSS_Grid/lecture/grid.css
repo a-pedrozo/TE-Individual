@@ -1,0 +1,64 @@
+div.container{
+    /*display all of our direct children in a grid */
+    display: grid;
+    /* two column layout 
+    grid-template-areas: 
+    "top top"
+    "links article"
+    "current-events article"
+    "legal legal";*/
+    grid-template-areas: 
+        "top top top"
+        "current-events article links"
+        "legal legal legal";
+    grid-template-columns: 1fr 1fr 1fr;   /*this will size according to screen, even thirds */
+} 
+
+/* put content into the correct grid areas */
+footer {
+    /* which cell do i go in? */
+    grid-area: legal;
+
+}
+header {
+    grid-area: top;
+
+} 
+
+main{
+    grid-area: article;
+}
+/* this does not work since div.food-item is not a direct chold of our grid. grids only arrange their direct children */
+div.food-item{ 
+    grid-area: article;
+}
+#menu-nav{
+    grid-area: links;
+}
+
+#upcoming-events{
+    grid-area: current-events;
+}
+/* media queries for tablet and mobile displays */
+@media screen and(max-width: 768px) {
+     /* these rules only apply <= 768 px */
+    div.container {
+
+        grid-template-areas: 
+        "top top"
+        "links article"
+        "current-events article"
+        "legal legal";
+    grid-template-columns: auto;
+    }
+}
+@media screen and (max-width: 425px){
+    div.container {
+        grid-template-areas: 
+        "top top"
+        "links article"
+        "current-events article"
+        "legal legal";
+    grid-template-columns: auto;
+    }
+}
