@@ -60,7 +60,7 @@ header img {
     "block block block"
      ;
 
-     grid-template-columns: 1fr 1fr 1fr;
+    align-content: center;
     row-gap: 20px;
     column-gap: 50px;
     
@@ -96,7 +96,7 @@ header img {
     "mid mid"
     "web design";
 
-    grid-template-columns: 1fr 1fr;
+    align-content: center;
     row-gap: 20px;
     column-gap: 50px;
 }
@@ -113,6 +113,56 @@ header img {
     grid-area: web;
 }
 
+@media screen and (max-width: 1024px ){
+    #main-grid{
+        display: grid;
+        grid-template-areas:
+        "top top"
+        "quote image"
+        "quote footer"
+        "paragraph paragraph"
+        "block block"
+         ;
+         row-gap: 20px;
+         column-gap: 35px;
+}
+#experience-grid{
+    grid-area: block;
+    display: grid;
+    grid-template-areas: 
+    "top mid"
+    "web design";
+    
+    row-gap: 20px;
+    column-gap: 20px;
+}
 
+}
 
+@media screen and (max-width: 450px ){
+    #main-grid{
+        display: grid;
+        grid-template-areas:
+        "top"
+        "image"
+        "footer"
+        "quote"
+        "paragraph"
+        "block"
+         ;
+        
+}
+#experience-grid{
+    grid-area: block;
+    display: grid;
+    grid-template-areas: 
+    "top"
+    "mid"
+    "web"
+    "design";
+    
+    
+    
+}
+}
 
