@@ -64,12 +64,9 @@ header img {
     row-gap: 20px;
     column-gap: 50px;
     
-    
-  
 }
 #headline{
     grid-area: top;
-    
     
 }
 
@@ -100,6 +97,8 @@ header img {
     "web design";
 
     grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 50px;
 }
 #experience-code{
     grid-area: top;
