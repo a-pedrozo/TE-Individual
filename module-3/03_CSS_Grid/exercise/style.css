@@ -49,4 +49,71 @@ header img {
 
 #student-picture img{
     border-radius: 50%;
+    align-items: center;
 }
+#main-grid{
+    display: grid;
+    grid-template-areas:
+    "top top image"
+    "quote quote image"
+    "paragraph paragraph footer"
+    "block block block"
+     ;
+
+     grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 50px;
+    
+    
+  
+}
+#headline{
+    grid-area: top;
+    
+    
+}
+
+#student-picture{
+    grid-area: image;
+    justify-self: center;
+    
+}
+
+#student-quote{
+    grid-area: quote;
+}
+#student-profile{
+    grid-area: paragraph;
+}
+#student-contact{
+    grid-area: footer;
+    text-align: center;
+
+}
+
+#experience-grid{
+    grid-area: block;
+    display: grid;
+    grid-template-areas: 
+    "top top"
+    "mid mid"
+    "web design";
+
+    grid-template-columns: 1fr 1fr;
+}
+#experience-code{
+    grid-area: top;
+}
+#experience-database{
+    grid-area: mid;
+}
+#experience-design{
+    grid-area: design;
+}
+#experience-web{
+    grid-area: web;
+}
+
+
+
+
