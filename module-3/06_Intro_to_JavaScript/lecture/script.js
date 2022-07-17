@@ -1,5 +1,3 @@
-// TODO: Install the TODO Highlight extension
-
 // --------------------------------------------------------------------
 // Code below is for LOCATIONS OF JS CODE
 // --------------------------------------------------------------------
@@ -19,7 +17,7 @@ console.error("Error message from our JavaScript file!");
 // Console.WriteLine won't work here
 
 
-// TODO: Or will it?
+// Or will it? (revisit at end of lecture)
 
 
 
