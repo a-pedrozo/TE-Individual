@@ -12,6 +12,13 @@
 			return x + y;
         }
 */
+function sumDouble(x, y){
+	if (x == y){
+		return (x + y) * 2;
+	}
+	
+	return x + y;
+}
 
 /*
 2. **hasTeen** We'll say that a number is "teen" if it is in the range 13..19 inclusive. 
@@ -21,6 +28,21 @@
 		hasTeen(20, 19, 10) → true
 		hasTeen(20, 10, 13) → true
 */
+function hasTeen(x, y, z){
+	let teen = false;
+	if (x >= 13 && x <= 19) {
+		teen = true;
+	} 
+	if (y >= 13 && y <= 19){
+		teen = true;
+	}
+	if (z >= 13 && z <= 19){
+		teen = true;
+	} 
+
+	
+	return teen;
+} 
 
 /* 
 3. **lastDigit** Given two non-negative int values, return true if they have the same 
@@ -30,6 +52,16 @@
 		lastDigit(6, 17) → false
 		lastDigit(3, 113) → true
 */
+function lastDigit(x, y){
+	let lastNum = false;
+	firstNum = toString(x);
+	secondNum = toString(y);
+	if (firstNum == secondNum.slice(-1)){
+		lastNum = true;
+	}
+	return lastNum;
+}
+
 
 /*
 4. **seeColor** Given a string, if the string begins with "red" or "blue" return that color 
@@ -91,6 +123,15 @@ In all other cases return the original number.
 	filterEvens([2, 4, 6]) → [2, 4, 6]
 	filterEvens([100, 8, 21, 24, 62, 9, 7]) → [100, 8, 24, 62]
 */
+function filterEvens(input){
+	let output = [];
+	for (let i = 0; i < output.length; i++){
+		if (output[i] % 2 == 0){
+			output.add(input);
+		}
+	}
+	return output;
+}
 
 /*
 10. **filterBigNumbers** Write a function that filters numbers greater than or equal to 100.

@@ -15,7 +15,7 @@ console.warn("Warning message from our JavaScript file!");
 console.error("Error message from our JavaScript file!");
 
 // Console.WriteLine won't work here
-
+console.log("hello C#")
 
 // Or will it? (revisit at end of lecture)
 
@@ -31,11 +31,24 @@ console.error("Error message from our JavaScript file!");
  */
 function variables() {
   // TODO: Declares a variable where the value cannot be changed
+  const weMissJohn = true;
+  console.log(weMissJohn);
   // TODO: Declares a variable those value can be changed
+  let myAge = 27;
+
+  myAge++;
+
+  console.log('my age is ' + myAge);
   // TODO: Declares a variable that will always be an array
+  const grades = [3, 2, 6, 9, 4];
+
+  
   // TODO: Demonstrate console logging
+  console.log(grades);
+
 }
 
+variables();
 // NOTE: Everything in JavaScript is camelCase except ClassNames
 
 /**
@@ -62,7 +75,7 @@ function add(num1, num2) {
   return num1 + num2 + 1000;
 }
 
-function add(num1, num2, num3) {
+function add(num1, num2, num3) { // this overwrites function on line 82
   return num1 + num2 + num3;
 }
 
@@ -77,6 +90,13 @@ function add(num1, num2, num3) {
 // TODO: Discuss truthy / falsy
 // false, 0, '', null, undefined, and NaN are always falsy everything else is truthy
 
+let myVariable = null;
+if (myVariable){
+  console.log('this value was truthy')
+} else {
+  console.log('the value was falsy')
+}
+
 
 
 
@@ -87,17 +107,35 @@ function add(num1, num2, num3) {
 // Common data types are:
 
 // - strings
-
+let city = 'Columbus';
 // - numbers
-
+let cohortNumber = 17;
 // - arrays
-
+let classes = ['.NET', 'Java Blue', 'Java Green'];
+let randomJunk = [14, true, 'Hi', null];
 // - undefined
+let lastThingIBaked;
+console.log('the last thing I baked was ' + lastThingIBaked);
 
 // - object
+let person = {
+  name: 'jimothy',
+  age: -0,
+  spouse: null,
+};
+
+person.state = 'OH';
+person.city = 'Flavortown';
+
+console.log(person);
+console.log(person.fullName);
 
 // - functions
+let loggingFunction = console.log; // note: no ()'s
+console.log('my logging function ', loggingFunction);
 
+// actually invoke the logging function 
+loggingFunction('this is a weird way of calling a function');
 
 /**
  *  Objects are simple key-value pairs
@@ -117,18 +155,24 @@ function objects() {
       "Milton Waddams",
       "Samir Nagheenanajar",
       "Michael Bolton",
+      "jimothy",
     ],
   };
 
   // TODO: Log the object
+  console.log(person);
+
 
   // TODO: Log the first and last name
-
+  console.log(person.firstName, person.lastName);
   // TODO: Log each employee
+  for (let i = 0; i < person.employees.length; i++){
+    console.log(person.employees[i]);
 
+  }
   return person;
 }
-
+objects();
 
 
 
@@ -198,9 +242,25 @@ function stringFunctions(value) {
 
 // TODO: Add a function to filter out a specific value from an array
 // TODO: Cover Array indexers
+let numbers = [1, 2, 3, 4, 5];
+
+console.log(numbers[0]); // indexes start at 0 
 // TODO: Cover Array.Push - Appends to an array
+let newNumbers = numbers.slice();
+numbers.push(420);
 // TODO: Cover Array.Splice
 // TODO: Cover Array.Shift
+numbers.shift();
+console.log(numbers);
+numbers.splice(0, 3); // removes the first 3 elements
+console.log('after splice ', numbers);
 // TODO: Cover Array.Unshift
+numbers.unshift(32);
 // TODO: Cover Array.Slice
+
+
 // TODO: Cover Array.Concat
+// pop removes the last element 
+numbers.pop();
+console.log(numbers);
+console.log(newNumbers);
