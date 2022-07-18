@@ -2,7 +2,7 @@
  * All named functions will have the function keyword and
  * a name followed by parentheses.
  * 
- * @returns {number} 1
+ * @returns {number} returns 1 always
  */
 function returnOne() {
   return 1;
@@ -67,6 +67,7 @@ function scopeTest() {
   // This variable will always be in scope in this function
   let inScopeInScopeTest = true;
 
+  if (inScopeInScopeTest)
   {
     // this variable lives inside this block and doesn't
     // exist outside of the block
@@ -115,6 +116,7 @@ function scopeTest() {
 
 function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') {
   let description = `${name} is currently ${age} years old. Their quirks are: `;
+  
   return description + listOfQuirks.join(separator);
 }
 
