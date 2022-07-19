@@ -19,6 +19,19 @@
  * @param {boolean} [recommendation=false] does the student have a recommendation
  * @returns {boolean} true if they are admitted
  */
+function isAdmitted(gpa, satScore, recommendation){
+    let accepted = false;
+    if (gpa > 4 || satScore > 1300){
+        accepted = true;
+    }
+    else if (gpa > 3 && recommendation == true){
+        accepted = true;
+    }
+    else if (satScore > 1200 && recommendation == true){
+        accepted = true;
+    }
+    return accepted;
+}
 
 /**
  * Write a function called useParameterToFilterArray that takes an anonymous
@@ -27,7 +40,12 @@
  * @param {function} filterFunction the function to filter with
  * @returns {number[]} the filtered array
  */
-let unfilteredArray = [1, 2, 3, 4, 5, 6];
+let unfilteredArray = [1, 2, 3, 4, 5, 6]; // anonymous function wtf?
+filterFunction = function(unfilteredArray){
+    return unfilteredArray;
+}
+
+
 
 /**
  * Write a function called makeNumber that takes two strings
@@ -40,7 +58,9 @@ let unfilteredArray = [1, 2, 3, 4, 5, 6];
  * @param {string} first the first string of digits to concatenate
  * @param {string} [second=''] the second string of digits to concatenate
  * @returns {number} the resultant number
- */
+ */ function makeNumber(first, second){
+     
+ }
 
 /**
  * Write a function called addAll that takes an unknown number of parameters
@@ -49,6 +69,12 @@ let unfilteredArray = [1, 2, 3, 4, 5, 6];
  * @param {...number} num a series of numbers to add together
  * @returns {number} the sum of all the parameters (or arguments)
  */
+ unknown = function(number){
+     return number;
+ }
+ function addAll(unknown, ...number){
+     return unknown;
+ }
 
 /*
  * Write and document a function called makeHappy that takes
