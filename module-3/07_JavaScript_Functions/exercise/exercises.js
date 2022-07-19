@@ -39,11 +39,23 @@ function isAdmitted(gpa, satScore, recommendation){
  *
  * @param {function} filterFunction the function to filter with
  * @returns {number[]} the filtered array
- */
-let unfilteredArray = [1, 2, 3, 4, 5, 6]; // anonymous function wtf?
-filterFunction = function(unfilteredArray){
-    return unfilteredArray;
-}
+ */ let results = [];
+    let unfilteredArray = [1, 2, 3, 4, 5, 6]; // look to last problem in lecture for answer
+    function useParameterToFilterArray(filterFunction){
+            
+        for (let number of unfilteredArray) {
+            let filtered = filterFunction(unfilteredArray);
+            
+            if (filtered) {
+                results.push(number);
+            }
+        }
+        
+        return results;
+    }
+
+
+
 
 
 
@@ -58,8 +70,8 @@ filterFunction = function(unfilteredArray){
  * @param {string} first the first string of digits to concatenate
  * @param {string} [second=''] the second string of digits to concatenate
  * @returns {number} the resultant number
- */ function makeNumber(first, second){
-     
+ */ function makeNumber(first = 0, second = 0){
+      return first * second;
  }
 
 /**
@@ -69,18 +81,27 @@ filterFunction = function(unfilteredArray){
  * @param {...number} num a series of numbers to add together
  * @returns {number} the sum of all the parameters (or arguments)
  */
- unknown = function(number){
-     return number;
- }
- function addAll(unknown, ...number){
-     return unknown;
- }
+    function addAll(...number){
+        let sum = 0;
+        for (let i = 0; i < number.length; i++) {
+            sum += number[i];
+          }
+        
+          return sum;
+    }
+
+
 
 /*
  * Write and document a function called makeHappy that takes
  * an array and prepends 'Happy ' to the beginning of all the
  * words and returns them as a new array. Use the `map` function.
  */
+    function makeHappy(array){
+        let newArray = [];
+        let newString = newArray.map((p) => 'Happy' + p.array );
+        return newString;
+    }
 
 /*
  * Write and document a function called getFullAddressesOfProperties
@@ -98,7 +119,17 @@ filterFunction = function(unfilteredArray){
  *     streetNumber streetName streetType city state zip
  *
  * Use `map` and an anonymous function.
- */
+ */ let mailingAddress = [
+     {streetNumber:'this'},
+     {streetName:'is'},
+     {streetType:'so'},
+     {city:'confusing'},
+     {state:'IDK'},
+     {zip:'999'},
+
+ ];
+ 
+
 
 /** 
  * Write and document a function called findLargest that uses `forEach`
@@ -114,6 +145,9 @@ filterFunction = function(unfilteredArray){
  * @param {number[]|string[]} searchArray the array to search
  * @returns {number|string} the number or string that is largest
  **/
+    findLargest(number, string, searchArray){
+       
+    }
 
 
 /*
@@ -128,7 +162,7 @@ filterFunction = function(unfilteredArray){
  *   [5, 10, 15]
  * ];
  *
- * The function returns 48. To do this, you will use two nested `reduce`
+ * The function returns 48. To do this, you will use two nested `reduce` 
  * calls with two anonymous functions.
  *
  * Read the tests to verify you have the correct behavior.
