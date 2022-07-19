@@ -54,10 +54,9 @@ function hasTeen(x, y, z){
 */
 function lastDigit(x, y){
 	let lastNum = false;
-	firstNum = toString(x);
-	secondNum = toString(y);
-	if (firstNum == secondNum.slice(-1)){
-		lastNum = true;
+	if(y % 10 == x){
+	lastNum = true;
+	
 	}
 	return lastNum;
 }
@@ -71,6 +70,18 @@ function lastDigit(x, y){
 		seeColor("xxred") → ""
         seeColor("blueTimes") → "blue"
 */
+	function seeColor(color){
+	let string = ''
+	if (color.startsWith('red')){
+		string = 'red'
+		
+	}
+	if (color.startsWith('blue')){
+		string = 'blue'
+	}
+	
+	return string;
+	}
 
 /*
 5. **oddOnly** Write a function that given an array of integer of any length, removes
@@ -79,6 +90,19 @@ function lastDigit(x, y){
 		oddOnly([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) → [1, 3, 5, 7, 9, 11];
 		oddOnly([2, 4, 8, 32, 256]); → []
 */
+function oddOnly(oddArray){
+	
+	let newOddArray = [];
+	for (let i = 0; i <= oddArray.length; i++){
+		if ( oddArray[i] % 2 == 1){
+			newOddArray.push(oddArray[i]);
+		}
+	}
+
+	return newOddArray;
+
+} 
+	
 
 /*
 6. **frontAgain** Given a string, return true if the first 2 chars in the string also appear 
@@ -88,6 +112,13 @@ function lastDigit(x, y){
 		frontAgain("edit") → false
 		frontAgain("ed") → true
 */
+	function frontAgain(word){
+		let firstTwo = false;
+		if (word.substr(0,2) == word.substr(word.length-2, 2)){
+			firstTwo = true;
+		}
+		return firstTwo;
+	}
 
 /*
 7. **cigarParty** When squirrels get together for a party, they like to have cigars. 
@@ -100,6 +131,19 @@ or false otherwise.
 		cigarParty(50, false) → true
 		cigarParty(70, true) → true
 */
+function cigarParty(cigars, weekend){
+
+let partyOn = false;
+if (cigars >= 40 && cigars <= 60 && weekend == false){
+	partyOn = true;
+}
+else if (cigars >= 40 && weekend == true){
+	partyOn = true;
+}
+return partyOn;
+}
+
+
 
 /*
 8. **fizzBuzz** Given a number, return a value according to the following rules:
@@ -113,7 +157,19 @@ In all other cases return the original number.
 	fizzBuzz(10) → "Buzz"
 	fizzBuzz(15) → "FizzBuzz"
 	fizzBuzz(8) → 8
-*/
+*/ function fizzBuzz(num){
+	let number = 0;
+	if (num % 5 ==0 && num % 3 == 0){
+		return 'FizzBuzz';
+	}
+	else if (num % 5 == 0){
+		return 'Buzz';
+	}
+	else if (num % 3 == 0){
+		return 'Fizz'
+	}
+	return num;
+}
 
 /*
 9. **filterEvens** Write a function that filters an array to only include even numbers.
@@ -125,9 +181,9 @@ In all other cases return the original number.
 */
 function filterEvens(input){
 	let output = [];
-	for (let i = 0; i < output.length; i++){
-		if (output[i] % 2 == 0){
-			output.add(input);
+	for (let i = 0; i <= input.length; i++){
+		if (input[i] % 2 == 0){
+			output.push(input[i]);
 		}
 	}
 	return output;
@@ -139,7 +195,15 @@ function filterEvens(input){
 	filterBigNumbers([7, 10, 121, 100, 24, 162, 200]) → [121, 100, 162, 200]
 	filterBigNumbers([3, 2, 7, 1, -100, -120]) → []
 	filterBigNumbers([]) → []
-*/
+*/	function filterBigNumbers(bigNum){
+	let largeNum = [];
+	for (let i = 0; i <= bigNum.length; i ++){
+		if (bigNum[i] >= 100){
+			largeNum.push(bigNum[i]);
+		}
+	}
+	return largeNum;
+}
 
 /*
 11. **filterMultiplesOfX** Write a function to filter numbers that are a multiple of a 
@@ -147,7 +211,15 @@ parameter, `x` passed in.
 
 	filterMultiplesOfX([3, 5, 1, 9, 18, 21, 42, 67], 3) → [3, 9, 18, 21, 42]
 	filterMultiplesOfX([3, 5, 10, 20, 18, 21, 42, 67], 5) → [5, 10, 20]
-*/
+*/ function filterMultiplesOfX(numbers, x){
+	let xArray = [];
+	for (let i = 0; i <= numbers.length; i++ ){
+		if (numbers[i] % x == 0){
+			xArray.push(numbers[i]);
+		}
+	}
+	return xArray;
+}
 
 /*
 12. **createObject** Write a function that creates an object with a property called 
@@ -160,4 +232,11 @@ firstName, lastName, and age. Populate the properties with your values.
 		lastName,
 		age
 	}
-*/
+*/ function createObject(){
+	const person = {
+		firstName: 'bob',
+		lastName: 'billy',
+		age: 59,
+	};
+	return person;
+}

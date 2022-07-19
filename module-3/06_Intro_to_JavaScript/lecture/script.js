@@ -263,4 +263,4 @@ numbers.unshift(32);
 // pop removes the last element 
 numbers.pop();
 console.log(numbers);
-console.log(newNumbers);
+console.log(newNumbers)
