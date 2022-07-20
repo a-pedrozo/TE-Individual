@@ -97,11 +97,7 @@ function isAdmitted(gpa, satScore, recommendation){
  * an array and prepends 'Happy ' to the beginning of all the
  * words and returns them as a new array. Use the `map` function.
  */
-    function makeHappy(array){
-        let newArray = [];
-        let newString = newArray.map((p) => 'Happy' + p.array );
-        return newString;
-    }
+  
 
 /*
  * Write and document a function called getFullAddressesOfProperties
@@ -145,9 +141,7 @@ function isAdmitted(gpa, satScore, recommendation){
  * @param {number[]|string[]} searchArray the array to search
  * @returns {number|string} the number or string that is largest
  **/
-    findLargest(number, string, searchArray){
-       
-    }
+ 
 
 
 /*
