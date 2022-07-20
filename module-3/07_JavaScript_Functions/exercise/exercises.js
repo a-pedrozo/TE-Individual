@@ -42,14 +42,9 @@ function isAdmitted(gpa, satScore, recommendation){
  */ let results = [];
     let unfilteredArray = [1, 2, 3, 4, 5, 6]; // look to last problem in lecture for answer
     function useParameterToFilterArray(filterFunction){
-            
-        for (let number of unfilteredArray) {
-            let filtered = filterFunction(unfilteredArray);
-            
-            if (filtered) {
-                results.push(number);
-            }
-        }
+        
+        results = unfilteredArray.filter(filterFunction);
+        
         
         return results;
     }
@@ -70,8 +65,9 @@ function isAdmitted(gpa, satScore, recommendation){
  * @param {string} first the first string of digits to concatenate
  * @param {string} [second=''] the second string of digits to concatenate
  * @returns {number} the resultant number
- */ function makeNumber(first = 0, second = 0){
-      return first * second;
+ */ function makeNumber(first = "", second = ""){
+      let result = first + second;
+      return parseInt(result);
  }
 
 /**
@@ -96,7 +92,15 @@ function isAdmitted(gpa, satScore, recommendation){
  * Write and document a function called makeHappy that takes
  * an array and prepends 'Happy ' to the beginning of all the
  * words and returns them as a new array. Use the `map` function.
- */
+ */ /**
+  * 
+  * @param {string[]} array 
+  * @return {string[]} returns new array with Happy
+  */
+function makeHappy(array){
+    let newArray = array.map((a) => 'Happy ' + a);
+    return newArray;
+ }
   
 
 /*
@@ -115,15 +119,21 @@ function isAdmitted(gpa, satScore, recommendation){
  *     streetNumber streetName streetType city state zip
  *
  * Use `map` and an anonymous function.
- */ let mailingAddress = [
-     {streetNumber:'this'},
-     {streetName:'is'},
-     {streetType:'so'},
-     {city:'confusing'},
-     {state:'IDK'},
-     {zip:'999'},
+ */ /**
+  * 
+  * @param {object[]} array 
+  * @returns {string[]} returns mailing address
+  */
 
- ];
+    function getFullAddressesOfProperties(array){
+        let newArray = array.map((a) => {
+            return a.streetNumber.toString() + " " + a.streetName.toString() + " " + a.streetType.toString() + " " + a.city.toString() + " " + a.state.toString() + " " + a.zip.toString();
+        });
+        return newArray;
+ }
+     
+
+ 
  
 
 
