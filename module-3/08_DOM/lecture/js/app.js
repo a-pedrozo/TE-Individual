@@ -1,5 +1,5 @@
 // We start with some initial data that we won't need to change
-const name = 'Cigar Parties for Dummies';
+const productName = 'Cigar Parties for Dummies';
 const description = 'Host and plan the perfect cigar party for all of your squirrelly friends.';
 const reviews = [
   {
@@ -41,8 +41,10 @@ const reviews = [
  */
 function setPageTitle() {
   // Get our page page title by the id and the query the .name selector
-
+  // #page-title .name
+  let nameSpan = document.querySelector('#page-title .name');
   // Add the product name to the span.
+  nameSpan.innerText = productName;
 }
 
 /**
@@ -50,8 +52,10 @@ function setPageTitle() {
  */
 function setPageDescription() {
   // Get the description paragraph
+  let descriptionPara = document.querySelector('.description');
 
   // Set the description paragraph's contents
+  descriptionPara.innerText = description;
 }
 
 /**
@@ -61,21 +65,39 @@ function setPageDescription() {
  */
 function displayReviews() {
   // Grab the main area of the application
-
+  let main = document.getElementById('main'); // NOTE: with getelementbyID, do not put #
+  console.debug('grabbed main', main);
   // For each review, build out HTML by:
+  reviews.forEach((review) => {
 
+  
   // ... creating a new HTML element (a div (ew))
+  let reviewDiv = document.createElement('div'); // creates a <div> but does not add to page yet 
+  //reviewDiv.innerText = 'I am a review' // this line is for testing 
   // ... add the review class to that div
+  reviewDiv.classList.add('review'); // adds review to the elements list of CSS classes
+  
 
   // ... addReviewer
+  addReviewer(reviewDiv, review.reviewer);
   // ... addRating
+  addRating(reviewDiv, review.rating);
   // ... addTitle
+  addTitle(reviewDiv,review.title);
   // ... addReview
+  addReview(reviewDiv, review.review) // the review attribute of each review object 
 
   // ... add the div to the application area
-
+    main.appendChild(reviewDiv); // this makes the reviewDiv part of the DOM and displays it on page 
+});
   // Now that we've added these divs, let's find the rating divs
+  let ratingDivs = document.querySelectorAll('.review > div'); // find all divs immediately inside of an element with class of review
   // With these divs, add the rating class to them
+  console.debug('here are our rating divs', ratingDivs);
+
+  ratingDivs.forEach((ratingDiv) => {
+    ratingDiv.classList.add('rating');
+  });
 }
 
 /**
@@ -87,8 +109,11 @@ function displayReviews() {
  */
 function addReviewer(parent, name) {
   // Create an element that looks something like <h4>name</h4>
+let h4 = document.createElement('h4');
+h4.innerText = name;
 
   // Add this element to the parent
+  parent.appendChild(h4);
 }
 
 /**
@@ -98,8 +123,11 @@ function addReviewer(parent, name) {
  */
 function addTitle(parent, title) {
   // Create an element that looks something like <h3>title</h3>
+  let h3 = document.createElement('h3');
+  h3.innerText = title;
 
   // Add this element to the parent
+  parent.appendChild(h3);
 }
 
 /**
@@ -109,7 +137,10 @@ function addTitle(parent, title) {
  */
 function addReview(parent, review) {
   // Create an element that looks something like <p>review</p>
+  let para = document.createElement('p');
+  para.innerText = review;
   // Note that this element may contain HTML content
+  parent.appendChild(para);
 
   // Add this element to the parent  
 }
@@ -121,12 +152,19 @@ function addReview(parent, review) {
  */
 function addRating(parent, numberOfStars) {
   // Create a div to hold the number of stars
-
+  let div = document.createElement('div')
   // For each star:
-  // ... create an image using 'img/star.png'
-  // ... add that star to the parent
+  for (let i = 0; i < numberOfStars; i++){
+    // ... create an image using 'img/star.png'
+    let image =document.createElement('img');
+    image.src = 'img/star.png';
+
+    // ... add that star to the parent
+    div.appendChild(image);
+  }
 
   // Add the stars div to the parent
+  parent.appendChild(div);
 }
 
 // Code to start up our application. This will change tomorrow:
