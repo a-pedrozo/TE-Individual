@@ -72,28 +72,53 @@ function clear() {
 }
 
 // add event listener for when the DOM is loaded
-document.addEventListener('LOADED_EVENT_GOES_HERE', () => {
-
+document.addEventListener('DOMContentLoaded', (event) => {
   // set the variable called display equal to the display element
   // HINT: use its id #display to get a reference to it
-
+    display = document.querySelector('#display');
+    
   // get a reference to all of the numbers
   // loop over each of the numbers
   // add a click event listener to each number to call the function clickNumber
-
+    let numberButton = document.querySelectorAll('.number');
+    numberButton.forEach(number => {
+      number.addEventListener('click', (event) =>{
+        console.log(number);
+        clickNumber(event);
+      });
+    });
+    
   // get a reference to the decimal point button
   // add a click event listener to call the function clickNumber
   // the decimal point is part of the number so append it
+    let decimalPointButton =  document.querySelector('.decimal');
+    decimalPointButton.addEventListener('click', (event) => {
+      clickNumber(event);
+      decimalPointButton.appendChild('.number');
+    });
 
   // get a reference to the all clear button
   // add a click event listener to call the function clear  
-
+    let allClear = document.querySelector('.all-clear');
+    allClear.addEventListener('click', (event) => {
+      clear();
+    });
   // get a reference to all of the operators;
   // loop over each of the operators
   // add a click event listener to each operator to call the function clickOperator
-
+    let operator = document.querySelectorAll('.operator');
+    operator.forEach(operator => {
+      operator.addEventListener('click', (event) => {
+        clickOperator(event);
+      
+      });
+    });
   // add click event listener for the equal sign
   // should call the function performOperation
+  let equal = document.querySelector('.equal-sign');
+  equal.addEventListener('click', (event) => {
+    performOperation(event); 
+  });
 
 });
 

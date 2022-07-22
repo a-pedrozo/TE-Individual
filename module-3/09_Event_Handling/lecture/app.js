@@ -105,14 +105,18 @@ function resetFormValues() {
 function showDescriptionEdit(event) {
   console.log('Show Description Edit', event);
 
-  const target = event.target;
+  const target = event.target; // the DOM element the event occoured on (p tag)
 
+// get teh next child of our parent (this will be the input box)
   const textBox = target.nextElementSibling;
+
+  // showing the text box and hiding the paragraph
   textBox.value = description;
-  textBox.classList.remove('d-none');
+  textBox.classList.remove('d-none'); // d-none is a bootstrap class to set it display: none
 
-  target.classList.add('d-none');
+  target.classList.add('d-none'); // target is the paragraph
 
+  // putting the keyboard focus on our textbox
   textBox.focus();
 }
 
@@ -124,16 +128,19 @@ function showDescriptionEdit(event) {
  * @param {Boolean} save should we save the description text
  */
 function exitDescriptionEdit(event, save) {
-  const target = null; // TODO: This comes from the event
+  const target = event.target; // Target is the thing that generated the event (our description input)
 
-  if (!target) return; // this line can go once target is set
-
+  
+  // get the paragraph (currently hidden)
   const desc = target.previousElementSibling;
 
   // If we're saving, get the new value and set that into description and desc
   if (save) {
-  }
+    description = target.value;
 
+    desc.innerText = description;
+  }
+  // show the paragraph and hide the input
   target.classList.add('d-none');
   desc.classList.remove('d-none');
 }
@@ -153,20 +160,55 @@ function initialize() {
   // -----------------------------------------------
 
   // Step 2: When the user clicks on btnToggleForm, call showHideForm
+  //Find element in the DOM by it's ID
+  let showButton = document.querySelector('#btnToggleForm');
 
+  //register a click handler that get's called when clicked 
+  showButton.addEventListener('click', (event) => {
+    console.log('User clicked show/hide form button', event);
+
+    showHideForm(); // provided function for us in lecture code 
+  });
   // Step 3: When the user clicks btnSaveReview, call saveReview
+  let saveButton = document.querySelector('#btnSaveReview');
+
+  saveButton.addEventListener('click', (event) => {
+    console.log('User clicked show/hide form button', event);
+
+        
+
+    saveReview(event);
+  });
 
   // -----------------------------------------------
 
   // Step 4: When the user double clicks the description paragraph, 
   // call showDescriptionEdit and pass it the event
+  let paragraph = document.querySelector('p.description');
+  paragraph.addEventListener('dblclick', event => {
+    console.log('user double-clicked the description paragraph', event);
+
+    showDescriptionEdit(event); // another provided function from lecture code
+  });
 
   // Step 5: When the user presses a key on the input with an ID of inputDesc, 
   // check for enter and escape and call exitDescriptionEdit
+  let descriptionInput = document.querySelector('#inputDesc');
+  descriptionInput.addEventListener('keydown', (event) => {
+    console.log('key down', event);
+    if (event.key === 'Enter'){
+      exitDescriptionEdit(event, true);
+    } else if (event.key === 'Escape'){
+      exitDescriptionEdit(event, false);
+    }
+  });
 
   // ------------------------------------------------
 
   // Step 6: Add a click listener for when the user clicks the body element and talk bubbling
+  document.addEventListener('click', (event) => {
+    console.log('event has occoured', event.target);
+  });
 }
 
 
@@ -177,16 +219,44 @@ function initialize() {
 function saveReview(event) {
   console.log('Saving Review', event);
 
+  //the default behavior of submitting a form is to refresh the page, we dont want that, so prevent it
+  event.preventDefault();
+
   // Get the value of the name, title, review, and rating controls (these are their ids)
+  let nameBox = document.querySelector('#name');
+  let reviewName = nameBox.value;
+
+  let titleBox = document.querySelector('#title');
+  let titleName = titleBox.value;
+
+  let ratingBox = document.querySelector('#rating');
+  let ratingValue = ratingBox.value;
+
+  let reviewBox = document.querySelector('#review');
+  let reviewText = reviewBox.value;
+
+  console.log(reviewName, titleName, ratingValue, reviewText);
 
   // Create a new review object with these values for reviewer, 
   // title, review, and rating
+  let newReview = { // this creates new object 
+    reviewer: reviewName,
+    title: titleName,
+    review: reviewText,
+    rating: ratingValue,
+  };
 
   // Add the new object to reviews
-
+  reviews.push(newReview);
+  console.log(reviews);
   // Call displayReview with the new review as a parameter
-
+  displayReview(newReview);
   // Call showHideForm to toggle the form visibility
+  showHideForm();
 }
 
 // Step 1: Call initialize when the DOM is ready
+document.addEventListener('DOMContentLoaded', (event) => {
+  console.log('DOM loaded', event);
+  initialize(); // function to set title, description, and display reviews
+});
