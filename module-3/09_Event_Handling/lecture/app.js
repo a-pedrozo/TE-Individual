@@ -107,7 +107,7 @@ function showDescriptionEdit(event) {
 
   const target = event.target; // the DOM element the event occoured on (p tag)
 
-// get teh next child of our parent (this will be the input box)
+// get the next child of our parent (this will be the input box)
   const textBox = target.nextElementSibling;
 
   // showing the text box and hiding the paragraph

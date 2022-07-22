@@ -20,6 +20,7 @@ const groceries = [
 function setPageTitle() {
   const title = document.getElementById('title');
   title.innerText = pageTitle;
+  title.querySelector('title')
 }
 
 /**
@@ -35,4 +36,72 @@ function displayGroceries() {
     li.appendChild(checkCircle);
     ul.appendChild(li);
   });
+
+  
 }
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  console.log('do stuff damn you', event);
+  setPageTitle();
+  displayGroceries();
+  
+
+  let list = document.querySelectorAll('li');
+  list.forEach((item) =>{
+    item.addEventListener('click', (event) =>{
+      console.log('this event works?', event)
+        let checkCircle = item.querySelector('i');
+        checkCircle.classList.add('completed');
+        item.classList.add('completed');
+
+      
+    });
+
+  });
+    let toggleAll = document.querySelector('.btn');
+    list = document.querySelectorAll('li');
+    
+    toggleAll.addEventListener('click', (event) =>{
+      
+      list.forEach((item) => {
+        
+          console.log('still working', event);
+          let checkCircle = item.querySelector('i');
+          checkCircle.classList.add('completed');
+          item.classList.add('completed');
+
+      });
+      
+    });
+    list.forEach((item) =>{
+      item.addEventListener('dblclick', (event) =>{
+        console.log('loop deez nuts', event)
+        
+        
+          let checkCircle = item.querySelector('i');
+          checkCircle.classList.remove('completed');
+          item.classList.remove('completed');
+          
+  
+        
+      });
+  
+    });
+
+    toggleAll.addEventListener('dblclick', (event) =>{
+      
+      list.forEach((item) => {
+        
+          console.log('still working', event);
+          let checkCircle = item.querySelector('i');
+          checkCircle.classList.remove('completed');
+          item.classList.remove('completed');
+
+
+      });
+      
+    });
+  
+});
+
