@@ -46,62 +46,69 @@ document.addEventListener('DOMContentLoaded', (event) => {
   setPageTitle();
   displayGroceries();
   
-
+  
   let list = document.querySelectorAll('li');
   list.forEach((item) =>{
     item.addEventListener('click', (event) =>{
       console.log('this event works?', event)
+      let checkCircle = item.querySelector('i');
+      checkCircle.classList.add('completed');
+      item.classList.add('completed');
+      
+      
+    });
+    
+  });
+
+  list.forEach((item) =>{
+    item.addEventListener('dblclick', (event) =>{
+      console.log('loop deez nuts', event)
+      
+      
         let checkCircle = item.querySelector('i');
-        checkCircle.classList.add('completed');
-        item.classList.add('completed');
+        checkCircle.classList.remove('completed');
+        item.classList.remove('completed');
+        
 
       
     });
 
   });
-    let toggleAll = document.querySelector('.btn');
+
+  let toggleAll = document.querySelector('.btn');
     list = document.querySelectorAll('li');
     
     toggleAll.addEventListener('click', (event) =>{
-      
-      list.forEach((item) => {
-        
-          console.log('still working', event);
-          let checkCircle = item.querySelector('i');
-          checkCircle.classList.add('completed');
-          item.classList.add('completed');
-
-      });
-      
-    });
-    list.forEach((item) =>{
-      item.addEventListener('dblclick', (event) =>{
-        console.log('loop deez nuts', event)
-        
-        
-          let checkCircle = item.querySelector('i');
-          checkCircle.classList.remove('completed');
-          item.classList.remove('completed');
+      if (allItemsIncomplete == true){ 
+        list.forEach((item) => {
           
+            console.log('still working', event);
+            let checkCircle = item.querySelector('i');
+            checkCircle.classList.add('completed');
+            item.classList.add('completed');
+            allItemsIncomplete = false;
+            toggleAll.innerText = "Mark All Incomplete";
+          });
   
+      } 
+     
+      else {
         
-      });
+        list.forEach((item) => {
+          
+            console.log('fucking work', event);
+            let checkCircle = item.querySelector('i');
+            checkCircle.classList.remove('completed');
+            item.classList.remove('completed');
+            allItemsIncomplete = true;
   
-    });
-
-    toggleAll.addEventListener('dblclick', (event) =>{
+        });
+      }
       
-      list.forEach((item) => {
-        
-          console.log('still working', event);
-          let checkCircle = item.querySelector('i');
-          checkCircle.classList.remove('completed');
-          item.classList.remove('completed');
-
-
-      });
       
-    });
+    }); // toggle scope 
+
+
   
 });
 
