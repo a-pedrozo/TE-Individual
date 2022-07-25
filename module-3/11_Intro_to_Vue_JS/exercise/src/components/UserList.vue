@@ -11,7 +11,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><input type="text" id="firstNameFilter"/></td>
+        <td><input type="text" id="firstNameFilter" v-model="Filter.firstName"/></td>
         <td><input type="text" id="lastNameFilter"/></td>
         <td><input type="text" id="usernameFilter"/></td>
         <td><input type="text" id="emailFilter"/></td>
@@ -23,7 +23,16 @@
           </select>
         </td>
       </tr>
-      <!-- user listing goes here -->
+      <!-- user listing goes here , at some point will need v-model somewhere -->
+      
+        <tr v-for="user in filter" v-bind:key="user.emailAddress">
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.emailAddress}}</td>
+        <td>{{user.status}}</td>
+        </tr>
+      
     </tbody>
   </table>
 </template>
@@ -33,6 +42,14 @@ export default {
   name: 'user-list',
   data() {
     return {
+        Filter: {
+        firstName: '',
+        lastName: '',
+        username: '',
+        emailAddress: '',
+        status: '',
+        
+      },
       users: [
         { firstName: 'John', lastName: 'Smith', username: 'jsmith', emailAddress: 'jsmith@gmail.com', status: 'Active' },
         { firstName: 'Anna', lastName: 'Bell', username: 'abell', emailAddress: 'abell@yahoo.com', status: 'Active' },
@@ -42,6 +59,20 @@ export default {
         { firstName: 'Mark', lastName: 'Smith', username: 'msmith', emailAddress: 'msmith@foo.com', status: 'Disabled' }
       ]
     }
+
+  },
+  computed: {
+    filter() {
+      return this.users.filter(u => {
+        if (this.Filter.firstName && !u.firstName.toLowerCase().includes(this.Filter.firstName.toLowerCase())){
+          return false;
+        }
+        return true;
+
+        
+      });
+      
+    } 
   }
 }
 </script>

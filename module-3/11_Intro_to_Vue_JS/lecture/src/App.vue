@@ -1,17 +1,21 @@
 <template>
   <!-- This HTML will be added to the page for App.vue -->
   <div id="app">
-    <h1>Hello Vue.js</h1>
-    <!-- ProductReviews goes here -->
+    <h1>Property Reviews</h1>
+    <!-- add in the product-reviews component to my DOM  -->
+    <product-reviews />
   </div>
 </template>
 
 <script>
 // This JS represents a "class" within Vue.js representing a component or part of the screen
+import ProductReviews from './components/ProductReviews.vue';
+
 export default {
   name: 'App',
   components: {
     // ProductReviews goes here
+    ProductReviews // i am allowed to use ProductReviews or product-reviews in my template
   }
 }
 </script>

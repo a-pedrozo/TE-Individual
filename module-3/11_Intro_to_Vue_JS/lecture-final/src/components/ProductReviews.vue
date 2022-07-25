@@ -36,6 +36,9 @@ export default {
             // search is an object containing properties about the search. In this case, just text. We bind to this with search.text
             search: {
                 text: '',
+                rating: '',
+                reviewer: '',
+                id: '',
             },
             productName: 'Glizzies', // A form of hot dog (supposedly)
             reviews: [

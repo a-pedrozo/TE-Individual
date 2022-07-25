@@ -1,7 +1,7 @@
 // add pageTitle
 let pageTitle = 'My Shopping List'
 // add groceries
-let groceries = ["Adult Diapers", "SUBS", "Lubricant", "Bottle of Rum", "Explosives", "Full body waifu pillow", "Crop top with gray sweatpants", "two left handed mittens", "a box of crayons", "Jeffery Epstien's Logbook" ]
+let groceries = ["Adult Diapers", "Bears in heat", "Lubricant", "Bottle of Rum", "Explosives", "Full body waifu pillow", "Crop top with gray sweatpants", " Gaping Fractussy", "a box of crayons", "Jeffery Epstien's Logbook" ]
 
 /**
  * This function will get a reference to the title and set its text to the value
