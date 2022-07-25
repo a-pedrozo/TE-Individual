@@ -8,9 +8,6 @@
 
 <script>
 // This JS represents a "class" within Vue.js representing a component or part of the screen
-
-// import ProductReviews 
-
 export default {
   name: 'App',
   components: {
