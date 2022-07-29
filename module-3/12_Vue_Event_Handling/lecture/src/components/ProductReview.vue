@@ -38,9 +38,9 @@
     </div>
 
     <!-- A Show Form link here would be good -->
-
+    <button v-on:click="showForm()" v-if="hideForm == true">Show Form</button>
     <!-- Add new items form -->
-    <form>
+    <form v-else v-on:submit.prevent="addReview">
       <div class="form-element">
         <label for="reviewer">Name:</label>
         <input id="reviewer" type="text" v-model="newReview.reviewer" />
@@ -63,8 +63,8 @@
         <label for="review">Review:</label>
         <textarea id="review" v-model="newReview.review"></textarea>
       </div>
-      <input type="submit" value="Save">
-      <input type="button" value="Cancel">
+      <input type="submit" value="Save"/>
+      <input type="button" value="Cancel" v-on:click="clearForm"/>
     </form>
 
     <!-- Reviews list -->
@@ -101,10 +101,13 @@ export default {
   name: "product-review",
   data() {
     return {
+
+      hideForm: true,
+
       name: "Cigar Parties for Dummies",
       description:
         "Host and plan the perfect cigar party for all of your squirrelly friends.",
-      newReview: {},
+      newReview: { },
       reviews: [
         {
           reviewer: "Malcolm Gladwell",
@@ -172,6 +175,23 @@ export default {
       return this.reviews.reduce((currentCount, review) => {
         return currentCount + (review.rating === 5);
       }, 0);
+    }
+  },
+  methods:{
+    showForm(){
+      this.hideForm = false;
+    },
+
+    clearForm(){
+      this.newReview = {};
+      this.hideForm = true;
+    },
+
+    addReview(){
+      this.reviews.unshift(this.newReview)
+      this.clearForm()
+      
+
     }
   }
 };

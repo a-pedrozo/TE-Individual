@@ -44,7 +44,7 @@
       >Show Form</a
     >
 
-    <form v-on:submit.prevent="addNewReview" v-if="showForm === true">
+    <form v-on:submit.prevent="addNewReview">
       <div class="form-element">
         <label for="reviewer">Name:</label>
         <input id="reviewer" type="text" v-model="newReview.reviewer" />

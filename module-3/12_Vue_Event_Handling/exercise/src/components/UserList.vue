@@ -64,26 +64,26 @@
       <button>Delete Users</button>
     </div>
 
-    <button>Add New User</button>
+    <button v-on:click="showForms" v-if!="showForm">Add New User</button>
 
-    <form id="frmAddNewUser">
+    <form v-on:submit.prevent="saveUser" v-show="showForm" id="frmAddNewUser">
       <div class="field">
         <label for="firstName">First Name:</label>
-        <input type="text" name="firstName" />
+        <input type="text" name="firstName" v-model="newUser.firstName"/>
       </div>
       <div class="field">
         <label for="lastName">Last Name:</label>
-        <input type="text" name="lastName" />
+        <input type="text" name="lastName" v-model="newUser.lastName"/>
       </div>
       <div class="field">
         <label for="username">Username:</label>
-        <input type="text" name="username" />
+        <input type="text" name="username" v-model="newUser.username"/>
       </div>
       <div class="field">
         <label for="emailAddress">Email Address:</label>
-        <input type="text" name="emailAddress" />
+        <input type="text" name="emailAddress" v-model="newUser.emailAddress"/>
       </div>
-      <button type="submit" class="btn save">Save User</button>
+      <button type="submit" class="btn save" v-on:submit="resetForm">Save User</button>
     </form>
   </div>
 </template>
@@ -93,6 +93,8 @@ export default {
   name: "user-list",
   data() {
     return {
+      showForm: false,
+
       filter: {
         firstName: "",
         lastName: "",
@@ -160,7 +162,21 @@ export default {
       ]
     };
   },
-  methods: {},
+  methods: {
+    showForms(){
+      this.showForm = true;
+    },
+    resetForm(){
+      this.newUser = {};
+      this.showForm = false;
+    },
+    saveUser(){
+      this.users.unshift(this.newUser);
+      this.resetForm();
+      
+    }
+
+  },
   computed: {
     filteredList() {
       let filteredUsers = this.users;

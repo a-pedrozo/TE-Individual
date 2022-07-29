@@ -1,5 +1,6 @@
 <template>
   <div class="reviews">
+    <p>This is ReviewList</p>
     <review-display
       v-for="review in filteredReviews"
       v-bind:key="review.title"
@@ -18,10 +19,10 @@ export default {
   },
   computed: {
     filteredReviews() {
-      const reviewsFilter = -1;
-      const reviews = [];
+      const reviewsFilter = 0;
+      const reviews = this.$store.state.reviews
       return reviews.filter(review => {
-        return reviewsFilter === 0 ? true : reviewsFilter === review.rating;
+        return reviewsFilter == 0 ? true : reviewsFilter == review.rating;
       });
     }
   }
