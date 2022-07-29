@@ -52,7 +52,8 @@
           <td>{{ user.emailAddress }}</td>
           <td>{{ user.status }}</td>
           <td>
-            <button class="btnEnableDisable">Enable or Disable</button>
+            <button class="btnEnableDisable" v-on:click="flipStatus(user)" v-if="user.status == 'Disabled'">Enable</button>
+            <button class="btnEnableDisable" v-on:click="flipStatus(user)" v-if="user.status == 'Active'">Disable</button>
           </td>
         </tr>
       </tbody>
@@ -174,6 +175,16 @@ export default {
       this.users.unshift(this.newUser);
       this.resetForm();
       
+    },
+
+    flipStatus(user){
+    
+    if (user.status == 'Active'){
+      user.status = 'Disabled'
+    }
+    else if (user.status == 'Disabled'){
+      user.status = 'Active'
+    }
     }
 
   },
