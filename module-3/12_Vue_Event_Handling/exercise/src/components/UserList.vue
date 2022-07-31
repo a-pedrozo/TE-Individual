@@ -189,6 +189,10 @@ export default {
 
   },
   computed: {
+    
+       
+    actionButtonDisabled: true,
+
     filteredList() {
       let filteredUsers = this.users;
       if (this.filter.firstName != "") {
