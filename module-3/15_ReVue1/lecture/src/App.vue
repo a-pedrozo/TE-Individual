@@ -1,32 +1,77 @@
 <template>
   <div id="app">
+
+    <!-- This header is present for all pages -->
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <ul>
+        <li>
+          <!-- Router links generate an "a" tag that navigates to a specific Route on click -->
+          <router-link v-bind:to="{name: 'Home'}">Home</router-link>
+        </li>
+      </ul>
     </div>
+
+    <!-- Page contents go here -->
     <router-view/>
   </div>
 </template>
 
+<script>
+export default {
+  name: 'App',
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+/*  CSS variables. These can be referenced like this:    
+    color: var(--main-color);
+*/
+:root {
+  --main-bg-color: white;
+  --main-color: black;
+  --accent-color: #7c09ff;
+  --link-color: #42b983;
+  --active-link-color: var(--accent-color);
+  --hover-color: #b9429b;
+}
+
+/* Top level Styling */
+html {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  background-color: var(--main-bg-color);
+  color: var(--main-color);
 }
 
-#nav {
-  padding: 30px;
+body {
+  margin: 0 0 0 1rem;
 }
 
-#nav a {
+/* Navigation Lists */
+#nav ul {
+  display: inline-block;
+  list-style: none;
+  padding-left: 0;
+}
+
+#nav li {
+  display: inline-block;
+  margin: 0 0.25rem;
+}
+
+/* Link Styling */
+a {
   font-weight: bold;
-  color: #2c3e50;
+  color: var(--link-color);
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+a.router-link-exact-active {
+  color: var(--active-link-color);
+}
+
+a:hover {
+  font-weight: bold;
+  color: var(--hover-color);
 }
 </style>
