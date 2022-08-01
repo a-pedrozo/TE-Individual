@@ -32,7 +32,10 @@ export default new Vuex.Store({
       }
     ],
   },
-  mutations: {},
+  mutations: {
+    FLIP_FAVORITED(state, book) {
+      book.read = ! book.read;}
+  },
   actions: {},
   modules: {},
 
