@@ -26,3 +26,8 @@ Lecture Tasks:
 - [ ] Add a bug
 - [ ] Update a bug
 - [ ] Delete a bug
+
+- [ ] Components - Have a component with Props
+
+- [ ] Routing - Handle detail pages
+- [ ] Routing - Handle Router Push
