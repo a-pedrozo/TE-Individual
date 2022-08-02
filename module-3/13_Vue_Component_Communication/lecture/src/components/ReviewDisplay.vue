@@ -5,14 +5,14 @@
       <img
         src="../assets/star.png"
         v-bind:title="review.rating + ' Star Review'"
-
+        
         class="ratingStar"
         v-for="n in review.rating"
         v-bind:key="n"
       />
     </div>
-    <h3>{{ book.title }}</h3>
-    <p>{{ book.author }}</p>
+    <h3>{{ review.title }}</h3>
+    <p>{{ review.review }}</p>
     <p>
       Favorite?
       <input
