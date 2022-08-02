@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <nav> 
+    <a href="Home.vue">Home |</a>
+    <a href="MyBooks.vue"> My Books</a>
+    </nav>
     <router-view />
   </div>
 </template>
