@@ -1,9 +1,11 @@
 <template>
+
   <div id="app">
-    <nav> 
-    <a href="Home.vue">Home |</a>
-    <a href="MyBooks.vue"> My Books</a>
+  <nav>
+      <router-link v-bind:to="{ name: 'home' }">Home</router-link>
+      <router-link v-bind:to="{ name: 'myBooks' }">My Books</router-link>
     </nav>
+
     <router-view />
   </div>
 </template>

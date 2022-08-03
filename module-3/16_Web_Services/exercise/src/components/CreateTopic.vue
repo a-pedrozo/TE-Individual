@@ -24,7 +24,9 @@ export default {
     };
   },
   methods: {
-    saveTopic() {}
+    saveTopic() {
+      topicService.add(this.topic);
+    }
   }
 };
 </script>

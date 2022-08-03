@@ -46,11 +46,30 @@
 <script>
 import PriorityBadge from '../components/PriorityBadge.vue';
 import StatusBadge from '../components/StatusBadge.vue';
+import Axios from 'axios'
 
 export default {
   components: {
      PriorityBadge,
      StatusBadge 
+  },
+  created(){
+    console.log('loaded bug list');
+
+
+    let axiosOptions = {
+      baseURL: 'https://bugslist.azurewebsites.net/'
+    }
+
+    let client = Axios.create(axiosOptions);
+
+    console.log('client created');
+
+    client.get('bugs')
+    .then(response => {
+      console.log('call to get bugs completed');
+      console.log(response);
+    });
   },
   name: 'bugs-list',
   computed: {
