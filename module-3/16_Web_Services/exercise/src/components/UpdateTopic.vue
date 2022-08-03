@@ -26,6 +26,7 @@ export default {
       const topic = { id: this.topicID, title: this.title };
       // call topic service update method
       topicService.update(topic);
+      
     }
   },
   created() {

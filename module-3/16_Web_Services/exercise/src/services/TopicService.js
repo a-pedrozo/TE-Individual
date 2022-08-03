@@ -17,7 +17,7 @@ export default {
     return http.post('/topics', topic);
   },
   update(topic){
-    return http.put('/topics/${topic.id}', topic)
+    return http.put(`/topics/${topic.id}`, topic)
   }
 
 }
