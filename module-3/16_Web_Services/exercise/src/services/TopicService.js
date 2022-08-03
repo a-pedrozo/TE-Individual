@@ -18,6 +18,9 @@ export default {
   },
   update(topic){
     return http.put(`/topics/${topic.id}`, topic)
+  },
+  delete(id){
+    return http.delete(`/topics/${id}`)
   }
 
 }
