@@ -34,7 +34,7 @@ export default {
     saveMessage() {
       messageService.add(this.message)
       .then(response =>{
-        console.log(response);
+        
         this.$router.push({name: 'Messages', params: { id: this.message.topicId} });
 
       })

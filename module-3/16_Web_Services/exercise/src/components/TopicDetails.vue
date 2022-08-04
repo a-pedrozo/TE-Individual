@@ -35,7 +35,7 @@ export default {
     deleteMessage(id) {
       messageService.delete(id)
       .then(response =>{
-        console.log(response);
+        
         this.$store.commit('DELETE_MESSAGE', id);
       });
       

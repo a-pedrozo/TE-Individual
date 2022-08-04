@@ -40,8 +40,8 @@ export default {
     },
     deleteTopic(id) {
       topicService.delete(id)
-      .then(response => {
-        console.log(response);
+      .then(() => {
+        
         this.getTopics();
       });
     }

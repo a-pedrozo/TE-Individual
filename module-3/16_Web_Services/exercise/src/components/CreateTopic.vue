@@ -27,7 +27,7 @@ export default {
     saveTopic() {
       topicService.add(this.topic)
       .then(response => {
-        console.log(response);
+        
       })
     }
   }
