@@ -25,7 +25,10 @@ export default {
   },
   methods: {
     saveTopic() {
-      topicService.add(this.topic);
+      topicService.add(this.topic)
+      .then(response => {
+        console.log(response);
+      })
     }
   }
 };
