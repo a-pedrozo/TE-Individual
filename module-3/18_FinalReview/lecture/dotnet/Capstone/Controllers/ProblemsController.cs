@@ -28,5 +28,17 @@ namespace Capstone.Controllers
             return Ok(problems);
         }
 
+        [HttpGet("{id}")] // GET to api/problems/{id}
+        public ActionResult GetProblem(int id)
+        {
+            TrolleyProblem problem = trolleyDAO.LoadProblemById(id);
+
+            if (problem == null)
+            {
+                return NotFound(problem);
+            }
+
+            return Ok(problem);
+        }
     }
 }

@@ -16,6 +16,34 @@ namespace Capstone.DAO
             this.connectionString = connectionString;
         }
 
+        public TrolleyProblem LoadProblemById(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "SELECT tp.id, tp.problem, tp.times_pulled_lever, " +
+                    "tp.times_not_pulled FROM trolley_problems tp WHERE tp.id = @id";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@id", id);
+
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    TrolleyProblem problem = new TrolleyProblem();
+                    problem.Id = Convert.ToInt32(reader["id"]);
+                    problem.Problem = Convert.ToString(reader["problem"]);
+                    problem.TimesPulled = Convert.ToInt32(reader["times_pulled_lever"]);
+                    problem.TimesNotPulled = Convert.ToInt32(reader["times_not_pulled"]);
+
+                    return problem;
+                }
+            }
+
+            return null;
+        }
+
         public List<TrolleyProblem> LoadAllProblems()
         {
             List<TrolleyProblem> problems = new List<TrolleyProblem>();

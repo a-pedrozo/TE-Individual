@@ -6,5 +6,6 @@ namespace Capstone.DAO
     public interface ITrolleyDAO
     {
         List<TrolleyProblem> LoadAllProblems();
+        TrolleyProblem LoadProblemById(int id);
     }
 }
