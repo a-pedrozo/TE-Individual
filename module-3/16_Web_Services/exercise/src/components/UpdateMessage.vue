@@ -37,7 +37,7 @@ export default {
       // call update in message service
       messageService.update(message)
       .then(response =>{
-        
+        this.messageText = response.data.messageText;
         this.$router.push({name: 'Messages', params: { id: message.topicId} });
 
       })
